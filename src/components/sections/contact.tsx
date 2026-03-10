@@ -105,7 +105,7 @@ export function Contact({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="rounded-2xl border border-brand-navy/6 bg-white p-6 dark:border-white/8 dark:bg-brand-navy-light/20 md:p-8"
+            className="rounded-2xl border border-brand-navy/6 bg-white p-5 dark:border-white/8 dark:bg-brand-navy-light/20 sm:p-6 md:p-8"
           >
             <ContactForm />
           </motion.div>

@@ -134,7 +134,7 @@ export function Navbar() {
               <ThemeToggle compact />
               <a
                 href="#contact"
-                className="ml-2 inline-flex h-10 items-center justify-center rounded-full bg-brand-navy px-6 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-px hover:shadow-lg dark:bg-brand-yellow dark:text-brand-navy"
+                className="ml-2 inline-flex h-12 items-center justify-center rounded-full bg-brand-navy px-6 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-px hover:shadow-lg dark:bg-brand-yellow dark:text-brand-navy"
               >
                 {t("cta")}
               </a>

@@ -90,7 +90,7 @@ export function ContactForm() {
   const labelClasses = "text-sm font-semibold text-brand-navy dark:text-white";
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+    <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5" noValidate>
       <div aria-live="polite" aria-atomic="true" className="status-live-region" id={liveRegionId}>
         {statusMessage}
       </div>

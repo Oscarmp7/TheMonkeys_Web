@@ -123,7 +123,7 @@ export function ProjectModal({ isOpen, onClose, project }: ProjectModalProps) {
               <X size={20} />
             </button>
 
-            <div className="relative h-64 w-full md:h-80">
+            <div className="relative h-52 w-full sm:h-64 md:h-80">
               <Image
                 src={project.image}
                 alt={project.title}
@@ -133,7 +133,7 @@ export function ProjectModal({ isOpen, onClose, project }: ProjectModalProps) {
               />
             </div>
 
-            <div className="p-6 md:p-8">
+            <div className="p-5 sm:p-6 md:p-8">
               <h3
                 id="project-modal-title"
                 className="font-display text-2xl font-bold md:text-3xl"

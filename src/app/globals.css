@@ -24,7 +24,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 4rem;
     color-scheme: light;
     font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   }
@@ -75,7 +75,17 @@
   }
 
   .section-anchor {
-    scroll-margin-top: 5rem;
+    scroll-margin-top: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    html {
+      scroll-padding-top: 5rem;
+    }
+
+    .section-anchor {
+      scroll-margin-top: 5rem;
+    }
   }
 
   .section-overheader {

@@ -64,7 +64,7 @@ export function About() {
           {values.map(({ key, icon: Icon }, index) => (
             <motion.div
               key={key}
-              className={`py-8 md:px-8 ${
+              className={`px-1 py-8 sm:px-4 md:px-8 ${
                 index > 0
                   ? "border-t border-brand-navy/8 dark:border-white/8 md:border-l md:border-t-0"
                   : ""

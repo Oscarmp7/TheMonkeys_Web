@@ -9,7 +9,7 @@ type LogoCloudProps = {
 
 function LogoItem({ logo }: { logo: ClientLogo }) {
   const content = (
-    <div className="flex h-20 min-w-[180px] items-center justify-center px-8">
+    <div className="flex h-20 min-w-[140px] items-center justify-center px-4 sm:min-w-[160px] sm:px-6 md:min-w-[180px] md:px-8">
       <Image
         src={logo.src}
         alt={logo.name}
@@ -57,12 +57,12 @@ export function LogoCloud({ logos }: LogoCloudProps) {
 
       <ProgressiveBlur
         blurIntensity={1}
-        className="pointer-events-none absolute left-0 top-0 h-full w-[100px]"
+        className="pointer-events-none absolute left-0 top-0 h-full w-[60px] sm:w-[80px] md:w-[100px]"
         direction="left"
       />
       <ProgressiveBlur
         blurIntensity={1}
-        className="pointer-events-none absolute right-0 top-0 h-full w-[100px]"
+        className="pointer-events-none absolute right-0 top-0 h-full w-[60px] sm:w-[80px] md:w-[100px]"
         direction="right"
       />
     </div>

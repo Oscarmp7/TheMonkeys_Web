@@ -71,7 +71,7 @@ export function Hero({
       animate="visible"
       variants={containerVariants}
     >
-      <div className="flex w-full flex-col justify-center px-6 pb-14 pt-28 sm:px-8 md:w-[58%] md:px-10 md:pb-16 md:pt-32 lg:px-16 xl:px-20">
+      <div className="flex w-full flex-col justify-center px-6 pb-12 pt-20 sm:px-8 sm:pt-24 md:w-[58%] md:px-10 md:pb-16 md:pt-32 lg:px-16 xl:px-20">
         <motion.p className="section-overheader mb-6 w-fit" variants={itemVariants}>
           {t("overheader")}
         </motion.p>
