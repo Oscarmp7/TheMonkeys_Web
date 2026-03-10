@@ -75,10 +75,10 @@ export function Navbar() {
               <Image
                 src={logoSrc}
                 alt="The Monkeys"
-                width={180}
-                height={60}
+                width={300}
+                height={100}
                 className={`object-contain transition-all duration-300 ${
-                  scrolled ? "h-10 w-auto" : "h-14 w-auto"
+                  scrolled ? "h-14 w-auto" : "h-24 w-auto"
                 }`}
                 priority
               />
