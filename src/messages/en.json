@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "about": "About",
+    "contact": "Contact",
+    "cta": "Get a Quote!"
+  },
+  "hero": {
+    "overheader": "Creative Digital Agency",
+    "title": "We make brands grow in digital",
+    "subtitle": "We help brands grow in the digital environment through modern, creative, and results-oriented communication strategies.",
+    "cta_primary": "Get a Quote!",
+    "cta_secondary": "View Portfolio"
+  },
+  "services": {
+    "overheader": "What we do",
+    "title": "Services",
+    "cta": "Get a Quote!",
+    "items": {
+      "inbound": "Inbound Marketing",
+      "content_production": "Content Production",
+      "seo": "SEO",
+      "web_dev": "Web Development",
+      "influencers": "Influencer Marketing",
+      "campaigns": "Digital Campaigns",
+      "content_creation": "Content Creation"
+    }
+  },
+  "portfolio": {
+    "overheader": "Our work",
+    "title": "Portfolio",
+    "cta_placeholder": "Want to be next?"
+  },
+  "clients": {
+    "overheader": "Brands that trust us"
+  },
+  "about": {
+    "overheader": "About us",
+    "statement": "We create",
+    "bio": "we help brands grow in the digital environment through modern, creative, and results-oriented communication strategies.",
+    "location": "Santiago de los Caballeros, DR",
+    "values": {
+      "transparency": { "title": "Transparency", "description": "Clear and honest communication at every step." },
+      "quality": { "title": "Quality", "description": "Excellence in every delivery, no exceptions." },
+      "service": { "title": "Great Service", "description": "Your success is our success. Always available." }
+    }
+  },
+  "contact": {
+    "overheader": "Let's talk",
+    "title": "Ready to grow in digital?",
+    "bio": "The Monkeys is a creative digital agency focused on helping brands grow in the modern digital environment through marketing strategies with value, creativity, and a focus on results.",
+    "whatsapp_cta": "Message us on WhatsApp",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "company": "Company (optional)",
+      "service": "Service you're interested in",
+      "message": "Message",
+      "submit": "Send message",
+      "success": "Message sent! We'll contact you soon.",
+      "error": "There was an error. Please try again."
+    }
+  },
+  "footer": {
+    "tagline": "We help brands grow in digital.",
+    "copyright": "© 2026 The Monkeys. All rights reserved."
+  },
+  "whatsapp": {
+    "tooltip": "Let's talk?"
+  }
+}

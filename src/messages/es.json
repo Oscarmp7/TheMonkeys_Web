@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "services": "Servicios",
+    "portfolio": "Portfolio",
+    "about": "Nosotros",
+    "contact": "Contacto",
+    "cta": "Cotiza Ahora!"
+  },
+  "hero": {
+    "overheader": "Agencia Creativa Digital",
+    "title": "Hacemos que las marcas crezcan en digital",
+    "subtitle": "Ayudamos a las marcas a crecer en el entorno digital a través de estrategias de comunicación modernas, creativas y orientadas a resultados.",
+    "cta_primary": "Cotiza Ahora!",
+    "cta_secondary": "Ver Portfolio"
+  },
+  "services": {
+    "overheader": "Lo que hacemos",
+    "title": "Servicios",
+    "cta": "Cotiza Ahora!",
+    "items": {
+      "inbound": "Inbound Marketing",
+      "content_production": "Producción de Contenidos",
+      "seo": "SEO",
+      "web_dev": "Desarrollo Web",
+      "influencers": "Marketing de Influencers",
+      "campaigns": "Campaña Digital",
+      "content_creation": "Creación de Contenido"
+    }
+  },
+  "portfolio": {
+    "overheader": "Nuestro trabajo",
+    "title": "Portfolio",
+    "cta_placeholder": "¿Quieres ser el siguiente?"
+  },
+  "clients": {
+    "overheader": "Marcas que confían en nosotros"
+  },
+  "about": {
+    "overheader": "Sobre nosotros",
+    "statement": "Hacemos",
+    "bio": "ayudamos a las marcas a crecer en el entorno digital a través de estrategias de comunicación modernas, creativas y orientadas a resultados.",
+    "location": "Santiago de los Caballeros, RD",
+    "values": {
+      "transparency": { "title": "Transparencia", "description": "Comunicación clara y honesta en cada paso del proceso." },
+      "quality": { "title": "Calidad", "description": "Excelencia en cada entrega, sin excepciones." },
+      "service": { "title": "Buen Servicio", "description": "Tu éxito es nuestro éxito. Siempre disponibles." }
+    }
+  },
+  "contact": {
+    "overheader": "Hablemos",
+    "title": "¿Listo para crecer en digital?",
+    "bio": "The Monkeys es una agencia creativa digital enfocada en ayudar a las marcas a crecer dentro del entorno digital moderno mediante estrategias de marketing con valor, creatividad y enfoque en resultados.",
+    "whatsapp_cta": "Escríbenos por WhatsApp",
+    "form": {
+      "name": "Nombre",
+      "email": "Email",
+      "company": "Empresa (opcional)",
+      "service": "Servicio que te interesa",
+      "message": "Mensaje",
+      "submit": "Enviar mensaje",
+      "success": "¡Mensaje enviado! Te contactaremos pronto.",
+      "error": "Hubo un error. Intenta de nuevo."
+    }
+  },
+  "footer": {
+    "tagline": "Ayudamos a las marcas a crecer en digital.",
+    "copyright": "© 2026 The Monkeys. Todos los derechos reservados."
+  },
+  "whatsapp": {
+    "tooltip": "¿Hablamos?"
+  }
+}
