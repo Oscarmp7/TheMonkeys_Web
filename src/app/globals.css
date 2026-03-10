@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Brand colors */
+  --color-brand-yellow: #FFCD00;
+  --color-brand-navy: #00263E;
+  --color-brand-navy-light: #003456;
+  --color-brand-navy-deep: #001A2C;
+
+  /* Surface colors */
+  --color-surface-light: #FFFFFF;
+  --color-surface-light-alt: #F8F9FA;
+  --color-surface-dark: #00263E;
+  --color-surface-dark-alt: #001A2C;
+
+  /* Utility colors */
+  --color-whatsapp: #25D366;
+
+  /* Font families */
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
+@layer base {
+  body {
+    @apply bg-surface-light text-brand-navy antialiased;
+  }
+
+  .dark body {
+    @apply bg-surface-dark text-white;
+  }
+}
