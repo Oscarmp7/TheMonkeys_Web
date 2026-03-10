@@ -7,11 +7,12 @@
     "cta": "Cotiza Ahora!"
   },
   "hero": {
-    "overheader": "Agencia Creativa Digital",
-    "title": "Hacemos que las marcas crezcan en digital",
-    "subtitle": "Ayudamos a las marcas a crecer en el entorno digital a través de estrategias de comunicación modernas, creativas y orientadas a resultados.",
-    "cta_primary": "Cotiza Ahora!",
-    "cta_secondary": "Ver Portfolio"
+    "overheader": "Agencia Digital Creativa",
+    "title_line1": "Hacemos que las marcas",
+    "title_line2": "crezcan en digital",
+    "subtitle": "Ayudamos a las marcas a crecer en el entorno digital mediante estrategias de comunicación modernas, creativas y orientadas a resultados.",
+    "cta_primary": "¡Cotiza ahora!",
+    "cta_secondary": "Ver Portafolio"
   },
   "services": {
     "overheader": "Lo que hacemos",

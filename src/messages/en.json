@@ -8,7 +8,8 @@
   },
   "hero": {
     "overheader": "Creative Digital Agency",
-    "title": "We make brands grow in digital",
+    "title_line1": "We make brands",
+    "title_line2": "grow in digital",
     "subtitle": "We help brands grow in the digital environment through modern, creative, and results-oriented communication strategies.",
     "cta_primary": "Get a Quote!",
     "cta_secondary": "View Portfolio"
