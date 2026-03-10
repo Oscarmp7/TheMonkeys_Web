@@ -22,6 +22,10 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-surface-light text-brand-navy antialiased;
   }

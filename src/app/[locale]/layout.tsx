@@ -3,6 +3,7 @@ import { Space_Grotesk, DM_Sans } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { Navbar } from "@/components/layout/navbar";
 import "../globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -20,6 +21,10 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: "The Monkeys | Creative Agency",
   description: "The Monkeys - Creative Digital Agency",
+  icons: {
+    icon: "/logos/mk-main.png",
+    apple: "/logos/mk-main.png",
+  },
 };
 
 export default async function LocaleLayout({
@@ -41,6 +46,7 @@ export default async function LocaleLayout({
       <body className="font-body">
         <ThemeProvider>
           <NextIntlClientProvider messages={messages}>
+            <Navbar />
             {children}
           </NextIntlClientProvider>
         </ThemeProvider>
