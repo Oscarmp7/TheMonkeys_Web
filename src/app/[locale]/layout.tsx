@@ -4,6 +4,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
+import { WhatsAppButton } from "@/components/ui/whatsapp-button";
 import "../globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -48,6 +50,8 @@ export default async function LocaleLayout({
           <NextIntlClientProvider messages={messages}>
             <Navbar />
             {children}
+            <Footer />
+            <WhatsAppButton />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
