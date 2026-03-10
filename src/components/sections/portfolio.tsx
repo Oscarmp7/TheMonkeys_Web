@@ -1,97 +1,184 @@
 "use client";
 
-import { useState } from "react";
-import { useTranslations, useLocale } from "next-intl";
-import { SectionHeader } from "@/components/ui/section-header";
-import { PortfolioCard } from "@/components/ui/portfolio-card";
+import { useRef, useState } from "react";
+import { useTranslations } from "next-intl";
+import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import { ProjectModal } from "@/components/ui/project-modal";
+import type { PortfolioProject } from "@/lib/site-data";
 
-interface Project {
-  _id: string;
-  title: { es: string; en: string };
-  slug: { current: string };
-  image: string;
-  description: { es: string; en: string };
-  services: string[];
-  featured: boolean;
-}
-
-const fallbackProjects: Project[] = [
-  {
-    _id: "jimetor",
-    title: {
-      es: "Jimetor Eco Village",
-      en: "Jimetor Eco Village",
-    },
-    slug: { current: "jimetor" },
-    image: "/portfolio/jimetor-logo.jpeg",
-    description: {
-      es: "Branding completo, fotografía, video, manejo de redes sociales y SEO para Jimetor Eco Village.",
-      en: "Complete branding, photography, video, social media management and SEO for Jimetor Eco Village.",
-    },
-    services: ["Content Production", "SEO", "Content Creation"],
-    featured: true,
-  },
-];
-
-export function Portfolio() {
-  const t = useTranslations("portfolio");
-  const locale = useLocale();
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-  const projects = fallbackProjects;
+function FeaturedProject({
+  project,
+  label,
+  onOpen,
+}: {
+  project: PortfolioProject;
+  label: string;
+  onOpen: () => void;
+}) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+  const imageY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
 
   return (
-    <section id="portfolio" className="py-24 lg:py-32">
-      <div className="container mx-auto px-6 lg:px-12">
-        <SectionHeader overheader={t("overheader")} title={t("title")} />
+    <motion.div
+      ref={containerRef}
+      className="group relative cursor-pointer overflow-hidden rounded-2xl"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      onClick={onOpen}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onOpen(); } }}
+      aria-label={`${label}: ${project.title}`}
+      aria-haspopup="dialog"
+    >
+      <div className="relative aspect-[16/9] w-full overflow-hidden md:aspect-[2.2/1]">
+        <motion.div className="absolute inset-0" style={{ y: imageY }}>
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className="scale-110 object-cover transition-transform duration-700 group-hover:scale-[1.14]"
+            sizes="(min-width: 1280px) 1200px, 100vw"
+            priority
+          />
+        </motion.div>
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/30 to-transparent" />
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-16">
-          {projects.map((project, index) => (
-            <PortfolioCard
-              key={project._id}
-              title={locale === "es" ? project.title.es : project.title.en}
-              image={project.image}
-              services={project.services}
-              featured={project.featured}
-              index={index}
-              onClick={() => setSelectedProject(project)}
-            />
+      <div className="absolute inset-x-0 bottom-0 z-10 p-6 md:p-10">
+        <div className="flex flex-wrap gap-2">
+          {project.services.map((service) => (
+            <span
+              key={service}
+              className="rounded-full bg-white/15 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm"
+            >
+              {service}
+            </span>
           ))}
-
-          {/* CTA Placeholder Card */}
-          <a
-            href="https://wa.me/18097561847?text=Hola,%20me%20interesa%20saber%20más%20sobre%20sus%20servicios"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="col-span-1 min-h-[250px] rounded-2xl bg-brand-yellow flex items-center justify-center p-8 transition-all duration-300 hover:shadow-xl hover:scale-[1.02]"
-          >
-            <p className="font-display text-xl md:text-2xl font-bold text-brand-navy text-center">
-              {t("cta_placeholder")}
-            </p>
-          </a>
         </div>
+        <h3 className="mt-3 font-display text-3xl font-bold text-white md:text-5xl">
+          {project.title}
+        </h3>
+        <p className="mt-2 max-w-xl text-sm leading-6 text-white/65 md:text-base">
+          {project.description}
+        </p>
+      </div>
+    </motion.div>
+  );
+}
+
+function SecondaryCard({
+  project,
+  index,
+  label,
+  onOpen,
+}: {
+  project: PortfolioProject;
+  index: number;
+  label: string;
+  onOpen: () => void;
+}) {
+  return (
+    <motion.button
+      type="button"
+      className="group relative overflow-hidden rounded-2xl text-left"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.45, delay: index * 0.1, ease: "easeOut" }}
+      onClick={onOpen}
+      aria-label={`${label}: ${project.title}`}
+      aria-haspopup="dialog"
+    >
+      <div className="relative aspect-[4/3] overflow-hidden">
+        <Image
+          src={project.image}
+          alt={project.title}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(min-width: 768px) 33vw, 100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/80 via-transparent to-transparent" />
+      </div>
+      <div className="absolute inset-x-0 bottom-0 p-5">
+        <h3 className="font-display text-lg font-bold text-white">{project.title}</h3>
+      </div>
+    </motion.button>
+  );
+}
+
+export function Portfolio({ projects }: { projects: PortfolioProject[] }) {
+  const t = useTranslations("portfolio");
+  const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null);
+  const primaryProject = projects[0];
+  const secondaryProjects = projects.slice(1);
+
+  return (
+    <section id="portfolio" className="section-anchor py-28 lg:py-36">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-14"
+        >
+          <p className="section-overheader">{t("overheader")}</p>
+          <h2 className="mt-5 font-display text-4xl font-bold tracking-tight md:text-5xl">
+            {t("title")}
+          </h2>
+        </motion.div>
+
+        {primaryProject ? (
+          <FeaturedProject
+            project={primaryProject}
+            label={t("open_project")}
+            onOpen={() => setSelectedProject(primaryProject)}
+          />
+        ) : null}
+
+        {secondaryProjects.length ? (
+          <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-3">
+            {secondaryProjects.map((project, index) => (
+              <SecondaryCard
+                key={project._id}
+                project={project}
+                index={index}
+                label={t("open_project")}
+                onOpen={() => setSelectedProject(project)}
+              />
+            ))}
+          </div>
+        ) : null}
+
+        <motion.a
+          href="#contact"
+          className="mt-10 flex items-center justify-between rounded-2xl bg-brand-navy px-8 py-7 text-white transition-all duration-300 hover:-translate-y-px hover:shadow-xl dark:bg-brand-navy-light md:px-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <p className="font-display text-lg font-bold md:text-2xl">
+            {t("cta_placeholder")}
+          </p>
+          <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-yellow text-brand-navy">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </motion.a>
       </div>
 
       <ProjectModal
-        isOpen={!!selectedProject}
+        isOpen={Boolean(selectedProject)}
         onClose={() => setSelectedProject(null)}
-        project={
-          selectedProject
-            ? {
-                title:
-                  locale === "es"
-                    ? selectedProject.title.es
-                    : selectedProject.title.en,
-                image: selectedProject.image,
-                description:
-                  locale === "es"
-                    ? selectedProject.description.es
-                    : selectedProject.description.en,
-                services: selectedProject.services,
-              }
-            : null
-        }
+        project={selectedProject}
       />
     </section>
   );

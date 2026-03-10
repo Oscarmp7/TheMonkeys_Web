@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Instagram, Facebook, Linkedin, Youtube } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
+import { socialLinks, type SiteSettings } from "@/lib/site-data";
 
 function PinterestIcon({ size = 24 }: { size?: number }) {
   return (
@@ -12,14 +13,15 @@ function PinterestIcon({ size = 24 }: { size?: number }) {
   );
 }
 
-const socialLinks = [
-  { href: "https://www.instagram.com/themonkeys.do/", icon: Instagram, label: "Instagram" },
-  { href: "https://www.facebook.com/themonkeys.do", icon: Facebook, label: "Facebook" },
-  { href: "https://www.linkedin.com/company/the-monkeysrd/", icon: Linkedin, label: "LinkedIn" },
-  { href: "https://www.youtube.com/@Themonkeysrd", icon: Youtube, label: "YouTube" },
-];
+const socialIcons = {
+  Instagram,
+  Facebook,
+  LinkedIn: Linkedin,
+  YouTube: Youtube,
+  Pinterest: PinterestIcon,
+};
 
-export function Footer() {
+export function Footer({ settings }: { settings: SiteSettings }) {
   const t = useTranslations("footer");
   const navT = useTranslations("nav");
 
@@ -31,32 +33,30 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-brand-navy-deep text-white py-16">
-      <div className="container mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {/* Brand */}
-          <div>
+    <footer className="bg-brand-navy-deep py-16 text-white">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12">
+        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr]">
+          <div className="max-w-md">
             <Image
               src="/logos/logo-white.png"
               alt="The Monkeys"
-              width={180}
-              height={60}
-              className="h-12 w-auto"
+              width={160}
+              height={50}
+              className="h-10 w-auto"
             />
-            <p className="mt-4 opacity-60 text-sm">{t("tagline")}</p>
+            <p className="mt-5 text-sm leading-7 text-white/50">{t("tagline")}</p>
           </div>
 
-          {/* Navigation */}
           <div>
-            <h4 className="font-display font-semibold text-lg mb-4">
-              Navegación
-            </h4>
-            <nav className="flex flex-col gap-2">
+            <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-white/40">
+              {t("navigation")}
+            </h2>
+            <nav className="mt-5 flex flex-col gap-3">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="opacity-60 hover:opacity-100 hover:text-brand-yellow transition text-sm"
+                  className="text-sm text-white/60 transition-colors duration-200 hover:text-brand-yellow"
                 >
                   {link.label}
                 </a>
@@ -64,43 +64,37 @@ export function Footer() {
             </nav>
           </div>
 
-          {/* Social + Contact */}
           <div>
-            <h4 className="font-display font-semibold text-lg mb-4">
-              Síguenos
-            </h4>
-            <div className="flex gap-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="opacity-60 hover:opacity-100 hover:text-brand-yellow transition"
-                  aria-label={social.label}
-                >
-                  <social.icon size={24} />
-                </a>
-              ))}
-              <a
-                href="https://www.pinterest.com/themonkeysdo/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="opacity-60 hover:opacity-100 hover:text-brand-yellow transition"
-                aria-label="Pinterest"
-              >
-                <PinterestIcon size={24} />
-              </a>
+            <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-white/40">
+              {t("follow")}
+            </h2>
+            <div className="mt-5 flex flex-wrap gap-4">
+              {socialLinks.map((social) => {
+                const Icon = socialIcons[social.label];
+                return (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/50 transition-colors duration-200 hover:text-brand-yellow"
+                    aria-label={social.label}
+                  >
+                    <Icon size={22} />
+                  </a>
+                );
+              })}
             </div>
-            <div className="mt-6 space-y-2 text-sm opacity-60">
-              <p>hola@themonkeys.do</p>
-              <p>(809) 756-1847</p>
+
+            <div className="mt-8 space-y-1.5 text-sm text-white/40">
+              <p>{settings.email}</p>
+              <p>{settings.phone}</p>
+              <p>{settings.address}</p>
             </div>
           </div>
         </div>
 
-        {/* Separator + Copyright */}
-        <div className="border-t border-white/10 mt-12 pt-8 text-center text-sm opacity-40">
+        <div className="mt-14 border-t border-white/8 pt-8 text-center text-xs text-white/30">
           {t("copyright")}
         </div>
       </div>

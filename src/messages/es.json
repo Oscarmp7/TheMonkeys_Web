@@ -4,20 +4,24 @@
     "portfolio": "Portfolio",
     "about": "Nosotros",
     "contact": "Contacto",
-    "cta": "Cotiza Ahora!"
+    "cta": "Cotiza ahora",
+    "navigation": "Navegación principal",
+    "menu_open": "Abrir menú",
+    "menu_close": "Cerrar menú"
   },
   "hero": {
-    "overheader": "Agencia Digital Creativa",
+    "overheader": "Agencia digital creativa",
     "title_line1": "Hacemos que las marcas",
     "title_line2": "crezcan en digital",
-    "subtitle": "Ayudamos a las marcas a crecer en el entorno digital mediante estrategias de comunicación modernas, creativas y orientadas a resultados.",
-    "cta_primary": "¡Cotiza ahora!",
-    "cta_secondary": "Ver Portafolio"
+    "subtitle": "Estrategia, contenido, pauta y desarrollo web para marcas que quieren crecer con claridad, creatividad y resultados medibles.",
+    "cta_primary": "Cotizar proyecto",
+    "cta_secondary": "Ver portfolio"
   },
   "services": {
     "overheader": "Lo que hacemos",
-    "title": "Servicios",
-    "cta": "Cotiza Ahora!",
+    "title": "Servicios para marcas que quieren avanzar",
+    "intro": "Diseñamos sistemas de marketing y contenido que conectan con audiencias reales y convierten mejor.",
+    "cta": "Quiero una propuesta",
     "items": {
       "inbound": "Inbound Marketing",
       "content_production": "Producción de Contenidos",
@@ -30,44 +34,72 @@
   },
   "portfolio": {
     "overheader": "Nuestro trabajo",
-    "title": "Portfolio",
-    "cta_placeholder": "¿Quieres ser el siguiente?"
+    "title": "Casos y proyectos destacados",
+    "cta_placeholder": "¿Quieres ser el siguiente caso de éxito?",
+    "open_project": "Abrir proyecto",
+    "featured_label": "Resumen del caso"
   },
   "clients": {
-    "overheader": "Marcas que confían en nosotros"
+    "overheader": "Confianza construida",
+    "title": "Marcas y proyectos con los que hemos trabajado",
+    "project_label": "Proyecto en circulaciÃ³n"
   },
   "about": {
     "overheader": "Sobre nosotros",
+    "title": "Una agencia enfocada en crecimiento digital",
     "statement": "Hacemos",
-    "bio": "ayudamos a las marcas a crecer en el entorno digital a través de estrategias de comunicación modernas, creativas y orientadas a resultados.",
-    "location": "Santiago de los Caballeros, RD",
+    "bio": "Ayudamos a las marcas a crecer en el entorno digital a través de estrategias modernas, creativas y orientadas a resultados.",
+    "location": "Santiago de los Caballeros, República Dominicana",
     "values": {
-      "transparency": { "title": "Transparencia", "description": "Comunicación clara y honesta en cada paso del proceso." },
-      "quality": { "title": "Calidad", "description": "Excelencia en cada entrega, sin excepciones." },
-      "service": { "title": "Buen Servicio", "description": "Tu éxito es nuestro éxito. Siempre disponibles." }
+      "transparency": {
+        "title": "Transparencia",
+        "description": "Comunicación clara, prioridades visibles y decisiones sin letra pequeña."
+      },
+      "quality": {
+        "title": "Calidad",
+        "description": "Cuidamos cada entrega para que la estrategia y la ejecución se sostengan."
+      },
+      "service": {
+        "title": "Buen servicio",
+        "description": "Respondemos rápido, acompañamos de cerca y trabajamos con criterio."
+      }
     }
   },
   "contact": {
     "overheader": "Hablemos",
-    "title": "¿Listo para crecer en digital?",
-    "bio": "The Monkeys es una agencia creativa digital enfocada en ayudar a las marcas a crecer dentro del entorno digital moderno mediante estrategias de marketing con valor, creatividad y enfoque en resultados.",
+    "title": "Cuéntanos qué necesitas",
+    "bio": "Si quieres crecer con una estrategia más clara, una presencia digital más fuerte o una ejecución creativa mejor resuelta, conversemos.",
     "whatsapp_cta": "Escríbenos por WhatsApp",
+    "phone_label": "Teléfono",
+    "email_label": "Correo",
+    "location_label": "Ubicación",
     "form": {
       "name": "Nombre",
-      "email": "Email",
-      "company": "Empresa (opcional)",
-      "service": "Servicio que te interesa",
-      "message": "Mensaje",
+      "email": "Correo electrónico",
+      "company": "Empresa",
+      "company_hint": "Opcional",
+      "service": "Servicio de interés",
+      "message": "Cuéntanos sobre tu proyecto",
+      "message_hint": "Incluye metas, tiempos o cualquier contexto relevante.",
+      "required": "Obligatorio",
       "submit": "Enviar mensaje",
-      "success": "¡Mensaje enviado! Te contactaremos pronto.",
-      "error": "Hubo un error. Intenta de nuevo."
+      "sending": "Enviando mensaje...",
+      "success": "Mensaje enviado. Te contactaremos pronto.",
+      "error": "Hubo un error al enviar el mensaje. Intenta de nuevo."
     }
   },
   "footer": {
     "tagline": "Ayudamos a las marcas a crecer en digital.",
+    "navigation": "Navegación",
+    "follow": "Síguenos",
+    "contact": "Contacto",
     "copyright": "© 2026 The Monkeys. Todos los derechos reservados."
   },
   "whatsapp": {
-    "tooltip": "¿Hablamos?"
+    "tooltip": "¿Hablamos?",
+    "aria_label": "Abrir conversación por WhatsApp"
+  },
+  "theme": {
+    "toggle": "Cambiar tema"
   }
 }

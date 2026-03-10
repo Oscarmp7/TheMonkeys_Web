@@ -9,6 +9,7 @@ import { WhatsAppButton } from "@/components/ui/whatsapp-button";
 import { JsonLd } from "@/components/seo/json-ld";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { MetaPixel } from "@/components/analytics/meta-pixel";
+import { getSiteSettings, type AppLocale } from "@/lib/site-data";
 import "../globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -31,35 +32,29 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const isEs = locale === "es";
+  const appLocale: AppLocale = locale === "en" ? "en" : "es";
+  const isEs = appLocale === "es";
+  const siteSettings = await getSiteSettings(appLocale);
 
   return {
-    title: isEs
-      ? "The Monkeys | Agencia Creativa Digital"
-      : "The Monkeys | Creative Digital Agency",
-    description: isEs
-      ? "Ayudamos a las marcas a crecer en el entorno digital a través de estrategias de comunicación modernas, creativas y orientadas a resultados."
-      : "We help brands grow in the digital environment through modern, creative, and results-oriented communication strategies.",
+    title: siteSettings.seoTitle,
+    description: siteSettings.seoDescription,
     icons: {
       icon: "/logos/mk-main.png",
       apple: "/logos/mk-main.png",
     },
     metadataBase: new URL(baseUrl),
     alternates: {
-      canonical: `${baseUrl}/${locale}`,
+      canonical: `${baseUrl}/${appLocale}`,
       languages: {
         es: `${baseUrl}/es`,
         en: `${baseUrl}/en`,
       },
     },
     openGraph: {
-      title: isEs
-        ? "The Monkeys | Agencia Creativa Digital"
-        : "The Monkeys | Creative Digital Agency",
-      description: isEs
-        ? "Agencia creativa digital en Santiago de los Caballeros, RD. Marketing digital, branding, SEO y más."
-        : "Creative digital agency in Santiago de los Caballeros, DR. Digital marketing, branding, SEO and more.",
-      url: `${baseUrl}/${locale}`,
+      title: siteSettings.seoTitle,
+      description: siteSettings.seoDescription,
+      url: `${baseUrl}/${appLocale}`,
       siteName: "The Monkeys",
       locale: isEs ? "es_DO" : "en_US",
       type: "website",
@@ -74,12 +69,8 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: isEs
-        ? "The Monkeys | Agencia Creativa Digital"
-        : "The Monkeys | Creative Digital Agency",
-      description: isEs
-        ? "Agencia creativa digital en Santiago de los Caballeros, RD."
-        : "Creative digital agency in Santiago de los Caballeros, DR.",
+      title: siteSettings.seoTitle,
+      description: siteSettings.seoDescription,
       images: [`${baseUrl}/logos/logo-main.png`],
     },
     robots: {
@@ -97,26 +88,35 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const appLocale: AppLocale = locale === "en" ? "en" : "es";
   const messages = await getMessages();
+  const siteSettings = await getSiteSettings(appLocale);
+  const skipLabel =
+    appLocale === "es"
+      ? "Saltar al contenido principal"
+      : "Skip to main content";
 
   return (
     <html
-      lang={locale}
+      lang={appLocale}
       className={`${spaceGrotesk.variable} ${dmSans.variable}`}
       suppressHydrationWarning
     >
       <head>
-        <JsonLd locale={locale} />
+        <JsonLd locale={appLocale} settings={siteSettings} />
         <GoogleAnalytics />
         <MetaPixel />
       </head>
       <body className="font-body">
         <ThemeProvider>
           <NextIntlClientProvider messages={messages}>
+            <a href="#main-content" className="skip-link">
+              {skipLabel}
+            </a>
             <Navbar />
             {children}
-            <Footer />
-            <WhatsAppButton />
+            <Footer settings={siteSettings} />
+            <WhatsAppButton locale={appLocale} phone={siteSettings.whatsapp} />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

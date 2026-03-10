@@ -4,20 +4,24 @@
     "portfolio": "Portfolio",
     "about": "About",
     "contact": "Contact",
-    "cta": "Get a Quote!"
+    "cta": "Get a quote",
+    "navigation": "Primary navigation",
+    "menu_open": "Open menu",
+    "menu_close": "Close menu"
   },
   "hero": {
-    "overheader": "Creative Digital Agency",
-    "title_line1": "We make brands",
-    "title_line2": "grow in digital",
-    "subtitle": "We help brands grow in the digital environment through modern, creative, and results-oriented communication strategies.",
-    "cta_primary": "Get a Quote!",
-    "cta_secondary": "View Portfolio"
+    "overheader": "Creative digital agency",
+    "title_line1": "We help brands",
+    "title_line2": "grow digitally",
+    "subtitle": "Strategy, content, paid media, and web development for brands that want clarity, creative strength, and measurable results.",
+    "cta_primary": "Start a project",
+    "cta_secondary": "View portfolio"
   },
   "services": {
     "overheader": "What we do",
-    "title": "Services",
-    "cta": "Get a Quote!",
+    "title": "Services built for brands that need momentum",
+    "intro": "We design marketing and content systems that connect with real audiences and convert more effectively.",
+    "cta": "Request a proposal",
     "items": {
       "inbound": "Inbound Marketing",
       "content_production": "Content Production",
@@ -30,44 +34,72 @@
   },
   "portfolio": {
     "overheader": "Our work",
-    "title": "Portfolio",
-    "cta_placeholder": "Want to be next?"
+    "title": "Selected projects and case studies",
+    "cta_placeholder": "Want to be the next success story?",
+    "open_project": "Open project",
+    "featured_label": "Case overview"
   },
   "clients": {
-    "overheader": "Brands that trust us"
+    "overheader": "Trust earned",
+    "title": "Brands and projects we have supported",
+    "project_label": "Project in motion"
   },
   "about": {
     "overheader": "About us",
-    "statement": "We create",
-    "bio": "we help brands grow in the digital environment through modern, creative, and results-oriented communication strategies.",
-    "location": "Santiago de los Caballeros, DR",
+    "title": "A digital agency focused on sustainable growth",
+    "statement": "We make",
+    "bio": "We help brands grow in the digital environment through modern, creative, and results-driven strategies.",
+    "location": "Santiago de los Caballeros, Dominican Republic",
     "values": {
-      "transparency": { "title": "Transparency", "description": "Clear and honest communication at every step." },
-      "quality": { "title": "Quality", "description": "Excellence in every delivery, no exceptions." },
-      "service": { "title": "Great Service", "description": "Your success is our success. Always available." }
+      "transparency": {
+        "title": "Transparency",
+        "description": "Clear communication, visible priorities, and decisions without fine print."
+      },
+      "quality": {
+        "title": "Quality",
+        "description": "We care about every delivery so strategy and execution stay aligned."
+      },
+      "service": {
+        "title": "Great service",
+        "description": "We respond quickly, stay close, and work with sound judgment."
+      }
     }
   },
   "contact": {
     "overheader": "Let's talk",
-    "title": "Ready to grow in digital?",
-    "bio": "The Monkeys is a creative digital agency focused on helping brands grow in the modern digital environment through marketing strategies with value, creativity, and a focus on results.",
+    "title": "Tell us what you need",
+    "bio": "If you want clearer strategy, a stronger digital presence, or more intentional creative execution, let's talk.",
     "whatsapp_cta": "Message us on WhatsApp",
+    "phone_label": "Phone",
+    "email_label": "Email",
+    "location_label": "Location",
     "form": {
       "name": "Name",
-      "email": "Email",
-      "company": "Company (optional)",
-      "service": "Service you're interested in",
-      "message": "Message",
+      "email": "Email address",
+      "company": "Company",
+      "company_hint": "Optional",
+      "service": "Service of interest",
+      "message": "Tell us about your project",
+      "message_hint": "Share your goals, timeline, or any relevant context.",
+      "required": "Required",
       "submit": "Send message",
-      "success": "Message sent! We'll contact you soon.",
-      "error": "There was an error. Please try again."
+      "sending": "Sending message...",
+      "success": "Message sent. We will contact you soon.",
+      "error": "There was an error sending your message. Please try again."
     }
   },
   "footer": {
-    "tagline": "We help brands grow in digital.",
+    "tagline": "We help brands grow digitally.",
+    "navigation": "Navigation",
+    "follow": "Follow us",
+    "contact": "Contact",
     "copyright": "© 2026 The Monkeys. All rights reserved."
   },
   "whatsapp": {
-    "tooltip": "Let's talk?"
+    "tooltip": "Let's talk",
+    "aria_label": "Open WhatsApp conversation"
+  },
+  "theme": {
+    "toggle": "Toggle theme"
   }
 }

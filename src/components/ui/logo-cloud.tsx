@@ -1,38 +1,68 @@
+import Image from "next/image";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import { ProgressiveBlur } from "@/components/ui/progressive-blur";
-
-type Logo = {
-  src: string;
-  alt: string;
-};
+import type { ClientLogo } from "@/lib/site-data";
 
 type LogoCloudProps = {
-  logos: Logo[];
+  logos: ClientLogo[];
 };
 
-export function LogoCloud({ logos }: LogoCloudProps) {
+function LogoItem({ logo }: { logo: ClientLogo }) {
+  const content = (
+    <div className="flex h-20 min-w-[180px] items-center justify-center px-8">
+      <Image
+        src={logo.src}
+        alt={logo.name}
+        width={160}
+        height={64}
+        className="h-10 w-auto object-contain opacity-40 grayscale transition-all duration-400 hover:opacity-80 hover:grayscale-0"
+      />
+    </div>
+  );
+
+  if (!logo.href) {
+    return content;
+  }
+
   return (
-    <div className="relative mx-auto max-w-4xl py-6">
-      <InfiniteSlider gap={48} duration={40} durationOnHover={80} reverse>
+    <a
+      href={logo.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={logo.name}
+    >
+      {content}
+    </a>
+  );
+}
+
+export function LogoCloud({ logos }: LogoCloudProps) {
+  if (logos.length <= 2) {
+    return (
+      <div className="mx-auto flex items-center justify-center gap-12 px-6">
         {logos.map((logo) => (
-          <img
-            alt={logo.alt}
-            className="pointer-events-none h-8 w-auto select-none grayscale opacity-60 hover:opacity-100 transition-opacity md:h-10"
-            key={`logo-${logo.alt}`}
-            loading="lazy"
-            src={logo.src}
-          />
+          <LogoItem key={logo._id} logo={logo} />
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative">
+      <InfiniteSlider gap={0} duration={40} durationOnHover={60} reverse>
+        {logos.map((logo) => (
+          <LogoItem key={logo._id} logo={logo} />
         ))}
       </InfiniteSlider>
 
       <ProgressiveBlur
         blurIntensity={1}
-        className="pointer-events-none absolute top-0 left-0 h-full w-[120px]"
+        className="pointer-events-none absolute left-0 top-0 h-full w-[100px]"
         direction="left"
       />
       <ProgressiveBlur
         blurIntensity={1}
-        className="pointer-events-none absolute top-0 right-0 h-full w-[120px]"
+        className="pointer-events-none absolute right-0 top-0 h-full w-[100px]"
         direction="right"
       />
     </div>

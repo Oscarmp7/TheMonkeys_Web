@@ -1,38 +1,50 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { cn } from "@/lib/utils";
 
-export function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+interface ThemeToggleProps {
+  className?: string;
+  compact?: boolean;
+  tone?: "default" | "inverse";
+}
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return <button className="w-9 h-9" aria-label="Toggle theme" />;
-  }
-
-  const isDark = theme === "dark";
+export function ThemeToggle({
+  className,
+  compact = false,
+  tone = "default",
+}: ThemeToggleProps) {
+  const { resolvedTheme, setTheme } = useTheme();
+  const t = useTranslations("theme");
+  const isDark = resolvedTheme === "dark";
 
   return (
     <button
+      type="button"
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="relative w-9 h-9 flex items-center justify-center rounded-full hover:bg-brand-navy/10 dark:hover:bg-white/10 transition-colors"
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      className={cn(
+        "relative flex h-10 w-10 items-center justify-center rounded-full border text-brand-navy transition",
+        compact
+          ? tone === "inverse"
+            ? "border-white/12 bg-white/8 text-white shadow-none hover:border-brand-yellow/40 hover:bg-white/12"
+            : "border-brand-navy/10 bg-brand-navy/[0.03] shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] hover:border-brand-yellow/40 hover:bg-white/70 dark:border-white/10 dark:bg-white/5 dark:text-white dark:shadow-none dark:hover:bg-white/10"
+          : "h-11 w-11 border-brand-navy/10 bg-white/80 hover:border-brand-yellow/40 hover:bg-white dark:border-white/10 dark:bg-brand-navy-light/50 dark:text-white",
+        className,
+      )}
+      aria-label={t("toggle")}
+      title={t("toggle")}
     >
       <Sun
-        className="absolute h-5 w-5 text-brand-navy dark:text-white transition-all duration-300"
+        className="absolute h-5 w-5 transition-all duration-300"
         style={{
           transform: isDark ? "rotate(90deg) scale(0)" : "rotate(0) scale(1)",
           opacity: isDark ? 0 : 1,
         }}
       />
       <Moon
-        className="absolute h-5 w-5 text-brand-navy dark:text-white transition-all duration-300"
+        className="absolute h-5 w-5 transition-all duration-300"
         style={{
           transform: isDark ? "rotate(0) scale(1)" : "rotate(-90deg) scale(0)",
           opacity: isDark ? 1 : 0,

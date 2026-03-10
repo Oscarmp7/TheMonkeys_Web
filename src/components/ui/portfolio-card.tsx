@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useLocale } from "next-intl";
+import { cn } from "@/lib/utils";
 
 interface PortfolioCardProps {
   title: string;
@@ -9,7 +11,9 @@ interface PortfolioCardProps {
   services: string[];
   featured: boolean;
   index: number;
+  label: string;
   onClick: () => void;
+  className?: string;
 }
 
 export function PortfolioCard({
@@ -18,57 +22,68 @@ export function PortfolioCard({
   services,
   featured,
   index,
+  label,
   onClick,
+  className,
 }: PortfolioCardProps) {
+  const locale = useLocale();
+  const eyebrow = locale === "es" ? "Proyecto" : "Case Study";
+
   return (
-    <motion.div
-      className={`
-        relative overflow-hidden rounded-2xl cursor-pointer group
-        ${featured ? "md:col-span-2 md:row-span-2 min-h-[450px]" : "col-span-1 min-h-[250px]"}
-      `}
+    <motion.button
+      type="button"
+      className={cn(
+        `group relative overflow-hidden rounded-[2rem] border border-brand-navy/10 text-left shadow-[0_30px_80px_-48px_rgba(0,38,62,0.58)] ${
+        featured
+          ? "min-h-[450px] md:col-span-2 md:row-span-2"
+          : "col-span-1 min-h-[260px]"
+      }`,
+        className,
+      )}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{
-        duration: 0.6,
-        delay: index * 0.15,
+        duration: 0.55,
+        delay: index * 0.12,
         ease: "easeOut",
       }}
       onClick={onClick}
+      aria-label={`${label}: ${title}`}
+      aria-haspopup="dialog"
     >
-      {/* Background image */}
       <Image
         src={image}
         alt={title}
         fill
         className="object-cover transition-transform duration-500 group-hover:scale-105"
-        sizes={featured ? "(min-width: 768px) 66vw, 100vw" : "(min-width: 768px) 33vw, 100vw"}
+        sizes={
+          featured ? "(min-width: 768px) 66vw, 100vw" : "(min-width: 768px) 33vw, 100vw"
+        }
       />
 
-      {/* Default gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/85 via-brand-navy/28 to-transparent" />
+      <div className="absolute inset-0 translate-y-full bg-brand-navy/86 transition-transform duration-500 ease-out group-hover:translate-y-0" />
 
-      {/* Hover overlay */}
-      <div className="absolute inset-0 bg-brand-navy/80 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
-
-      {/* Content — always visible at bottom */}
-      <div className="absolute inset-x-0 bottom-0 p-6 z-10">
-        <h3 className="font-display text-xl md:text-2xl font-bold text-white">
+      <div className="absolute inset-x-0 bottom-0 z-10 p-6">
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-yellow/85">
+          {eyebrow}
+        </p>
+        <h3 className="mt-2 font-display text-xl font-bold text-white md:text-2xl">
           {title}
         </h3>
 
-        {/* Service tags — visible on hover */}
-        <div className="flex flex-wrap gap-2 mt-3 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-400 delay-100">
+        <div className="mt-3 flex flex-wrap gap-2 opacity-0 translate-y-4 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
           {services.map((service) => (
             <span
               key={service}
-              className="text-xs font-medium px-3 py-1 rounded-full bg-brand-yellow text-brand-navy"
+              className="rounded-full bg-brand-yellow px-3 py-1 text-xs font-medium text-brand-navy"
             >
               {service}
             </span>
           ))}
         </div>
       </div>
-    </motion.div>
+    </motion.button>
   );
 }

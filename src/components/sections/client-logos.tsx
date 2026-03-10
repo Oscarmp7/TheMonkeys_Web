@@ -2,39 +2,41 @@
 
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { SectionHeader } from "@/components/ui/section-header";
 import { LogoCloud } from "@/components/ui/logo-cloud";
+import type { ClientLogo } from "@/lib/site-data";
 
-const logos = [
-  { src: "https://svgl.app/library/nvidia-wordmark-light.svg", alt: "Nvidia" },
-  { src: "https://svgl.app/library/supabase_wordmark_light.svg", alt: "Supabase" },
-  { src: "https://svgl.app/library/openai_wordmark_light.svg", alt: "OpenAI" },
-  { src: "https://svgl.app/library/turso-wordmark-light.svg", alt: "Turso" },
-  { src: "https://svgl.app/library/vercel_wordmark.svg", alt: "Vercel" },
-  { src: "https://svgl.app/library/github_wordmark_light.svg", alt: "GitHub" },
-  { src: "https://svgl.app/library/claude-ai-wordmark-icon_light.svg", alt: "Claude AI" },
-  { src: "https://svgl.app/library/clerk-wordmark-light.svg", alt: "Clerk" },
-];
-
-export function ClientLogos() {
+export function ClientLogos({ logos }: { logos: ClientLogo[] }) {
   const t = useTranslations("clients");
 
   return (
     <section
       id="clients"
-      className="py-24 lg:py-32 bg-surface-light-alt dark:bg-brand-navy-deep"
+      className="section-anchor bg-brand-navy-deep py-24 text-white lg:py-32"
     >
-      <div className="container mx-auto px-6 lg:px-12">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
+          className="text-center"
         >
-          <SectionHeader overheader={t("overheader")} title="" />
-          <LogoCloud logos={logos} />
+          <p className="section-overheader">{t("overheader")}</p>
+          <h2 className="mt-5 font-display text-3xl font-bold tracking-tight md:text-4xl">
+            {t("title")}
+          </h2>
         </motion.div>
       </div>
+
+      <motion.div
+        className="mt-16"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
+        <LogoCloud logos={logos} />
+      </motion.div>
     </section>
   );
 }

@@ -1,6 +1,6 @@
 'use client';
 import { cn } from '@/lib/utils';
-import { useMotionValue, animate, motion } from 'framer-motion';
+import { useMotionValue, animate, motion, useReducedMotion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import useMeasure from 'react-use-measure';
 
@@ -23,6 +23,7 @@ export function InfiniteSlider({
   reverse = false,
   className,
 }: InfiniteSliderProps) {
+  const shouldReduceMotion = useReducedMotion();
   const [currentDuration, setCurrentDuration] = useState(duration);
   const [ref, { width, height }] = useMeasure();
   const translation = useMotionValue(0);
@@ -30,6 +31,10 @@ export function InfiniteSlider({
   const [key, setKey] = useState(0);
 
   useEffect(() => {
+    if (shouldReduceMotion) {
+      return;
+    }
+
     let controls: ReturnType<typeof animate> | undefined;
     const size = direction === 'horizontal' ? width : height;
     const contentSize = size + gap;
@@ -57,7 +62,15 @@ export function InfiniteSlider({
     }
 
     return controls?.stop;
-  }, [key, translation, currentDuration, width, height, gap, isTransitioning, direction, reverse]);
+  }, [key, translation, currentDuration, width, height, gap, isTransitioning, direction, reverse, shouldReduceMotion]);
+
+  if (shouldReduceMotion) {
+    return (
+      <div className={cn('flex flex-wrap justify-center gap-4', className)}>
+        {children}
+      </div>
+    );
+  }
 
   const hoverProps = durationOnHover
     ? {

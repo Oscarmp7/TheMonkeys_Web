@@ -1,113 +1,120 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import {
-  HoverSlider,
-  HoverSliderImage,
-  HoverSliderImageWrap,
-  TextStaggerHover,
-} from "@/components/ui/animated-slideshow";
+  Camera,
+  ChartNoAxesCombined,
+  Megaphone,
+  Search,
+  Sparkles,
+  TvMinimalPlay,
+  Workflow,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-const SLIDES = [
-  {
-    id: "inbound",
-    titleKey: "inbound",
-    imageUrl:
-      "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&auto=format&fit=crop",
-  },
-  {
-    id: "content_production",
-    titleKey: "content_production",
-    imageUrl:
-      "https://images.unsplash.com/photo-1574717025058-2f8737d2e2b7?w=800&auto=format&fit=crop",
-  },
-  {
-    id: "seo",
-    titleKey: "seo",
-    imageUrl:
-      "https://images.unsplash.com/photo-1571721795195-a2ca2d3370a9?w=800&auto=format&fit=crop",
-  },
-  {
-    id: "web_dev",
-    titleKey: "web_dev",
-    imageUrl:
-      "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=800&auto=format&fit=crop",
-  },
-  {
-    id: "influencers",
-    titleKey: "influencers",
-    imageUrl:
-      "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&auto=format&fit=crop",
-  },
-  {
-    id: "campaigns",
-    titleKey: "campaigns",
-    imageUrl:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop",
-  },
-  {
-    id: "content_creation",
-    titleKey: "content_creation",
-    imageUrl:
-      "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&auto=format&fit=crop",
-  },
+const serviceIcons: LucideIcon[] = [
+  Workflow,
+  Camera,
+  Search,
+  TvMinimalPlay,
+  Sparkles,
+  Megaphone,
+  ChartNoAxesCombined,
 ];
+
+const serviceKeys = [
+  "inbound",
+  "content_production",
+  "seo",
+  "web_dev",
+  "influencers",
+  "campaigns",
+  "content_creation",
+] as const;
+
+function ServiceRow({
+  icon: Icon,
+  name,
+  index,
+}: {
+  icon: LucideIcon;
+  name: string;
+  index: number;
+}) {
+  return (
+    <motion.div
+      className="group flex items-center gap-5 border-b border-brand-navy/8 py-5 transition-colors duration-300 hover:border-brand-yellow/30 dark:border-white/8 dark:hover:border-brand-yellow/30 md:gap-8 md:py-6"
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: index * 0.06, ease: "easeOut" }}
+    >
+      <span className="w-8 shrink-0 text-right font-display text-sm font-medium text-brand-navy/30 dark:text-white/25">
+        {String(index + 1).padStart(2, "0")}
+      </span>
+
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-navy/[0.04] text-brand-navy/50 transition-colors duration-300 group-hover:bg-brand-yellow/12 group-hover:text-brand-yellow dark:bg-white/[0.04] dark:text-white/40">
+        <Icon size={20} strokeWidth={1.8} />
+      </div>
+
+      <p className="font-display text-lg font-semibold tracking-tight text-brand-navy transition-transform duration-300 group-hover:translate-x-1.5 dark:text-white md:text-xl">
+        {name}
+      </p>
+
+      <span className="ml-auto hidden h-px flex-1 max-w-32 bg-brand-navy/8 transition-all duration-500 group-hover:max-w-48 group-hover:bg-brand-yellow/40 dark:bg-white/8 md:block" />
+    </motion.div>
+  );
+}
 
 export function Services() {
   const t = useTranslations("services");
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const numberY = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
   return (
-    <section id="services">
-      <HoverSlider className="min-h-svh flex flex-col justify-center px-6 py-24 md:px-12 lg:px-16 bg-surface-light dark:bg-brand-navy">
-        {/* Overheader */}
-        <p className="mb-8 text-xs font-medium uppercase tracking-widest text-brand-yellow">
-          / {t("overheader")}
-        </p>
+    <section ref={sectionRef} id="services" className="section-anchor py-28 lg:py-36">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12">
+        <div className="grid grid-cols-1 gap-16 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="lg:sticky lg:top-28 lg:self-start"
+          >
+            <p className="section-overheader">{t("overheader")}</p>
+            <h2 className="mt-5 font-display text-4xl font-bold leading-[1.08] tracking-tight md:text-5xl">
+              {t("title")}
+            </h2>
+            <p className="mt-5 text-base leading-7 text-brand-navy/65 dark:text-white/60">
+              {t("intro")}
+            </p>
+            <a
+              href="#contact"
+              className="mt-8 inline-flex h-12 items-center justify-center rounded-full bg-brand-navy px-8 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-px hover:shadow-lg dark:bg-brand-yellow dark:text-brand-navy"
+            >
+              {t("cta")}
+            </a>
+          </motion.div>
 
-        <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
-          {/* Service list */}
-          <div className="flex flex-col gap-3 md:gap-5">
-            {SLIDES.map((slide, index) => (
-              <TextStaggerHover
-                key={slide.id}
+          <div className="border-t border-brand-navy/8 dark:border-white/8">
+            {serviceKeys.map((key, index) => (
+              <ServiceRow
+                key={key}
+                icon={serviceIcons[index]}
+                name={t(`items.${key}`)}
                 index={index}
-                text={t(`items.${slide.titleKey}`)}
-                className="text-3xl font-bold uppercase tracking-tight text-brand-navy dark:text-white md:text-4xl lg:text-5xl"
               />
             ))}
           </div>
-
-          {/* Image stack — hidden on mobile */}
-          <div className="hidden lg:block w-[420px] flex-shrink-0">
-            <HoverSliderImageWrap className="aspect-[4/3] rounded-2xl overflow-hidden">
-              {SLIDES.map((slide, index) => (
-                <HoverSliderImage
-                  key={slide.id}
-                  index={index}
-                  imageUrl={slide.imageUrl}
-                  src={slide.imageUrl}
-                  alt={t(`items.${slide.titleKey}`)}
-                  className="size-full object-cover"
-                  loading={index === 0 ? "eager" : "lazy"}
-                  decoding="async"
-                />
-              ))}
-            </HoverSliderImageWrap>
-          </div>
         </div>
-
-        {/* CTA */}
-        <div className="mt-16">
-          <a
-            href="https://wa.me/18097561847?text=Hola,%20me%20interesa%20saber%20más%20sobre%20sus%20servicios"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-brand-yellow text-brand-navy px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
-          >
-            {t("cta")}
-          </a>
-        </div>
-      </HoverSlider>
+      </div>
     </section>
   );
 }

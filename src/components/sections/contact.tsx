@@ -1,69 +1,111 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { motion } from "framer-motion";
-import { SectionHeader } from "@/components/ui/section-header";
 import { ContactForm } from "@/components/ui/contact-form";
+import { getWhatsAppHref, type AppLocale, type SiteSettings } from "@/lib/site-data";
 
-export function Contact() {
+export function Contact({
+  locale,
+  settings,
+}: {
+  locale: AppLocale;
+  settings: SiteSettings;
+}) {
   const t = useTranslations("contact");
 
+  const contactItems = [
+    {
+      icon: Phone,
+      label: t("phone_label"),
+      value: settings.phone,
+      href: `tel:${settings.whatsapp}`,
+    },
+    {
+      icon: Mail,
+      label: t("email_label"),
+      value: settings.email,
+      href: `mailto:${settings.email}`,
+    },
+    {
+      icon: MapPin,
+      label: t("location_label"),
+      value: settings.address,
+    },
+  ];
+
   return (
-    <section id="contact" className="py-24 lg:py-32">
-      <div className="container mx-auto px-6 lg:px-12">
-        <SectionHeader overheader={t("overheader")} title={t("title")} />
+    <section id="contact" className="section-anchor bg-surface-light-alt py-28 dark:bg-brand-navy-deep lg:py-36">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <p className="section-overheader">{t("overheader")}</p>
+          <h2 className="mt-5 font-display text-4xl font-bold tracking-tight md:text-5xl">
+            {t("title")}
+          </h2>
+        </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mt-16">
-          {/* Left: Info */}
+        <div className="mt-16 grid grid-cols-1 gap-16 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <p className="text-lg opacity-80 leading-relaxed">{t("bio")}</p>
+            <p className="max-w-lg text-base leading-7 text-brand-navy/65 dark:text-white/60">
+              {t("bio")}
+            </p>
 
-            <div className="mt-8 space-y-4">
-              <a
-                href="tel:+18097561847"
-                className="flex items-center gap-3 hover:text-brand-yellow transition"
-              >
-                <Phone size={20} className="text-brand-yellow" />
-                <span>(809) 756-1847</span>
-              </a>
+            <div className="mt-10 space-y-6">
+              {contactItems.map(({ icon: Icon, label, value, href }) => {
+                const content = (
+                  <div className="group flex items-start gap-4">
+                    <Icon size={18} strokeWidth={1.6} className="mt-0.5 shrink-0 text-brand-yellow" />
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-navy/40 dark:text-white/35">
+                        {label}
+                      </p>
+                      <p className="mt-1 text-sm font-medium text-brand-navy/80 transition-colors group-hover:text-brand-navy dark:text-white/70 dark:group-hover:text-white">
+                        {value}
+                      </p>
+                    </div>
+                  </div>
+                );
 
-              <a
-                href="mailto:hola@themonkeys.do"
-                className="flex items-center gap-3 hover:text-brand-yellow transition"
-              >
-                <Mail size={20} className="text-brand-yellow" />
-                <span>hola@themonkeys.do</span>
-              </a>
+                if (href) {
+                  return (
+                    <a key={label} href={href} className="block">
+                      {content}
+                    </a>
+                  );
+                }
 
-              <div className="flex items-center gap-3">
-                <MapPin size={20} className="text-brand-yellow" />
-                <span>Santiago de los Caballeros, RD</span>
-              </div>
+                return <div key={label}>{content}</div>;
+              })}
             </div>
 
             <a
-              href="https://wa.me/18097561847?text=Hola,%20me%20interesa%20saber%20m%C3%A1s%20sobre%20sus%20servicios"
+              href={getWhatsAppHref(locale, settings.whatsapp)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 mt-8 bg-whatsapp text-white px-8 py-4 rounded-full font-semibold hover:shadow-xl transition text-lg"
+              className="mt-10 inline-flex h-12 items-center gap-3 rounded-full bg-whatsapp px-7 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-px hover:shadow-lg"
             >
-              <MessageCircle size={24} />
+              <MessageCircle size={18} />
               {t("whatsapp_cta")}
             </a>
           </motion.div>
 
-          {/* Right: Form */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="rounded-2xl border border-brand-navy/6 bg-white p-6 dark:border-white/8 dark:bg-brand-navy-light/20 md:p-8"
           >
             <ContactForm />
           </motion.div>
