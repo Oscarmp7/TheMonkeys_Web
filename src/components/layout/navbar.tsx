@@ -35,7 +35,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile drawer on resize to desktop
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth >= 1024) {
@@ -46,7 +45,6 @@ export function Navbar() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Prevent body scroll when mobile drawer is open
   useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = "hidden";
@@ -58,30 +56,30 @@ export function Navbar() {
     };
   }, [mobileOpen]);
 
-  const logoSrc =
-    mounted && resolvedTheme === "dark"
-      ? "/logos/mk-white.png"
-      : "/logos/mk-main.png";
+  const isDark = mounted && resolvedTheme === "dark";
+  const logoSrc = isDark ? "/logos/logo-white.png" : "/logos/logo-main.png";
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
           scrolled
-            ? "backdrop-blur-md bg-white/80 dark:bg-brand-navy/80 shadow-sm"
-            : "bg-transparent"
+            ? "backdrop-blur-md bg-white/90 dark:bg-brand-navy/90 shadow-sm py-2"
+            : "bg-transparent py-4"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            {/* Left: Logo */}
+          <div className="flex items-center justify-between">
+            {/* Left: Full Logo - BIGGER */}
             <a href="#" className="flex-shrink-0">
               <Image
                 src={logoSrc}
                 alt="The Monkeys"
-                width={40}
-                height={40}
-                className="w-10 h-10 object-contain"
+                width={180}
+                height={60}
+                className={`object-contain transition-all duration-300 ${
+                  scrolled ? "h-10 w-auto" : "h-14 w-auto"
+                }`}
                 priority
               />
             </a>
@@ -92,20 +90,21 @@ export function Navbar() {
                 <a
                   key={key}
                   href={href}
-                  className="text-sm font-medium text-brand-navy dark:text-white hover:text-brand-yellow transition-colors"
+                  className="text-sm font-medium text-brand-navy dark:text-white/90 hover:text-brand-yellow transition-colors relative group"
                 >
                   {t(key)}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-yellow transition-all duration-300 group-hover:w-full" />
                 </a>
               ))}
             </nav>
 
             {/* Right: Controls (desktop) */}
-            <div className="hidden lg:flex items-center gap-4">
+            <div className="hidden lg:flex items-center gap-3">
               <LanguageToggle />
               <ThemeToggle />
               <a
                 href="#contact"
-                className="bg-brand-yellow text-brand-navy font-semibold px-5 py-2 rounded-full hover:shadow-lg transition"
+                className="bg-brand-yellow text-brand-navy font-semibold px-6 py-2.5 rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300"
               >
                 {t("cta")}
               </a>
@@ -120,7 +119,6 @@ export function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Drawer */}
       <MobileDrawer
         isOpen={mobileOpen}
         onClose={() => setMobileOpen(false)}

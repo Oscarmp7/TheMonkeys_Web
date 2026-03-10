@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { FloatingShapes } from "@/components/ui/floating-shapes";
 import { ScrollIndicator } from "@/components/ui/scroll-indicator";
+import { ParticleButton } from "@/components/ui/particle-button";
 
 const containerVariants = {
   hidden: {},
@@ -32,7 +33,41 @@ export function Hero() {
       id="hero"
       className="min-h-screen flex items-center relative overflow-hidden"
     >
-      <div className="container mx-auto px-6 lg:px-12">
+      {/* Yellow diagonal stripe - light mode only */}
+      <div className="absolute inset-0 dark:hidden pointer-events-none">
+        <motion.div
+          className="absolute top-0 right-0 w-[60%] h-full bg-brand-yellow/5"
+          style={{
+            clipPath: "polygon(30% 0, 100% 0, 100% 100%, 0% 100%)",
+          }}
+          initial={{ x: "100%" }}
+          animate={{ x: 0 }}
+          transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        />
+        {/* Subtle accent line */}
+        <motion.div
+          className="absolute top-0 w-1 h-full bg-brand-yellow/30"
+          style={{
+            left: "42%",
+            transform: "skewX(-12deg)",
+          }}
+          initial={{ scaleY: 0 }}
+          animate={{ scaleY: 1 }}
+          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+        />
+      </div>
+
+      {/* Dark mode subtle gradient */}
+      <div className="absolute inset-0 hidden dark:block pointer-events-none">
+        <motion.div
+          className="absolute top-0 right-0 w-[50%] h-full bg-gradient-to-l from-brand-yellow/5 to-transparent"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2, delay: 0.3 }}
+        />
+      </div>
+
+      <div className="container mx-auto px-6 lg:px-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
           {/* Left content */}
           <div className="lg:col-span-3">
@@ -63,9 +98,9 @@ export function Hero() {
             </motion.h1>
 
             <motion.p
-              className="text-lg md:text-xl opacity-80 max-w-lg mt-6"
+              className="text-lg md:text-xl opacity-70 max-w-lg mt-6"
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.8 }}
+              animate={{ opacity: 0.7 }}
               transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
             >
               {t("subtitle")}
@@ -78,24 +113,34 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
             >
               <a
-                href="https://wa.me/18097561847?text=Hola,%20me%20interesa%20saber%20más%20sobre%20sus%20servicios"
+                href="https://wa.me/18097561847?text=Hola,%20me%20interesa%20saber%20m%C3%A1s%20sobre%20sus%20servicios"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-brand-yellow text-brand-navy px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300"
               >
-                {t("cta_primary")}
+                <ParticleButton
+                  variant="default"
+                  size="lg"
+                  className="bg-brand-yellow text-brand-navy font-semibold hover:shadow-xl hover:scale-105"
+                  successDuration={800}
+                >
+                  {t("cta_primary")}
+                </ParticleButton>
               </a>
-              <a
-                href="#portfolio"
-                className="border-2 border-brand-navy dark:border-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-brand-navy hover:text-white dark:hover:bg-white dark:hover:text-brand-navy transition-all duration-300"
-              >
-                {t("cta_secondary")}
+              <a href="#portfolio">
+                <ParticleButton
+                  variant="outline"
+                  size="lg"
+                  className="font-semibold"
+                  successDuration={800}
+                >
+                  {t("cta_secondary")}
+                </ParticleButton>
               </a>
             </motion.div>
           </div>
 
-          {/* Right visual */}
-          <div className="lg:col-span-2 hidden lg:block relative h-96">
+          {/* Right visual - MK Logo animated */}
+          <div className="lg:col-span-2 hidden lg:block relative h-[28rem]">
             <FloatingShapes />
           </div>
         </div>

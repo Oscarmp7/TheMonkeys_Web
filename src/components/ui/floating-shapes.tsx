@@ -1,161 +1,72 @@
 "use client";
 
 import { motion } from "framer-motion";
-
-interface Shape {
-  type: "circle" | "square" | "triangle" | "hexagon";
-  size: number;
-  x: string;
-  y: string;
-  color: string;
-  opacity: number;
-  duration: number;
-  delay: number;
-  rotation: number;
-}
-
-const shapes: Shape[] = [
-  {
-    type: "circle",
-    size: 80,
-    x: "10%",
-    y: "15%",
-    color: "#FFCD00",
-    opacity: 0.25,
-    duration: 6,
-    delay: 0,
-    rotation: 0,
-  },
-  {
-    type: "square",
-    size: 60,
-    x: "70%",
-    y: "10%",
-    color: "#00263E",
-    opacity: 0.15,
-    duration: 5,
-    delay: 1,
-    rotation: 45,
-  },
-  {
-    type: "triangle",
-    size: 100,
-    x: "50%",
-    y: "60%",
-    color: "#FFCD00",
-    opacity: 0.2,
-    duration: 7,
-    delay: 0.5,
-    rotation: 15,
-  },
-  {
-    type: "hexagon",
-    size: 70,
-    x: "80%",
-    y: "50%",
-    color: "#00263E",
-    opacity: 0.2,
-    duration: 4,
-    delay: 2,
-    rotation: 30,
-  },
-  {
-    type: "circle",
-    size: 40,
-    x: "30%",
-    y: "80%",
-    color: "#00263E",
-    opacity: 0.3,
-    duration: 5.5,
-    delay: 1.5,
-    rotation: 0,
-  },
-  {
-    type: "square",
-    size: 120,
-    x: "20%",
-    y: "45%",
-    color: "#FFCD00",
-    opacity: 0.1,
-    duration: 8,
-    delay: 0.8,
-    rotation: 20,
-  },
-  {
-    type: "triangle",
-    size: 50,
-    x: "65%",
-    y: "75%",
-    color: "#FFCD00",
-    opacity: 0.35,
-    duration: 3.5,
-    delay: 1.2,
-    rotation: -10,
-  },
-];
-
-function ShapeRenderer({ shape }: { shape: Shape }) {
-  const { type, size, color, opacity } = shape;
-
-  if (type === "circle") {
-    return (
-      <svg width={size} height={size} viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="45" fill={color} opacity={opacity} />
-      </svg>
-    );
-  }
-
-  if (type === "square") {
-    return (
-      <svg width={size} height={size} viewBox="0 0 100 100">
-        <rect x="10" y="10" width="80" height="80" rx="8" fill={color} opacity={opacity} />
-      </svg>
-    );
-  }
-
-  if (type === "triangle") {
-    return (
-      <svg width={size} height={size} viewBox="0 0 100 100">
-        <polygon points="50,10 90,90 10,90" fill={color} opacity={opacity} />
-      </svg>
-    );
-  }
-
-  // hexagon
-  return (
-    <svg width={size} height={size} viewBox="0 0 100 100">
-      <polygon
-        points="50,5 93,25 93,75 50,95 7,75 7,25"
-        fill={color}
-        opacity={opacity}
-      />
-    </svg>
-  );
-}
+import Image from "next/image";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 export function FloatingShapes() {
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isDark = mounted && resolvedTheme === "dark";
+  const mkSrc = isDark ? "/logos/mk-white.png" : "/logos/mk-main.png";
+
   return (
-    <div className="absolute inset-0 hidden md:block">
-      {shapes.map((shape, i) => (
+    <div className="absolute inset-0 hidden md:flex items-center justify-center">
+      {/* Decorative small shapes behind MK */}
+      <motion.div
+        className="absolute w-20 h-20 rounded-full bg-brand-yellow/10"
+        style={{ top: "10%", right: "15%" }}
+        animate={{ y: [0, -15, 0], scale: [1, 1.1, 1] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute w-12 h-12 rounded-lg bg-brand-navy/10 dark:bg-white/5"
+        style={{ bottom: "20%", left: "10%" }}
+        animate={{ y: [0, 12, 0], rotate: [0, 45, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      />
+      <motion.div
+        className="absolute w-16 h-16 rounded-full bg-brand-yellow/15"
+        style={{ bottom: "10%", right: "20%" }}
+        animate={{ y: [0, -10, 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+      />
+
+      {/* Main MK Logo - Large, animated */}
+      <motion.div
+        className="relative"
+        initial={{ opacity: 0, scale: 0.5, rotate: -15 }}
+        animate={{ opacity: 1, scale: 1, rotate: 0 }}
+        transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      >
+        {/* Glow behind MK */}
         <motion.div
-          key={i}
-          className="absolute"
-          style={{ left: shape.x, top: shape.y }}
-          animate={{
-            y: [0, -20, 0],
-            rotate: [shape.rotation, shape.rotation + 15, shape.rotation],
-          }}
-          transition={{
-            duration: shape.duration,
-            delay: shape.delay,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "easeInOut",
-          }}
+          className="absolute inset-0 blur-3xl bg-brand-yellow/20 rounded-full scale-150"
+          animate={{ opacity: [0.2, 0.4, 0.2], scale: [1.4, 1.6, 1.4] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        {/* MK floating animation */}
+        <motion.div
+          animate={{ y: [0, -12, 0], rotate: [-2, 2, -2] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
         >
-          <ShapeRenderer shape={shape} />
+          <Image
+            src={mkSrc}
+            alt="MK"
+            width={320}
+            height={320}
+            className="w-64 h-64 lg:w-80 lg:h-80 object-contain drop-shadow-2xl relative z-10"
+            priority
+          />
         </motion.div>
-      ))}
+      </motion.div>
     </div>
   );
 }
