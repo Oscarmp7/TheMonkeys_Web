@@ -160,7 +160,7 @@ export function Portfolio({ projects }: { projects: PortfolioProject[] }) {
 
         <motion.a
           href="#contact"
-          className="mt-10 flex items-center justify-between rounded-2xl bg-brand-navy px-8 py-7 text-white transition-all duration-300 hover:-translate-y-px hover:shadow-xl dark:bg-brand-navy-light md:px-12"
+          className="mt-10 flex items-center justify-between rounded-2xl border border-brand-yellow-border/16 bg-[linear-gradient(135deg,rgba(255,244,191,0.92)_0%,rgba(250,250,248,1)_100%)] px-8 py-7 text-brand-navy shadow-[0_24px_60px_-42px_rgba(0,38,62,0.32)] transition-all duration-300 hover:-translate-y-px hover:shadow-xl dark:border-white/10 dark:bg-brand-navy-light dark:text-white md:px-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
