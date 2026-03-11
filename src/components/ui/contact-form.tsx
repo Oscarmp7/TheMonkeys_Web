@@ -16,11 +16,56 @@ const SERVICE_KEYS = [
 
 type SubmissionStatus = "idle" | "loading" | "success" | "error";
 
+export type ContactFormValues = {
+  name: string;
+  email: string;
+  company: string;
+  service: string;
+  message: string;
+  website: string;
+};
+
+type ContactFormErrors = Partial<
+  Record<"name" | "email" | "service" | "message", string>
+>;
+
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export function validateContactFormValues(
+  values: ContactFormValues,
+  messages: {
+    required: string;
+    invalidEmail: string;
+  },
+): ContactFormErrors {
+  const errors: ContactFormErrors = {};
+
+  if (!values.name.trim()) {
+    errors.name = messages.required;
+  }
+
+  if (!values.email.trim()) {
+    errors.email = messages.required;
+  } else if (!emailPattern.test(values.email.trim())) {
+    errors.email = messages.invalidEmail;
+  }
+
+  if (!values.service.trim()) {
+    errors.service = messages.required;
+  }
+
+  if (!values.message.trim()) {
+    errors.message = messages.required;
+  }
+
+  return errors;
+}
+
 export function ContactForm() {
   const t = useTranslations("contact.form");
   const serviceT = useTranslations("services.items");
   const [status, setStatus] = useState<SubmissionStatus>("idle");
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<ContactFormValues>({
     name: "",
     email: "",
     company: "",

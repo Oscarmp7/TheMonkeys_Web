@@ -4,7 +4,10 @@ import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { NextIntlClientProvider } from "next-intl";
 import esMessages from "../src/messages/es.json";
-import { ContactForm } from "../src/components/ui/contact-form";
+import {
+  ContactForm,
+  validateContactFormValues,
+} from "../src/components/ui/contact-form";
 import { HamburgerButton } from "../src/components/ui/hamburger-button";
 
 function renderWithMessages(node: React.ReactElement) {
@@ -37,6 +40,49 @@ test("contact form exposes a live region for submission feedback", () => {
   const html = renderWithMessages(React.createElement(ContactForm));
 
   assert.match(html, /aria-live="polite"/i);
+});
+
+test("contact form validation requires missing fields before submit", () => {
+  const errors = validateContactFormValues(
+    {
+      name: "",
+      email: "",
+      company: "",
+      service: "",
+      message: "",
+      website: "",
+    },
+    {
+      required: "This field is required.",
+      invalidEmail: "Enter a valid email address.",
+    },
+  );
+
+  assert.deepEqual(errors, {
+    name: "This field is required.",
+    email: "This field is required.",
+    service: "This field is required.",
+    message: "This field is required.",
+  });
+});
+
+test("contact form validation rejects invalid email format", () => {
+  const errors = validateContactFormValues(
+    {
+      name: "Oscar",
+      email: "not-an-email",
+      company: "",
+      service: "SEO",
+      message: "Necesito una propuesta.",
+      website: "",
+    },
+    {
+      required: "This field is required.",
+      invalidEmail: "Enter a valid email address.",
+    },
+  );
+
+  assert.equal(errors.email, "Enter a valid email address.");
 });
 
 test("hamburger button exposes expanded state and controlled menu id", () => {
