@@ -56,7 +56,6 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (window.innerWidth >= 1024) setMobileOpen(false);
     const handleResize = () => {
       if (window.innerWidth >= 1024) setMobileOpen(false);
     };
