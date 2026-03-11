@@ -84,6 +84,9 @@
       "required": "Required",
       "submit": "Send message",
       "sending": "Sending message...",
+      "validation_summary": "Review the required fields before sending.",
+      "error_required": "This field is required.",
+      "error_invalid_email": "Enter a valid email address.",
       "success": "Message sent. We will contact you soon.",
       "error": "There was an error sending your message. Please try again."
     }

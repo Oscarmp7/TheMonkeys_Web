@@ -65,6 +65,7 @@ export function ContactForm() {
   const t = useTranslations("contact.form");
   const serviceT = useTranslations("services.items");
   const [status, setStatus] = useState<SubmissionStatus>("idle");
+  const [errors, setErrors] = useState<ContactFormErrors>({});
   const [form, setForm] = useState<ContactFormValues>({
     name: "",
     email: "",
@@ -82,14 +83,26 @@ export function ContactForm() {
   const companyHintId = "company-hint";
   const messageHintId = "message-hint";
   const liveRegionId = "contact-form-status";
+  const nameErrorId = "name-error";
+  const emailErrorId = "email-error";
+  const serviceErrorId = "service-error";
+  const messageErrorId = "message-error";
+
+  const validationMessages = {
+    required: t("error_required"),
+    invalidEmail: t("error_invalid_email"),
+  };
+  const hasErrors = Object.keys(errors).length > 0;
 
   const statusMessage =
     status === "success"
       ? t("success")
       : status === "error"
         ? t("error")
-        : status === "loading"
+      : status === "loading"
           ? t("sending")
+          : hasErrors
+            ? t("validation_summary")
           : "";
 
   const handleChange = (
@@ -97,11 +110,30 @@ export function ContactForm() {
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >,
   ) => {
-    setForm((prev) => ({ ...prev, [event.target.name]: event.target.value }));
+    const { name, value } = event.target;
+
+    setForm((prev) => {
+      const nextForm = { ...prev, [name]: value };
+
+      if (Object.keys(errors).length) {
+        setErrors(validateContactFormValues(nextForm, validationMessages));
+      }
+
+      return nextForm;
+    });
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const nextErrors = validateContactFormValues(form, validationMessages);
+
+    if (Object.keys(nextErrors).length) {
+      setErrors(nextErrors);
+      setStatus("idle");
+      return;
+    }
+
+    setErrors({});
     setStatus("loading");
 
     try {
@@ -117,6 +149,7 @@ export function ContactForm() {
       }
 
       setStatus("success");
+      setErrors({});
       setForm({
         name: "",
         email: "",
@@ -133,6 +166,7 @@ export function ContactForm() {
   const inputClasses =
     "mt-2 min-h-12 w-full rounded-2xl border border-brand-navy/15 bg-white px-4 py-3 text-brand-navy outline-none transition placeholder:text-brand-navy/45 focus:border-brand-yellow focus:ring-2 focus:ring-brand-yellow/60 dark:border-white/10 dark:bg-brand-navy-light/40 dark:text-white dark:placeholder:text-white/40";
   const labelClasses = "text-sm font-semibold text-brand-navy dark:text-white";
+  const errorClasses = "mt-2 text-sm font-medium text-danger";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5" noValidate>
@@ -167,8 +201,15 @@ export function ContactForm() {
           autoComplete="name"
           value={form.name}
           onChange={handleChange}
-          className={inputClasses}
+          aria-invalid={errors.name ? "true" : "false"}
+          aria-describedby={errors.name ? nameErrorId : undefined}
+          className={`${inputClasses} ${errors.name ? "border-danger focus:border-danger focus:ring-danger/20" : ""}`}
         />
+        {errors.name ? (
+          <p id={nameErrorId} className={errorClasses}>
+            {errors.name}
+          </p>
+        ) : null}
       </div>
 
       <div>
@@ -187,8 +228,15 @@ export function ContactForm() {
           autoComplete="email"
           value={form.email}
           onChange={handleChange}
-          className={inputClasses}
+          aria-invalid={errors.email ? "true" : "false"}
+          aria-describedby={errors.email ? emailErrorId : undefined}
+          className={`${inputClasses} ${errors.email ? "border-danger focus:border-danger focus:ring-danger/20" : ""}`}
         />
+        {errors.email ? (
+          <p id={emailErrorId} className={errorClasses}>
+            {errors.email}
+          </p>
+        ) : null}
       </div>
 
       <div>
@@ -230,7 +278,9 @@ export function ContactForm() {
           required
           value={form.service}
           onChange={handleChange}
-          className={inputClasses}
+          aria-invalid={errors.service ? "true" : "false"}
+          aria-describedby={errors.service ? serviceErrorId : undefined}
+          className={`${inputClasses} ${errors.service ? "border-danger focus:border-danger focus:ring-danger/20" : ""}`}
         >
           <option value="">{t("service")}</option>
           {SERVICE_KEYS.map((key) => (
@@ -239,6 +289,11 @@ export function ContactForm() {
             </option>
           ))}
         </select>
+        {errors.service ? (
+          <p id={serviceErrorId} className={errorClasses}>
+            {errors.service}
+          </p>
+        ) : null}
       </div>
 
       <div>
@@ -256,8 +311,9 @@ export function ContactForm() {
           rows={5}
           value={form.message}
           onChange={handleChange}
-          aria-describedby={messageHintId}
-          className={`${inputClasses} resize-y`}
+          aria-invalid={errors.message ? "true" : "false"}
+          aria-describedby={errors.message ? `${messageHintId} ${messageErrorId}` : messageHintId}
+          className={`${inputClasses} resize-y ${errors.message ? "border-danger focus:border-danger focus:ring-danger/20" : ""}`}
         />
         <p
           id={messageHintId}
@@ -265,6 +321,11 @@ export function ContactForm() {
         >
           {t("message_hint")}
         </p>
+        {errors.message ? (
+          <p id={messageErrorId} className={errorClasses}>
+            {errors.message}
+          </p>
+        ) : null}
       </div>
 
       <button

@@ -84,6 +84,9 @@
       "required": "Obligatorio",
       "submit": "Enviar mensaje",
       "sending": "Enviando mensaje...",
+      "validation_summary": "Revisa los campos obligatorios antes de enviar.",
+      "error_required": "Este campo es obligatorio.",
+      "error_invalid_email": "Introduce un correo electrónico válido.",
       "success": "Mensaje enviado. Te contactaremos pronto.",
       "error": "Hubo un error al enviar el mensaje. Intenta de nuevo."
     }
