@@ -133,7 +133,7 @@ export function Navbar() {
               <ThemeToggle compact />
               <a
                 href="#contact"
-                className="ml-2 inline-flex h-12 items-center justify-center rounded-full bg-brand-navy px-6 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-px hover:shadow-lg dark:bg-brand-yellow dark:text-brand-navy"
+                className="ml-2 inline-flex h-12 items-center justify-center rounded-full border border-brand-yellow-border/20 bg-brand-yellow px-6 text-sm font-semibold text-brand-navy shadow-[0_18px_38px_-24px_rgba(181,141,0,0.62)] transition-all duration-200 hover:-translate-y-px hover:bg-brand-yellow/90 hover:shadow-lg dark:border-transparent dark:bg-brand-yellow dark:text-brand-navy"
               >
                 {t("cta")}
               </a>

@@ -137,7 +137,7 @@ export function MobileDrawer({
               <button
                 type="button"
                 onClick={onClose}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-[1.2rem] border border-brand-navy/10 bg-white/70 text-brand-navy transition hover:border-brand-yellow/40 dark:border-white/10 dark:bg-white/5 dark:text-white"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-[1.2rem] border border-brand-yellow-border/20 bg-brand-yellow-soft/80 text-brand-navy transition hover:border-brand-yellow-border/40 hover:bg-brand-yellow dark:border-white/10 dark:bg-white/5 dark:text-white"
                 aria-label={t("menu_close")}
               >
                 <X size={20} />
@@ -150,7 +150,7 @@ export function MobileDrawer({
                   key={key}
                   href={href}
                   onClick={onClose}
-                  className="rounded-[1.5rem] border border-brand-navy/8 bg-white/46 px-4 py-4 text-lg font-display font-medium text-brand-navy transition hover:border-brand-yellow/30 hover:bg-brand-yellow/12 dark:border-white/8 dark:bg-white/4 dark:text-white dark:hover:bg-white/8"
+                  className="rounded-[1.5rem] border border-brand-yellow-border/15 bg-brand-yellow-soft/45 px-4 py-4 text-lg font-display font-medium text-brand-navy transition hover:border-brand-yellow-border/35 hover:bg-brand-yellow/35 dark:border-white/8 dark:bg-white/4 dark:text-white dark:hover:bg-white/8"
                 >
                   {t(key)}
                 </a>

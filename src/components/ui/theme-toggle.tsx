@@ -29,8 +29,8 @@ export function ThemeToggle({
         compact
           ? tone === "inverse"
             ? "border-white/12 bg-white/8 text-white shadow-none hover:border-brand-yellow/40 hover:bg-white/12"
-            : "border-brand-navy/10 bg-brand-navy/[0.03] shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] hover:border-brand-yellow/40 hover:bg-white/70 dark:border-white/10 dark:bg-white/5 dark:text-white dark:shadow-none dark:hover:bg-white/10"
-          : "h-11 w-11 border-brand-navy/10 bg-white/80 hover:border-brand-yellow/40 hover:bg-white dark:border-white/10 dark:bg-brand-navy-light/50 dark:text-white",
+            : "border-brand-yellow-border/20 bg-brand-yellow-soft/75 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] hover:border-brand-yellow-border/40 hover:bg-brand-yellow dark:border-white/10 dark:bg-white/5 dark:text-white dark:shadow-none dark:hover:bg-white/10"
+          : "h-11 w-11 border-brand-yellow-border/20 bg-brand-yellow-soft/85 hover:border-brand-yellow-border/40 hover:bg-brand-yellow dark:border-white/10 dark:bg-brand-navy-light/50 dark:text-white",
         className,
       )}
       aria-label={t("toggle")}

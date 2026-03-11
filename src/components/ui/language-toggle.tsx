@@ -31,8 +31,8 @@ export function LanguageToggle({
         compact
           ? tone === "inverse"
             ? "border-white/12 bg-white/8 text-white shadow-none"
-            : "border-brand-navy/10 bg-brand-navy/[0.03] shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] dark:border-white/10 dark:bg-white/5 dark:shadow-none"
-          : "border-brand-navy/10 bg-white/82 shadow-sm dark:border-white/10 dark:bg-brand-navy-light/50",
+            : "border-brand-yellow-border/20 bg-brand-yellow-soft/75 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] dark:border-white/10 dark:bg-white/5 dark:shadow-none"
+          : "border-brand-yellow-border/20 bg-brand-yellow-soft/82 shadow-sm dark:border-white/10 dark:bg-brand-navy-light/50",
         className,
       )}
       aria-label={locale === "es" ? "Selector de idioma" : "Language switcher"}
@@ -47,7 +47,7 @@ export function LanguageToggle({
             ? "bg-brand-yellow text-brand-navy"
             : tone === "inverse"
               ? "text-white/68 hover:bg-white/10 hover:text-white"
-              : "text-brand-navy/58 hover:bg-brand-navy/[0.05] hover:text-brand-navy dark:text-white/58 dark:hover:bg-white/8 dark:hover:text-white"
+              : "text-brand-navy/65 hover:bg-brand-navy/[0.05] hover:text-brand-navy dark:text-white/58 dark:hover:bg-white/8 dark:hover:text-white"
         }`}
       >
         ES
@@ -61,7 +61,7 @@ export function LanguageToggle({
             ? "bg-brand-yellow text-brand-navy"
             : tone === "inverse"
               ? "text-white/68 hover:bg-white/10 hover:text-white"
-              : "text-brand-navy/58 hover:bg-brand-navy/[0.05] hover:text-brand-navy dark:text-white/58 dark:hover:bg-white/8 dark:hover:text-white"
+              : "text-brand-navy/65 hover:bg-brand-navy/[0.05] hover:text-brand-navy dark:text-white/58 dark:hover:bg-white/8 dark:hover:text-white"
         }`}
       >
         EN
