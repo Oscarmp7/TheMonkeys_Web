@@ -33,7 +33,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
   ];
 
   return (
-    <footer className="bg-brand-navy-deep py-16 text-white">
+    <footer className="border-t border-brand-yellow/10 bg-[linear-gradient(180deg,#001A2C_0%,#00263E_100%)] py-16 text-white">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr]">
           <div className="max-w-md">
