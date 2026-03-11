@@ -100,13 +100,13 @@ export function Hero({
               href={getWhatsAppHref(locale, settings.whatsapp)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-12 items-center justify-center rounded-full bg-brand-navy px-7 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-px hover:shadow-lg dark:bg-brand-yellow dark:text-brand-navy"
+              className="inline-flex h-12 items-center justify-center rounded-full border border-brand-yellow-border/20 bg-brand-yellow px-7 text-sm font-semibold text-brand-navy shadow-[0_18px_38px_-24px_rgba(181,141,0,0.62)] transition-all duration-200 hover:-translate-y-px hover:bg-brand-yellow/90 hover:shadow-lg dark:border-transparent dark:bg-brand-yellow dark:text-brand-navy"
             >
               {t("cta_primary")}
             </a>
             <a
               href="#portfolio"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-brand-navy/15 px-7 text-sm font-semibold text-brand-navy transition-all duration-200 hover:-translate-y-px hover:border-brand-navy/40 dark:border-white/15 dark:text-white dark:hover:border-white/40"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-brand-navy/15 bg-brand-yellow-soft/40 px-7 text-sm font-semibold text-brand-navy transition-all duration-200 hover:-translate-y-px hover:border-brand-yellow-border/40 hover:bg-brand-yellow-soft/75 dark:border-white/15 dark:bg-transparent dark:text-white dark:hover:border-white/40 dark:hover:bg-white/4"
             >
               {t("cta_secondary")}
               <ArrowUpRight size={16} />
@@ -123,7 +123,7 @@ export function Hero({
               key={label}
               className="rounded-2xl border border-brand-navy/6 bg-brand-navy/[0.02] px-5 py-5 dark:border-white/8 dark:bg-white/[0.03]"
             >
-              <div className="mb-4 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brand-navy/[0.04] text-brand-yellow dark:bg-white/[0.06]">
+              <div className="mb-4 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brand-yellow-soft text-brand-navy dark:bg-white/[0.06] dark:text-brand-yellow">
                 <Icon className="h-4 w-4" />
               </div>
               <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-brand-navy/35 dark:text-white/35">

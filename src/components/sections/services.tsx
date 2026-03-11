@@ -54,7 +54,7 @@ function ServiceRow({
         {String(index + 1).padStart(2, "0")}
       </span>
 
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-navy/[0.04] text-brand-navy/50 transition-colors duration-300 group-hover:bg-brand-yellow/12 group-hover:text-brand-yellow dark:bg-white/[0.04] dark:text-white/40">
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-yellow-soft/75 text-brand-navy/65 transition-colors duration-300 group-hover:bg-brand-yellow group-hover:text-brand-navy dark:bg-white/[0.04] dark:text-white/40 dark:group-hover:bg-brand-yellow/12 dark:group-hover:text-brand-yellow">
         <Icon size={20} strokeWidth={1.8} />
       </div>
 
@@ -90,7 +90,7 @@ export function Services() {
             </p>
             <a
               href="#contact"
-              className="mt-8 inline-flex h-12 items-center justify-center rounded-full bg-brand-navy px-8 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-px hover:shadow-lg dark:bg-brand-yellow dark:text-brand-navy"
+              className="mt-8 inline-flex h-12 items-center justify-center rounded-full border border-brand-yellow-border/20 bg-brand-yellow px-8 text-sm font-semibold text-brand-navy shadow-[0_18px_38px_-24px_rgba(181,141,0,0.62)] transition-all duration-200 hover:-translate-y-px hover:bg-brand-yellow/90 hover:shadow-lg dark:border-transparent dark:bg-brand-yellow dark:text-brand-navy"
             >
               {t("cta")}
             </a>
