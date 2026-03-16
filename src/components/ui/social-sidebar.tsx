@@ -21,7 +21,7 @@ export function SocialSidebar() {
           aria-label={label}
           className="w-9 h-9 rounded-full border border-brand-yellow/40 flex items-center justify-center text-brand-yellow hover:bg-brand-yellow hover:text-brand-navy transition-colors duration-300"
         >
-          <Icon size={16} />
+          <Icon size={16} aria-hidden="true" />
         </a>
       ))}
     </div>
