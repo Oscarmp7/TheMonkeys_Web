@@ -1,4 +1,6 @@
 import { Hero } from "@/components/sections/hero";
+import { Brandbook } from "@/components/sections/brandbook";
+import { LayoutProvider } from "@/components/providers/layout-provider";
 import type { Locale } from "@/i18n/routing";
 
 export default async function HomePage({
@@ -8,8 +10,11 @@ export default async function HomePage({
 }) {
   const { locale } = await params;
   return (
-    <main>
-      <Hero locale={locale} />
-    </main>
+    <LayoutProvider>
+      <main>
+        <Hero locale={locale} />
+        <Brandbook />
+      </main>
+    </LayoutProvider>
   );
 }
