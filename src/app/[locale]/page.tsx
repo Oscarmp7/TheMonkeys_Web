@@ -1,7 +1,16 @@
-export default function HomePage() {
+import { setRequestLocale } from "next-intl/server";
+
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   return (
-    <main className="min-h-screen bg-brand-navy text-brand-yellow flex items-center justify-center">
-      <h1 className="font-display text-6xl">The Monkeys</h1>
+    <main>
+      <p className="font-display text-6xl text-brand-navy p-8">The Monkeys — {locale}</p>
     </main>
   );
 }
