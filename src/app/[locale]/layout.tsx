@@ -5,6 +5,7 @@ import { getMessages, getTranslations, setRequestLocale } from "next-intl/server
 import { routing } from "@/i18n/routing";
 import type { Locale } from "@/i18n/routing";
 import { SITE } from "@/lib/site";
+import { NavbarSticky } from "@/components/layout/navbar-sticky";
 import "@/app/globals.css";
 
 const bebasNeue = Bebas_Neue({
@@ -68,6 +69,7 @@ export default async function LocaleLayout({
     >
       <body>
         <NextIntlClientProvider messages={messages}>
+          <NavbarSticky locale={locale as Locale} />
           {children}
         </NextIntlClientProvider>
       </body>
