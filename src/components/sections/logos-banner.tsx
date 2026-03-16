@@ -13,19 +13,6 @@ export function LogosBanner() {
       aria-label="Nuestros clientes"
       className="py-16 bg-off-white border-y border-brand-navy/10 overflow-hidden"
     >
-      <style>{`
-        @keyframes marquee {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
-        }
-        .marquee-track {
-          animation: marquee 20s linear infinite;
-        }
-        .marquee-track:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
-
       <div className="marquee-track flex gap-16 w-max">
         {logos.map((logo, i) => (
           <div
