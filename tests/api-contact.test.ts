@@ -65,16 +65,20 @@ describe("API contact — sanitize layer", () => {
   });
 });
 
-describe("API contact — honeypot detection", () => {
-  test("non-empty website field simulates bot", () => {
-    // The route returns fake success without processing
-    // We verify the honeypot field logic conceptually:
-    const websiteField = "http://spam.com";
-    assert.ok(websiteField.trim() !== "");
+describe("API contact — sanitize edge cases", () => {
+  test("sanitize handles empty string", () => {
+    assert.equal(sanitize("", 100), "");
   });
 
-  test("empty website field passes honeypot", () => {
-    const websiteField = "";
-    assert.ok(websiteField.trim() === "");
+  test("escapeHtml neutralizes single quotes", () => {
+    const result = escapeHtml("it's a test");
+    assert.ok(result.includes("&#x27;"));
+  });
+
+  test("sanitize + escapeHtml on email prevents HTML injection", () => {
+    const evil = '"<img src=x>"@example.com';
+    const safe = escapeHtml(sanitize(evil, MAX_LENGTHS.email));
+    assert.ok(!safe.includes("<img"));
+    assert.ok(safe.includes("&lt;img"));
   });
 });

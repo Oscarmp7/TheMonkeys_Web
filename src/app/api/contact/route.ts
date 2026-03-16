@@ -88,7 +88,7 @@ export async function POST(req: NextRequest) {
   // 6. Sanitize
   const safe = {
     name: escapeHtml(sanitize(values.name, MAX_LENGTHS.name)),
-    email: sanitize(values.email, MAX_LENGTHS.email),
+    email: escapeHtml(sanitize(values.email, MAX_LENGTHS.email)),
     company: escapeHtml(sanitize(values.company, MAX_LENGTHS.company)),
     service: escapeHtml(sanitize(values.service, MAX_LENGTHS.service)),
     message: escapeHtml(sanitize(values.message, MAX_LENGTHS.message)),
@@ -97,11 +97,12 @@ export async function POST(req: NextRequest) {
   // 7. Send email
   if (process.env.RESEND_API_KEY) {
     const resend = getResend();
-    await resend.emails.send({
-      from: "contacto@themonkeys.do",
-      to: SITE.email,
-      subject: `Nuevo contacto: ${safe.name}`,
-      html: `
+    try {
+      await resend.emails.send({
+        from: "contacto@themonkeys.do",
+        to: SITE.email,
+        subject: `Nuevo contacto: ${safe.name}`,
+        html: `
         <h2>Nuevo mensaje de contacto</h2>
         <p><strong>Nombre:</strong> ${safe.name}</p>
         <p><strong>Email:</strong> ${safe.email}</p>
@@ -110,8 +111,12 @@ export async function POST(req: NextRequest) {
         <p><strong>Mensaje:</strong></p>
         <p>${safe.message.replace(/\n/g, "<br>")}</p>
       `,
-      replyTo: safe.email,
-    });
+        replyTo: safe.email,
+      });
+    } catch (err) {
+      console.error("[contact] email send failed:", err);
+      return NextResponse.json({ error: "Email delivery failed" }, { status: 500 });
+    }
   }
 
   return NextResponse.json({ ok: true });
