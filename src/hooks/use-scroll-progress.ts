@@ -1,5 +1,5 @@
 "use client";
-import { useScroll, useTransform, type MotionValue } from "motion/react";
+import { useScroll, type MotionValue } from "motion/react";
 import { useRef } from "react";
 
 /**
