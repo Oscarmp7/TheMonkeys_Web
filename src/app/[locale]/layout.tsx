@@ -6,6 +6,7 @@ import { routing } from "@/i18n/routing";
 import type { Locale } from "@/i18n/routing";
 import { SITE } from "@/lib/site";
 import { NavbarSticky } from "@/components/layout/navbar-sticky";
+import { JsonLd } from "@/components/seo/json-ld";
 import "@/app/globals.css";
 
 const bebasNeue = Bebas_Neue({
@@ -67,6 +68,9 @@ export default async function LocaleLayout({
       lang={locale}
       className={`${bebasNeue.variable} ${spaceGrotesk.variable}`}
     >
+      <head>
+        <JsonLd />
+      </head>
       <body>
         <NextIntlClientProvider messages={messages}>
           <NavbarSticky locale={locale as Locale} />
