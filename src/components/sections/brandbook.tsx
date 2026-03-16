@@ -38,17 +38,19 @@ export function Brandbook() {
         </motion.p>
 
         {/* Service list */}
-        <motion.ul variants={containerVariants} className="grid grid-cols-2 gap-3">
-          {SERVICE_KEYS.map((key) => {
-            const Icon = SERVICE_ICONS[key];
-            return (
-              <motion.li key={key} variants={lineVariants} className="flex items-center gap-2 text-brand-navy/80">
-                <Icon size={18} className="text-brand-yellow flex-shrink-0" aria-hidden="true" />
-                <span className="text-sm font-medium">{tServices(key)}</span>
-              </motion.li>
-            );
-          })}
-        </motion.ul>
+        <motion.div variants={lineVariants}>
+          <ul className="grid grid-cols-2 gap-3">
+            {SERVICE_KEYS.map((key) => {
+              const Icon = SERVICE_ICONS[key];
+              return (
+                <li key={key} className="flex items-center gap-2 text-brand-navy/80">
+                  <Icon size={18} className="text-brand-yellow flex-shrink-0" aria-hidden="true" />
+                  <span className="text-sm font-medium">{tServices(key)}</span>
+                </li>
+              );
+            })}
+          </ul>
+        </motion.div>
 
         <motion.a
           variants={lineVariants}

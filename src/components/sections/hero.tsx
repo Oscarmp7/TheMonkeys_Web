@@ -12,7 +12,7 @@ export function Hero({ locale }: { locale: Locale }) {
 
   return (
     <section
-      className="sticky top-0 z-[1] relative min-h-screen noise-overlay overflow-hidden"
+      className="sticky top-0 z-[1] min-h-screen noise-overlay overflow-hidden"
       style={{ background: "linear-gradient(160deg, #1b2f4f 0%, #0f1e35 100%)" }}
     >
       <NavbarHero locale={locale} />
