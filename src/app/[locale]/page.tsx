@@ -2,6 +2,8 @@ import { Hero } from "@/components/sections/hero";
 import { Brandbook } from "@/components/sections/brandbook";
 import { Portfolio } from "@/components/sections/portfolio";
 import { LogosBanner } from "@/components/sections/logos-banner";
+import { Contact } from "@/components/sections/contact";
+import { Footer } from "@/components/layout/footer";
 import { LayoutProvider } from "@/components/providers/layout-provider";
 import type { Locale } from "@/i18n/routing";
 
@@ -18,7 +20,9 @@ export default async function HomePage({
         <Brandbook />
         <Portfolio locale={locale} />
         <LogosBanner />
+        <Contact locale={locale} />
       </main>
+      <Footer locale={locale} />
     </LayoutProvider>
   );
 }
