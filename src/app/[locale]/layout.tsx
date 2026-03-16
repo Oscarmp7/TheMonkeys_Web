@@ -1,8 +1,15 @@
 import "@/app/globals.css";
 
-export default function LocaleLayout({ children }: { children: React.ReactNode }) {
+export default async function LocaleLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   return (
-    <html>
+    <html lang={locale}>
       <body>{children}</body>
     </html>
   );

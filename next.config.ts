@@ -19,6 +19,8 @@ const securityHeaders = [
       "img-src 'self' data: https: blob:",
       "connect-src 'self' https://vitals.vercel-insights.com",
       "frame-ancestors 'none'",
+      "media-src 'self'",
+      "form-action 'self'",
     ].join("; "),
   },
 ];
@@ -31,7 +33,7 @@ const nextConfig: NextConfig = {
     },
   ],
   images: {
-    formats: ["image/webp", "image/avif"],
+    formats: ["image/avif", "image/webp"],
   },
 };
 
