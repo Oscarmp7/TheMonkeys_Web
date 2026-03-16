@@ -1,0 +1,51 @@
+{
+  "nav": {
+    "inicio": "Inicio",
+    "servicios": "Servicios",
+    "contacto": "Contacto",
+    "cotizar": "Cotizar"
+  },
+  "hero": {
+    "tagline": "Hacemos marcas crecer en el mundo digital"
+  },
+  "brandbook": {
+    "statement": "Hacemos",
+    "bio": "ayudamos a las marcas a crecer en el entorno digital a través de estrategias de comunicación modernas, creativas y orientadas a resultados.",
+    "cta": "Cotiza Ahora"
+  },
+  "services": {
+    "title": "Servicios",
+    "inbound": "Inbound Marketing",
+    "contenidos": "Producción de Contenidos",
+    "seo": "SEO",
+    "web": "Desarrollo Web",
+    "influencers": "Marketing de Influencers",
+    "ads": "Campaña Digital",
+    "foto_video": "Foto & Video"
+  },
+  "portfolio": {
+    "title": "Nuestro trabajo",
+    "cta": "Ver portafolio completo"
+  },
+  "contact": {
+    "title": "¿Listo para crecer?",
+    "subtitle": "Cuéntanos tu proyecto",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "company": "Empresa (opcional)",
+    "service": "Servicio de interés",
+    "message": "Mensaje",
+    "submit": "Enviar mensaje",
+    "whatsapp": "Escríbenos por WhatsApp",
+    "success": "¡Mensaje enviado! Te contactaremos pronto.",
+    "error": "Hubo un error. Por favor intenta de nuevo."
+  },
+  "footer": {
+    "location": "Santiago de los Caballeros, RD",
+    "rights": "Todos los derechos reservados"
+  },
+  "meta": {
+    "home_title": "The Monkeys — Agencia Digital en Santiago, RD",
+    "home_description": "Agencia creativa digital especializada en SEO, desarrollo web, producción de contenidos y campañas digitales. Santiago de los Caballeros, República Dominicana."
+  }
+}

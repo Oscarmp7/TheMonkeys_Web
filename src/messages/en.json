@@ -1,0 +1,51 @@
+{
+  "nav": {
+    "inicio": "Home",
+    "servicios": "Services",
+    "contacto": "Contact",
+    "cotizar": "Get a Quote"
+  },
+  "hero": {
+    "tagline": "We help brands grow in the digital world"
+  },
+  "brandbook": {
+    "statement": "We do",
+    "bio": "We help brands grow in the digital environment through modern, creative, results-driven communication strategies.",
+    "cta": "Get a Quote"
+  },
+  "services": {
+    "title": "Services",
+    "inbound": "Inbound Marketing",
+    "contenidos": "Content Production",
+    "seo": "SEO",
+    "web": "Web Development",
+    "influencers": "Influencer Marketing",
+    "ads": "Digital Campaigns",
+    "foto_video": "Photo & Video"
+  },
+  "portfolio": {
+    "title": "Our work",
+    "cta": "View full portfolio"
+  },
+  "contact": {
+    "title": "Ready to grow?",
+    "subtitle": "Tell us about your project",
+    "name": "Name",
+    "email": "Email address",
+    "company": "Company (optional)",
+    "service": "Service of interest",
+    "message": "Message",
+    "submit": "Send message",
+    "whatsapp": "Message us on WhatsApp",
+    "success": "Message sent! We'll be in touch soon.",
+    "error": "Something went wrong. Please try again."
+  },
+  "footer": {
+    "location": "Santiago de los Caballeros, DR",
+    "rights": "All rights reserved"
+  },
+  "meta": {
+    "home_title": "The Monkeys — Digital Agency in Santiago, DR",
+    "home_description": "Creative digital agency specializing in SEO, web development, content production, and digital campaigns. Santiago de los Caballeros, Dominican Republic."
+  }
+}
