@@ -62,7 +62,7 @@ export function Brandbook() {
       {/* Right: Logo travels here from hero via shared layoutId */}
       <motion.div
         layoutId="brand-logo"
-        className="hidden md:flex items-center justify-center bg-brand-navy/5 p-12"
+        className="flex items-center justify-center bg-brand-navy/5 p-8 md:p-12 min-h-[40vh] md:min-h-screen"
       >
         <LogoWordmark
           variant="navy"
