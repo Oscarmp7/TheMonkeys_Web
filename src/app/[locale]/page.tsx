@@ -1,16 +1,15 @@
-import { setRequestLocale } from "next-intl/server";
+import { Hero } from "@/components/sections/hero";
+import type { Locale } from "@/i18n/routing";
 
 export default async function HomePage({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: Locale }>;
 }) {
   const { locale } = await params;
-  setRequestLocale(locale);
-
   return (
     <main>
-      <p className="font-display text-6xl text-brand-navy p-8">The Monkeys — {locale}</p>
+      <Hero locale={locale} />
     </main>
   );
 }
