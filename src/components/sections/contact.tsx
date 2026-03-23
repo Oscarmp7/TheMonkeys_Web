@@ -1,62 +1,71 @@
 "use client";
-import { motion } from "motion/react";
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { ContactForm } from "@/components/ui/contact-form";
 import { getWhatsAppHref } from "@/lib/site";
 import type { Locale } from "@/i18n/routing";
 
+gsap.registerPlugin(useGSAP, ScrollTrigger);
+
 // This section gets id="contacto" for the #contacto anchor links throughout the site
 export function Contact({ locale }: { locale: Locale }) {
   const t = useTranslations("contact");
+  const containerRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      const prefersReduced =
+        typeof window !== "undefined"
+          ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          : false;
+
+      if (prefersReduced) return;
+
+      gsap.from("[data-animate]", {
+        opacity: 0,
+        y: 16,
+        duration: 0.5,
+        stagger: 0.1,
+        ease: "expo.out",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 80%",
+          once: true,
+        },
+      });
+    },
+    { scope: containerRef }
+  );
 
   return (
-    <section id="contacto" className="py-24 px-8 bg-off-white">
+    <section ref={containerRef} id="contacto" className="py-24 px-8 bg-off-white">
       <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-start">
-        {/* Left: heading + WhatsApp CTA */}
         <div className="flex flex-col gap-6">
-          <motion.h2
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-            className="text-4xl md:text-5xl font-display text-brand-navy"
-          >
+          <h2 data-animate className="text-4xl md:text-5xl font-display text-brand-navy">
             {t("title")}
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-            className="text-brand-navy/70"
-          >
+          <p data-animate className="text-brand-navy/70">
             {t("subtitle")}
-          </motion.p>
+          </p>
 
-          <motion.a
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-            href={getWhatsAppHref("Hola! Me gustaría cotizar un servicio.", locale)}
+          <a
+            data-animate
+            href={getWhatsAppHref("Hola! Me gustaria cotizar un servicio.", locale)}
             target="_blank"
             rel="noopener noreferrer"
             className="self-start px-7 py-3 bg-brand-yellow text-brand-navy font-semibold rounded-full hover:bg-brand-yellow/90 transition-colors"
           >
             {t("whatsapp")} ↗
-          </motion.a>
+          </a>
         </div>
 
-        {/* Right: Contact form */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.15, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-        >
+        <div data-animate>
           <ContactForm />
-        </motion.div>
+        </div>
       </div>
     </section>
   );
