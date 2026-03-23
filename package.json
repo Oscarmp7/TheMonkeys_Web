@@ -10,11 +10,12 @@
     "test": "node --test --require tsx/cjs tests/**/*.test.ts"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
     "@upstash/ratelimit": "^2.0.0",
     "@upstash/redis": "^1.34.0",
     "clsx": "^2.1.0",
+    "gsap": "^3.14.2",
     "lucide-react": "^0.473.0",
-    "motion": "^12.36.0",
     "next": "^15.2.0",
     "next-intl": "^3.26.0",
     "react": "^19.0.0",
