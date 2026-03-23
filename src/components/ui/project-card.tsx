@@ -1,8 +1,13 @@
 "use client";
-import { motion } from "motion/react";
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import type { Project } from "@/lib/portfolio";
 import type { Locale } from "@/i18n/routing";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 interface ProjectCardProps {
   project: Project;
@@ -13,13 +18,36 @@ interface ProjectCardProps {
 export function ProjectCard({ project, locale, index }: ProjectCardProps) {
   const title = locale === "es" ? project.titleEs : project.titleEn;
   const description = locale === "es" ? project.descriptionEs : project.descriptionEn;
+  const cardRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      const prefersReduced =
+        typeof window !== "undefined"
+          ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          : false;
+
+      if (prefersReduced) return;
+
+      gsap.from(cardRef.current, {
+        opacity: 0,
+        y: 24,
+        duration: 0.5,
+        delay: index * 0.1,
+        ease: "expo.out",
+        scrollTrigger: {
+          trigger: cardRef.current,
+          start: "top 80%",
+          once: true,
+        },
+      });
+    },
+    { scope: cardRef }
+  );
 
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.5, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+    <article
+      ref={cardRef}
       className="group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow"
     >
       <div className="relative aspect-video overflow-hidden">
@@ -38,6 +66,6 @@ export function ProjectCard({ project, locale, index }: ProjectCardProps) {
         <h3 className="text-xl font-semibold text-brand-navy mb-2">{title}</h3>
         <p className="text-brand-navy/60 text-sm leading-relaxed">{description}</p>
       </div>
-    </motion.article>
+    </article>
   );
 }
