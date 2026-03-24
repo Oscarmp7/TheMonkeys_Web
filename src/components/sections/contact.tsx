@@ -56,13 +56,13 @@ export function Contact() {
 
           {/* Headline — stacked vertically */}
           <div data-contact-animate>
-            <span className="block font-display text-[2.5rem] sm:text-[3.5rem] md:text-[5rem] lg:text-[7rem] xl:text-[9rem] text-off-white uppercase leading-none">
+            <span className="block font-display text-[2.5rem] sm:text-[3.5rem] md:text-[3.5rem] lg:text-[5rem] xl:text-[7rem] text-off-white uppercase leading-none">
               {t("headline_line1")}
             </span>
-            <span className="block font-display text-[2.5rem] sm:text-[3.5rem] md:text-[5rem] lg:text-[7rem] xl:text-[9rem] text-off-white uppercase leading-none">
+            <span className="block font-display text-[2.5rem] sm:text-[3.5rem] md:text-[3.5rem] lg:text-[5rem] xl:text-[7rem] text-off-white uppercase leading-none">
               {t("headline_line2")}
             </span>
-            <span className="block font-display text-[2.5rem] sm:text-[3.5rem] md:text-[5rem] lg:text-[7rem] xl:text-[9rem] text-brand-yellow uppercase leading-none">
+            <span className="block font-display text-[2.5rem] sm:text-[3.5rem] md:text-[3.5rem] lg:text-[5rem] xl:text-[7rem] text-brand-yellow uppercase leading-none">
               {t("headline_line3")}
             </span>
           </div>

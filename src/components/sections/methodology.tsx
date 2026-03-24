@@ -91,16 +91,16 @@ export function Methodology() {
       {/* Cards grid */}
       <div
         data-meth-grid
-        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3 sm:gap-4 mt-12 w-full max-w-[1400px]"
+        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2.5 sm:gap-3 md:gap-4 mt-10 sm:mt-12 w-full max-w-[1400px]"
       >
         {PILLAR_KEYS.map((key, i) => (
           <div
             key={key}
             data-meth-card
-            className="group bg-brand-navy border border-white/10 hover:border-white/20 rounded-sm p-5 flex flex-col transition-all duration-200 hover:-translate-y-1 cursor-default"
+            className="group bg-brand-navy border border-white/10 hover:border-white/20 rounded-sm p-4 sm:p-5 flex flex-col transition-all duration-200 hover:-translate-y-1 cursor-default"
           >
             {/* Letter */}
-            <span className="font-display text-5xl md:text-6xl text-brand-yellow leading-none mb-3 transition-transform duration-200 group-hover:scale-110">
+            <span className="font-display text-4xl sm:text-5xl md:text-6xl text-brand-yellow leading-none mb-3 transition-transform duration-200 group-hover:scale-110">
               {t(`pillars.${key}.letter`)}
             </span>
             {/* Title */}

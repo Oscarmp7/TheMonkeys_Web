@@ -64,7 +64,7 @@ export function Brandbook({ locale }: { locale: Locale }) {
           {/* LEFT — Photo with floating badge */}
           <div data-bb-photo className="relative w-full shrink-0 lg:w-[44%]">
             {/* Badge floating outside image top-left */}
-            <div className="absolute -left-3 -top-3 z-10 bg-brand-yellow px-3 py-2">
+            <div className="absolute left-0 sm:-left-3 -top-3 z-10 bg-brand-yellow px-3 py-2">
               <p className="font-display text-2xl leading-none text-brand-black">
                 {t("badge_line1")}
               </p>

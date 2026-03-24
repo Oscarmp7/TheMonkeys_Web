@@ -68,7 +68,7 @@ export function Process() {
   return (
     <section
       ref={containerRef}
-      className="min-h-screen flex flex-col justify-center bg-off-white py-24 px-6 md:px-8 relative overflow-hidden"
+      className="min-h-screen flex flex-col justify-center bg-off-white py-16 sm:py-24 px-5 sm:px-6 md:px-8 relative overflow-hidden"
     >
       {/* Decorative large translucent section number */}
       <span
@@ -83,7 +83,7 @@ export function Process() {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12 items-end">
           {/* Left column (~40%) */}
           <div className="md:col-span-2" data-process-header>
-            <p className="font-display text-brand-navy text-xl md:text-2xl uppercase leading-tight">
+            <p className="font-display text-brand-navy text-lg sm:text-xl md:text-2xl uppercase leading-tight">
               {t("left_line1")}
               <br />
               {t("left_line2")}
@@ -99,7 +99,7 @@ export function Process() {
                 {t("eyebrow")}
               </span>
             </div>
-            <h2 className="font-display text-5xl md:text-6xl lg:text-7xl text-brand-navy uppercase leading-none">
+            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-brand-navy uppercase leading-none">
               {t("headline")}
             </h2>
           </div>
@@ -107,7 +107,7 @@ export function Process() {
 
         {/* Grid of 4 steps */}
         <div
-          className="grid grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-0 mt-16 lg:mt-20 relative"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-y-10 sm:gap-y-12 gap-x-2 sm:gap-x-0 mt-12 sm:mt-16 lg:mt-20 relative"
           data-process-grid
           onMouseLeave={() => setActiveStep(0)}
         >
@@ -131,14 +131,14 @@ export function Process() {
               >
                 {/* Numbered circle */}
                 <div
-                  className={`w-20 h-20 rounded-full border-2 flex items-center justify-center transition-all duration-300 ease-out hover:scale-[1.08] ${
+                  className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 flex items-center justify-center transition-all duration-300 ease-out hover:scale-[1.08] ${
                     isActive
                       ? "bg-brand-yellow border-brand-yellow"
                       : "bg-off-white border-brand-navy/30"
                   }`}
                 >
                   <span
-                    className={`font-display text-3xl transition-colors duration-300 ease-out ${
+                    className={`font-display text-2xl sm:text-3xl transition-colors duration-300 ease-out ${
                       isActive ? "text-brand-navy" : "text-brand-navy/50"
                     }`}
                   >
@@ -147,12 +147,12 @@ export function Process() {
                 </div>
 
                 {/* Title */}
-                <h3 className="font-display text-lg text-brand-navy text-center mt-4 uppercase">
+                <h3 className="font-display text-base sm:text-lg text-brand-navy text-center mt-3 sm:mt-4 uppercase">
                   {t(`steps.${step}.title`)}
                 </h3>
 
                 {/* Description */}
-                <p className="font-body text-sm text-brand-navy/65 text-center mt-2 leading-relaxed max-w-[240px] lg:max-w-[200px] mx-auto">
+                <p className="font-body text-xs sm:text-sm text-brand-navy/65 text-center mt-2 leading-relaxed max-w-[240px] lg:max-w-[200px] mx-auto">
                   {t(`steps.${step}.description`)}
                 </p>
               </div>
