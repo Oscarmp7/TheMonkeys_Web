@@ -18,7 +18,7 @@ const SERVICE_TAGS = {
 export function Brandbook({ locale }: { locale: Locale }) {
   const t = useTranslations("brandbook");
   const containerRef = useRef<HTMLElement>(null);
-  const tags = SERVICE_TAGS[locale];
+  const tags = SERVICE_TAGS[locale] ?? SERVICE_TAGS.es;
   const prefersReduced = usePrefersReducedMotion();
 
   useGSAP(
