@@ -240,6 +240,20 @@ export function NavbarHero({ locale }: { locale: Locale }) {
     }
   }
 
+  /** Close mobile menu, then scroll to a hash anchor after the overlay is gone. */
+  function handleMobileAnchor(e: React.MouseEvent, href: string) {
+    e.preventDefault();
+    // Close immediately (no animation delay) so scroll target is reachable
+    setIsMenuOpen(false);
+    setIsAnimating(false);
+    // Scroll after React removes the overlay
+    requestAnimationFrame(() => {
+      const id = href.replace("#", "");
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    });
+  }
+
   function handleLogoLeave() {
     if (prefersReduced) return;
     const el = logoRef.current;
@@ -359,29 +373,30 @@ export function NavbarHero({ locale }: { locale: Locale }) {
               const linkClass =
                 "font-display text-4xl text-off-white uppercase tracking-wider transition-colors duration-200 cursor-pointer hover:text-brand-yellow";
 
-              if (!item.isRoute) {
+              if (item.isRoute) {
                 return (
-                  <Link
+                  <IntlLink
                     key={item.key}
                     ref={(el) => { mobileLinkRefs.current[i] = el; }}
-                    href={item.href}
+                    href={item.href as "/"}
                     className={linkClass}
                     onClick={closeMenu}
                   >
                     {item.label}
-                  </Link>
+                  </IntlLink>
                 );
               }
+              // Hash anchor — close menu first, then scroll
               return (
-                <IntlLink
+                <a
                   key={item.key}
                   ref={(el) => { mobileLinkRefs.current[i] = el; }}
-                  href={item.href as "/"}
+                  href={item.href}
                   className={linkClass}
-                  onClick={closeMenu}
+                  onClick={(e) => handleMobileAnchor(e, item.href)}
                 >
                   {item.label}
-                </IntlLink>
+                </a>
               );
             })}
           </div>
@@ -415,14 +430,14 @@ export function NavbarHero({ locale }: { locale: Locale }) {
             </button>
           </div>
 
-          <Link
+          <a
             ref={mobileCtaRef}
             href="#contacto"
             className="bg-brand-yellow text-brand-black font-display px-8 py-4 tracking-widest uppercase mt-8 transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95"
-            onClick={closeMenu}
+            onClick={(e) => handleMobileAnchor(e, "#contacto")}
           >
             {t("cotizar")}
-          </Link>
+          </a>
         </div>
       )}
     </>
