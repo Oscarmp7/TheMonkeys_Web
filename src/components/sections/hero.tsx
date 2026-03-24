@@ -22,26 +22,29 @@ export function Hero() {
 
   useGSAP(
     () => {
-      if (prefersReduced) return;
+      if (prefersReduced) {
+        // Ensure everything is visible for reduced-motion users
+        gsap.set("[data-hero-reveal]", { opacity: 1 });
+        return;
+      }
 
       const tl = gsap.timeline({ defaults: { ease: "expo.out", duration: 0.8 } });
 
-      tl.from(eyebrowRef.current, { opacity: 0, y: 30 }, 0.3)
-        .from(headlineRef.current!.children[0], { opacity: 0, y: 30 }, 0.5)
-        .from(headlineRef.current!.children[1], { opacity: 0, y: 30 }, 0.7)
-        .from(bodyRef.current, { opacity: 0, y: 30 }, 1.0)
-        .from(ctasRef.current, { opacity: 0, y: 30 }, 1.2);
+      // fromTo — CSS starts at opacity:0 via [data-hero-reveal], animate to visible
+      tl.fromTo(eyebrowRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0 }, 0.3)
+        .fromTo(headlineRef.current!.children[0], { opacity: 0, y: 30 }, { opacity: 1, y: 0 }, 0.5)
+        .fromTo(headlineRef.current!.children[1], { opacity: 0, y: 30 }, { opacity: 1, y: 0 }, 0.7)
+        .fromTo(bodyRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0 }, 1.0)
+        .fromTo(ctasRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0 }, 1.2);
 
-      // Logo entrance — attached to timeline for proper cleanup
-      tl.from(logoRef.current, {
-        opacity: 0,
-        scale: 0.85,
-        filter: "blur(12px)",
-        duration: 1.0,
-        ease: "expo.out",
-      }, 0.6);
+      // Logo entrance
+      tl.fromTo(logoRef.current,
+        { opacity: 0, scale: 0.85, filter: "blur(12px)" },
+        { opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.0, ease: "expo.out" },
+        0.6
+      );
 
-      // Logo float — separate infinite tween, but useGSAP scope will kill it on unmount
+      // Logo float — infinite, cleaned up by useGSAP scope
       gsap.to(logoRef.current, {
         y: -12,
         duration: 3,
@@ -53,7 +56,6 @@ export function Hero() {
     { scope: containerRef, dependencies: [prefersReduced] }
   );
 
-  /* CTA primary hover — scale + yellow glow */
   const handleCtaPrimaryEnter = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
       if (prefersReduced) return;
@@ -80,15 +82,10 @@ export function Hero() {
     [prefersReduced]
   );
 
-  /* Eyebrow hover — tracking expansion */
   const handleEyebrowEnter = useCallback(
     (e: React.MouseEvent<HTMLParagraphElement>) => {
       if (prefersReduced) return;
-      gsap.to(e.currentTarget, {
-        letterSpacing: "0.35em",
-        duration: 0.3,
-        ease: "expo.out",
-      });
+      gsap.to(e.currentTarget, { letterSpacing: "0.35em", duration: 0.3, ease: "expo.out" });
     },
     [prefersReduced]
   );
@@ -96,11 +93,7 @@ export function Hero() {
   const handleEyebrowLeave = useCallback(
     (e: React.MouseEvent<HTMLParagraphElement>) => {
       if (prefersReduced) return;
-      gsap.to(e.currentTarget, {
-        letterSpacing: "0.25em",
-        duration: 0.3,
-        ease: "expo.out",
-      });
+      gsap.to(e.currentTarget, { letterSpacing: "0.25em", duration: 0.3, ease: "expo.out" });
     },
     [prefersReduced]
   );
@@ -140,11 +133,12 @@ export function Hero() {
         <SocialSidebar />
       </div>
 
-      <div className="relative z-10 flex-1 flex items-center justify-center w-full px-4 sm:px-6 lg:px-8 xl:px-12 pt-28 pb-24 lg:pt-20 lg:pb-0">
-        <div className="w-full max-w-[1400px] mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-4">
+      <div className="relative z-10 flex-1 flex items-center justify-center w-full px-4 sm:px-6 lg:px-8 xl:px-12 pt-24 pb-20 sm:pt-28 sm:pb-24 lg:pt-20 lg:pb-0">
+        <div className="w-full max-w-[1400px] mx-auto flex flex-col lg:flex-row items-center gap-4 sm:gap-8 lg:gap-4">
           <div className="flex-1 flex flex-col justify-center w-full">
             <p
               ref={eyebrowRef}
+              data-hero-reveal
               className="font-mono text-xs sm:text-sm tracking-[0.25em] uppercase text-brand-yellow/80 mb-4 sm:mb-6 cursor-default"
               onMouseEnter={handleEyebrowEnter}
               onMouseLeave={handleEyebrowLeave}
@@ -155,12 +149,13 @@ export function Hero() {
 
             <h1
               ref={headlineRef}
-              className="font-display text-[clamp(4rem,12vw,12rem)] leading-[0.85] tracking-tight uppercase"
+              className="font-display text-[clamp(3rem,11vw,12rem)] leading-[0.85] tracking-tight uppercase"
             >
-              <span className="block text-off-white mb-3">
+              <span data-hero-reveal className="block text-off-white mb-2 sm:mb-3">
                 {t("line1")}
               </span>
               <span
+                data-hero-reveal
                 className="block"
                 style={{
                   WebkitTextStroke: "2px #F5C518",
@@ -173,15 +168,16 @@ export function Hero() {
 
             <p
               ref={bodyRef}
-              className="font-body text-off-white/60 text-base sm:text-lg max-w-md mt-6 sm:mt-8 leading-relaxed text-justify"
+              data-hero-reveal
+              className="font-body text-off-white/60 text-sm sm:text-base lg:text-lg max-w-md mt-4 sm:mt-6 lg:mt-8 leading-relaxed text-justify"
             >
               {t("body")}
             </p>
 
-            <div ref={ctasRef} className="flex flex-wrap gap-4 mt-8 sm:mt-10">
+            <div ref={ctasRef} data-hero-reveal className="flex flex-wrap gap-3 sm:gap-4 mt-6 sm:mt-8 lg:mt-10">
               <a
                 href="#contacto"
-                className="hero-cta-primary inline-flex items-center justify-center px-8 py-3.5 bg-brand-yellow text-brand-black font-display text-sm sm:text-base tracking-wider rounded-full transition-all duration-200 cursor-pointer"
+                className="hero-cta-primary inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-3.5 bg-brand-yellow text-brand-black font-display text-sm sm:text-base tracking-wider rounded-full transition-all duration-200 cursor-pointer"
                 onMouseEnter={handleCtaPrimaryEnter}
                 onMouseLeave={handleCtaPrimaryLeave}
               >
@@ -189,7 +185,7 @@ export function Hero() {
               </a>
               <Link
                 href="/servicios"
-                className="hero-cta-outline group relative inline-flex items-center justify-center px-8 py-3.5 border-2 border-off-white/40 text-off-white font-display text-sm sm:text-base tracking-wider rounded-full overflow-hidden transition-colors duration-200 cursor-pointer hover:border-off-white hover:text-brand-black"
+                className="hero-cta-outline group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-3.5 border-2 border-off-white/40 text-off-white font-display text-sm sm:text-base tracking-wider rounded-full overflow-hidden transition-colors duration-200 cursor-pointer hover:border-off-white hover:text-brand-black"
               >
                 <span className="absolute inset-0 bg-off-white origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" />
                 <span className="relative z-10">{t("cta_services")}</span>
@@ -197,13 +193,14 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="flex-1 flex items-center justify-center w-full max-w-lg lg:max-w-xl xl:max-w-2xl">
-            <div ref={logoRef} className="relative w-full aspect-square">
+          {/* Logo — constrained on mobile to avoid pushing content below fold */}
+          <div className="flex-1 flex items-center justify-center w-full max-w-[280px] sm:max-w-sm lg:max-w-xl xl:max-w-2xl">
+            <div ref={logoRef} data-hero-reveal className="relative w-full aspect-square">
               <Image
                 src="/logos/mk-main.png"
                 alt="The Monkeys MK 3D Logo"
                 fill
-                sizes="(max-width: 1024px) 80vw, 40vw"
+                sizes="(max-width: 640px) 280px, (max-width: 1024px) 384px, 40vw"
                 className="object-contain drop-shadow-[0_0_80px_rgba(245,197,24,0.2)]"
                 priority
                 fetchPriority="high"
@@ -213,7 +210,7 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — desktop only */}
       <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-10 hidden lg:flex flex-col items-center gap-2 motion-reduce:hidden">
         <span className="font-mono text-[0.6rem] tracking-[0.2em] uppercase text-off-white/30">
           Scroll
@@ -223,8 +220,9 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Stats bar pinned at bottom of hero — visible on load before scroll content covers it */}
-      <div className="absolute bottom-0 left-0 right-0 z-10">
+      {/* Hero StatsBar — only on lg+ for parallax overlap effect.
+          On mobile, only the scroll layer's StatsBar shows. */}
+      <div className="absolute bottom-0 left-0 right-0 z-10 hidden lg:block">
         <StatsBar />
       </div>
     </section>

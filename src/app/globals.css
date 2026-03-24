@@ -32,6 +32,24 @@
   }
 }
 
+/* Elements that GSAP will animate in — hidden via CSS to prevent FOUC.
+   GSAP's fromTo animates them to opacity:1.
+   Reduced-motion users see everything immediately. */
+[data-hero-reveal] {
+  opacity: 0;
+}
+
+nav[data-nav-animate] {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-hero-reveal],
+  nav[data-nav-animate] {
+    opacity: 1 !important;
+  }
+}
+
 /* Fade-in utility for deferred elements */
 @keyframes fadeIn {
   from { opacity: 0; }

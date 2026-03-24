@@ -200,14 +200,15 @@ export function NavbarHero({ locale }: { locale: Locale }) {
 
   useGSAP(
     () => {
-      if (prefersReduced || !navRef.current) return;
-      gsap.from(navRef.current, {
-        opacity: 0,
-        y: -20,
-        duration: 0.6,
-        delay: 0.1,
-        ease: "expo.out",
-      });
+      if (!navRef.current) return;
+      if (prefersReduced) {
+        gsap.set(navRef.current, { opacity: 1, y: 0 });
+        return;
+      }
+      gsap.fromTo(navRef.current,
+        { opacity: 0, y: -20 },
+        { opacity: 1, y: 0, duration: 0.6, delay: 0.1, ease: "expo.out" }
+      );
     },
     { scope: navRef, dependencies: [prefersReduced] }
   );
@@ -272,6 +273,7 @@ export function NavbarHero({ locale }: { locale: Locale }) {
     <>
       <nav
         ref={navRef}
+        data-nav-animate
         className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 sm:px-10 lg:px-16 xl:px-24 transition-all duration-300 ${
           scrolled
             ? "py-3 backdrop-blur-md bg-brand-black/60 border-b border-white/10 shadow-lg"
