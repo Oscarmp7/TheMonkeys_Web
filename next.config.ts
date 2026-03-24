@@ -26,6 +26,7 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  outputFileTracingRoot: process.cwd(),
   headers: async () => [
     {
       source: "/(.*)",

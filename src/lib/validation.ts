@@ -43,8 +43,6 @@ export function validateContactForm(values: ContactFormValues): ValidationResult
   else if (!isValidEmail(values.email)) errors.email = "invalid";
   else if (values.email.length > MAX_LENGTHS.email) errors.email = "too_long";
 
-  if (!values.service.trim()) errors.service = "required";
-
   if (!values.message.trim()) errors.message = "required";
   else if (values.message.length > MAX_LENGTHS.message) errors.message = "too_long";
 

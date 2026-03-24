@@ -5,13 +5,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { ContactForm } from "@/components/ui/contact-form";
-import { getWhatsAppHref } from "@/lib/site";
-import type { Locale } from "@/i18n/routing";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-// This section gets id="contacto" for the #contacto anchor links throughout the site
-export function Contact({ locale }: { locale: Locale }) {
+export function Contact() {
   const t = useTranslations("contact");
   const containerRef = useRef<HTMLElement>(null);
 
@@ -24,10 +21,10 @@ export function Contact({ locale }: { locale: Locale }) {
 
       if (prefersReduced) return;
 
-      gsap.from("[data-animate]", {
+      gsap.from("[data-contact-animate]", {
         opacity: 0,
-        y: 16,
-        duration: 0.5,
+        y: 20,
+        duration: 0.6,
         stagger: 0.1,
         ease: "expo.out",
         scrollTrigger: {
@@ -41,29 +38,49 @@ export function Contact({ locale }: { locale: Locale }) {
   );
 
   return (
-    <section ref={containerRef} id="contacto" className="py-24 px-8 bg-off-white">
-      <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-start">
-        <div className="flex flex-col gap-6">
-          <h2 data-animate className="text-4xl md:text-5xl font-display text-brand-navy">
-            {t("title")}
-          </h2>
+    <section
+      ref={containerRef}
+      id="contacto"
+      className="min-h-screen flex items-center bg-brand-black py-24 px-6 md:px-8"
+    >
+      <div className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+        {/* Left column — headline */}
+        <div className="flex flex-col">
+          {/* Eyebrow */}
+          <div className="flex items-center gap-3 mb-8" data-contact-animate>
+            <span
+              className="w-8 h-[2px] bg-brand-yellow"
+              aria-hidden="true"
+            />
+            <span className="font-mono text-[0.65rem] tracking-[0.25em] uppercase text-brand-yellow">
+              {t("eyebrow")}
+            </span>
+          </div>
 
-          <p data-animate className="text-brand-navy/70">
-            {t("subtitle")}
-          </p>
+          {/* Headline — stacked vertically */}
+          <div data-contact-animate>
+            <span className="block font-display text-[3.5rem] md:text-[5rem] lg:text-[7rem] xl:text-[9rem] text-off-white uppercase leading-none">
+              {t("headline_line1")}
+            </span>
+            <span className="block font-display text-[3.5rem] md:text-[5rem] lg:text-[7rem] xl:text-[9rem] text-off-white uppercase leading-none">
+              {t("headline_line2")}
+            </span>
+            <span className="block font-display text-[3.5rem] md:text-[5rem] lg:text-[7rem] xl:text-[9rem] text-brand-yellow uppercase leading-none">
+              {t("headline_line3")}
+            </span>
+          </div>
 
-          <a
-            data-animate
-            href={getWhatsAppHref("Hola! Me gustaria cotizar un servicio.", locale)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="self-start px-7 py-3 bg-brand-yellow text-brand-navy font-semibold rounded-full hover:bg-brand-yellow/90 transition-colors"
+          {/* Body text */}
+          <p
+            className="font-body text-off-white/55 text-sm leading-relaxed text-justify max-w-md mt-6"
+            data-contact-animate
           >
-            {t("whatsapp")} ↗
-          </a>
+            {t("body")}
+          </p>
         </div>
 
-        <div data-animate>
+        {/* Right column — form */}
+        <div data-contact-animate>
           <ContactForm />
         </div>
       </div>

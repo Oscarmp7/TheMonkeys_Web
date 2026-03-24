@@ -34,8 +34,17 @@ yarn-error.log*
 .env*
 !.env.local.example
 
-# claude
+# claude / agents
 .claude/
+.agents/
+.mateo/
+.playwright-cli/
+.playwright-mcp/
+output/
+test-results/
+
+# playwright screenshots
+*.png
 
 # vercel
 .vercel

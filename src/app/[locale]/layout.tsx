@@ -1,24 +1,37 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Space_Grotesk } from "next/font/google";
+import { Anton, Barlow_Condensed, Syne, DM_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import type { Locale } from "@/i18n/routing";
 import { SITE } from "@/lib/site";
-import { NavbarSticky } from "@/components/layout/navbar-sticky";
 import { JsonLd } from "@/components/seo/json-ld";
 import "@/app/globals.css";
 
-const bebasNeue = Bebas_Neue({
+const anton = Anton({
   weight: "400",
   subsets: ["latin"],
-  variable: "--font-bebas",
+  variable: "--font-anton",
   display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
+const barlowCondensed = Barlow_Condensed({
+  weight: "900",
   subsets: ["latin"],
-  variable: "--font-space",
+  variable: "--font-barlow",
+  display: "swap",
+});
+
+const syne = Syne({
+  subsets: ["latin"],
+  variable: "--font-syne",
+  display: "swap",
+});
+
+const dmMono = DM_Mono({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-dm-mono",
   display: "swap",
 });
 
@@ -66,14 +79,13 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${bebasNeue.variable} ${spaceGrotesk.variable}`}
+      className={`${anton.variable} ${barlowCondensed.variable} ${syne.variable} ${dmMono.variable}`}
     >
       <head>
         <JsonLd />
       </head>
       <body>
         <NextIntlClientProvider messages={messages}>
-          <NavbarSticky locale={locale as Locale} />
           {children}
         </NextIntlClientProvider>
       </body>

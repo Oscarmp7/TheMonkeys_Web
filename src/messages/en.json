@@ -1,16 +1,34 @@
 {
   "nav": {
     "inicio": "Home",
-    "servicios": "Services",
     "contacto": "Contact",
+    "nosotros": "About Us",
+    "servicios": "Services",
     "cotizar": "Get a Quote"
   },
   "hero": {
-    "tagline": "We help brands grow in the digital world"
+    "eyebrow": "Welcome to our",
+    "line1": "CREATIVE",
+    "line2": "AGENCY",
+    "body": "We empower brands through creative strategies, high-impact visual content, and a digital presence that drives real results.",
+    "cta_contact": "CONTACT US",
+    "cta_services": "SERVICES",
+    "stat1": "100% Creative",
+    "stat2": "360 Full Vision",
+    "stat3": "#1 Strategic Ally"
   },
   "brandbook": {
-    "statement": "We do",
-    "bio": "We help brands grow in the digital environment through modern, creative, results-driven communication strategies.",
+    "eyebrow": "About Us",
+    "headline1": "LEADERS IN THE MARKET",
+    "headline2": "STRATEGIC DIGITAL",
+    "body1_before": "At The Monkeys we don't believe in marketing by inertia. ",
+    "body1_bold": "Every brand deserves a clear direction",
+    "body1_after": " and a strategy that generates measurable impact. We integrate the entire value chain in a single team.",
+    "body2_before": "We work with business owners, personal brands, and growing companies who understand that ",
+    "body2_bold": "marketing is not presence, it's construction",
+    "body2_after": ". We were born in the Dominican Republic to change how marketing is done here.",
+    "badge_line1": "+100%",
+    "badge_line2": "REAL STRATEGY",
     "cta": "Get a Quote"
   },
   "services": {
@@ -24,25 +42,135 @@
     "foto_video": "Photo & Video"
   },
   "portfolio": {
-    "title": "Our work",
+    "title": "Our Work",
     "cta": "View full portfolio"
   },
   "contact": {
     "title": "Ready to grow?",
-    "subtitle": "Tell us about your project",
-    "name": "Name",
-    "email": "Email address",
-    "company": "Company (optional)",
-    "service": "Service of interest",
-    "message": "Message",
-    "submit": "Send message",
-    "whatsapp": "Message us on WhatsApp",
+    "eyebrow": "Let's Work Together",
+    "headline_line1": "READY",
+    "headline_line2": "TO",
+    "headline_line3": "GROW?",
+    "body": "Your next step is simple: tell us about your brand. We take care of the rest, with strategy, structure, and execution that delivers real results from day one.",
+    "placeholder_name": "Your full name",
+    "placeholder_email": "Email address",
+    "placeholder_company": "Your brand or company name",
+    "placeholder_message": "Tell us about your brand and what you need to achieve...",
+    "submit": "SEND MESSAGE",
     "success": "Message sent! We'll be in touch soon.",
     "error": "Something went wrong. Please try again."
   },
   "footer": {
     "location": "Santiago de los Caballeros, DR",
     "rights": "All rights reserved"
+  },
+  "methodology": {
+    "eyebrow": "Our Methodology",
+    "headline1": "WHAT",
+    "headline2": "MONKEYS MEANS",
+    "subheadline": "Each letter defines a pillar of our methodology. These are not fancy words, they are the real steps we use to build brands that grow.",
+    "pillars": {
+      "m": {
+        "letter": "M",
+        "title": "Market Research",
+        "description": "We analyze your market, competition, and audience before proposing any solution."
+      },
+      "o": {
+        "letter": "O",
+        "title": "Optimization",
+        "description": "Every process, channel, and asset is continuously optimized to maximize performance."
+      },
+      "n": {
+        "letter": "N",
+        "title": "Narrative",
+        "description": "We build your brand story with coherence, purpose, and real connection power."
+      },
+      "k": {
+        "letter": "K",
+        "title": "KPI & Ads",
+        "description": "We define clear indicators and run paid campaigns focused on measurable results."
+      },
+      "e": {
+        "letter": "E",
+        "title": "Funnels",
+        "description": "We design conversion funnels that guide users from first contact to purchase."
+      },
+      "y": {
+        "letter": "Y",
+        "title": "Yield",
+        "description": "We maximize the return on every investment, ensuring resources generate the greatest impact."
+      },
+      "s": {
+        "letter": "S",
+        "title": "Follow-Up",
+        "description": "We monitor, report, and adjust in real time. Strategy does not end at launch."
+      }
+    }
+  },
+  "services_section": {
+    "eyebrow": "OUR SERVICES",
+    "headline_line1": "EVERYTHING",
+    "headline_line2": "YOU NEED",
+    "headline_line3": "IN ONE PLACE.",
+    "subheadline": "Each service is designed to connect with the rest. A brand doesn't grow in parts, it grows as an ecosystem.",
+    "cards": {
+      "strategy": {
+        "title": "Strategy & Positioning",
+        "description": "We build your brand from a solid strategic foundation. We analyze the market, define positioning, and establish how to communicate with impact."
+      },
+      "content": {
+        "title": "Strategic Content",
+        "description": "Every piece responds to a strategy. We communicate with intention, aligning message, format, and brand objectives."
+      },
+      "production": {
+        "title": "Audiovisual Production",
+        "description": "Professional photo and video with aesthetic quality and strategic messaging. Every visual communicates what your brand needs to project."
+      },
+      "ads": {
+        "title": "Digital Campaigns (Ads)",
+        "description": "Meta, Google, TikTok, and LinkedIn Ads optimized for measurable results. Every dollar invested has purpose and expected return."
+      },
+      "seo": {
+        "title": "SEO & Digital Presence",
+        "description": "Organic positioning so the right people find you at the exact moment on Google and beyond."
+      },
+      "web": {
+        "title": "Web Development",
+        "description": "Websites focused on conversion, user experience, and SEO positioning. Your website as a real growth tool."
+      },
+      "influencers": {
+        "title": "Influencer Marketing",
+        "description": "Strategic collaborations with content creators who bring real value, credibility, and relevant audiences."
+      }
+    },
+    "cta_card": {
+      "title": "Ready to grow with direction?",
+      "button": "LET'S TALK"
+    }
+  },
+  "process": {
+    "left_line1": "IT'S NOT ABOUT DOING MARKETING.",
+    "left_line2": "IT'S ABOUT BUILDING BRANDS WITH DIRECTION.",
+    "eyebrow": "OUR PROCESS",
+    "headline": "OUR PROCESS HAS LOGIC.",
+    "steps": {
+      "analysis": {
+        "title": "Analysis",
+        "description": "We understand your brand, market, and goals before proposing any solution. Without analysis there is no real direction."
+      },
+      "strategy": {
+        "title": "Strategy",
+        "description": "We define positioning, key messages, and the action plan. Every decision responds to a clear purpose."
+      },
+      "execution": {
+        "title": "Execution",
+        "description": "We produce, publish, and launch campaigns with coherence and quality. One team, zero friction."
+      },
+      "followup": {
+        "title": "Follow-Up",
+        "description": "We measure, learn, and adjust continuously. The best results are built by iterating with data."
+      }
+    }
   },
   "meta": {
     "home_title": "The Monkeys — Digital Agency in Santiago, DR",

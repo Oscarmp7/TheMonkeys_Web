@@ -13,7 +13,7 @@ export function LogosBanner() {
       aria-label="Nuestros clientes"
       className="py-16 bg-off-white border-y border-brand-navy/10 overflow-hidden"
     >
-      <div className="marquee-track flex gap-16 w-max">
+      <div className="marquee-track marquee-track-pausable flex gap-16 w-max">
         {logos.map((logo, i) => (
           <div
             key={`${logo.name}-${i}`}

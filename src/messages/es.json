@@ -1,16 +1,34 @@
 {
   "nav": {
     "inicio": "Inicio",
-    "servicios": "Servicios",
     "contacto": "Contacto",
+    "nosotros": "Nosotros",
+    "servicios": "Servicios",
     "cotizar": "Cotizar"
   },
   "hero": {
-    "tagline": "Hacemos marcas crecer en el mundo digital"
+    "eyebrow": "Bienvenidos a nuestra",
+    "line1": "AGENCIA",
+    "line2": "CREATIVA",
+    "body": "Potenciamos marcas a través de estrategias creativas, contenido visual de alto impacto y presencia digital que genera resultados.",
+    "cta_contact": "CONTÁCTANOS",
+    "cta_services": "SERVICIOS",
+    "stat1": "100% Creativos",
+    "stat2": "360 Visión Integral",
+    "stat3": "#1 Aliado Estratégico"
   },
   "brandbook": {
-    "statement": "Hacemos",
-    "bio": "ayudamos a las marcas a crecer en el entorno digital a través de estrategias de comunicación modernas, creativas y orientadas a resultados.",
+    "eyebrow": "Sobre Nosotros",
+    "headline1": "LÍDERES EN EL MERCADO",
+    "headline2": "ESTRATÉGICO DIGITAL",
+    "body1_before": "En The Monkeys no creemos en el marketing por inercia. ",
+    "body1_bold": "Cada marca merece una dirección clara",
+    "body1_after": " y una estrategia que genere impacto medible. Integramos toda la cadena de valor en un solo equipo.",
+    "body2_before": "Trabajamos con dueños de negocio, marcas personales y empresas en crecimiento que entienden que ",
+    "body2_bold": "el marketing no es presencia, es construcción",
+    "body2_after": ". Nacimos en República Dominicana para cambiar cómo se hace el marketing aquí.",
+    "badge_line1": "+100%",
+    "badge_line2": "ESTRATEGIA REAL",
     "cta": "Cotiza Ahora"
   },
   "services": {
@@ -29,20 +47,130 @@
   },
   "contact": {
     "title": "¿Listo para crecer?",
-    "subtitle": "Cuéntanos tu proyecto",
-    "name": "Nombre",
-    "email": "Correo electrónico",
-    "company": "Empresa (opcional)",
-    "service": "Servicio de interés",
-    "message": "Mensaje",
-    "submit": "Enviar mensaje",
-    "whatsapp": "Escríbenos por WhatsApp",
+    "eyebrow": "Trabajemos Juntos",
+    "headline_line1": "\u00bfLISTO",
+    "headline_line2": "PARA",
+    "headline_line3": "CRECER?",
+    "body": "Tu próximo paso es simple: cuéntanos sobre tu marca. Nosotros nos encargamos del resto, con estrategia, estructura y ejecución que genera resultados reales desde el primer día.",
+    "placeholder_name": "Tu nombre completo",
+    "placeholder_email": "Correo electrónico",
+    "placeholder_company": "Nombre de tu marca o empresa",
+    "placeholder_message": "Cuéntanos sobre tu marca y qué necesitas lograr...",
+    "submit": "ENVIAR MENSAJE",
     "success": "¡Mensaje enviado! Te contactaremos pronto.",
     "error": "Hubo un error. Por favor intenta de nuevo."
   },
   "footer": {
     "location": "Santiago de los Caballeros, RD",
     "rights": "Todos los derechos reservados"
+  },
+  "methodology": {
+    "eyebrow": "Nuestra Metodología",
+    "headline1": "LO QUE SIGNIFICA",
+    "headline2": "MONKEYS",
+    "subheadline": "Cada letra define un pilar de nuestra metodología. No son palabras bonitas, son los pasos reales con los que construimos marcas que crecen.",
+    "pillars": {
+      "m": {
+        "letter": "M",
+        "title": "Market Research",
+        "description": "Analizamos tu mercado, competencia y audiencia antes de proponer cualquier solución."
+      },
+      "o": {
+        "letter": "O",
+        "title": "Optimización",
+        "description": "Cada proceso, canal y pieza se optimiza continuamente para maximizar el rendimiento."
+      },
+      "n": {
+        "letter": "N",
+        "title": "Narrativa",
+        "description": "Construimos el relato de tu marca con coherencia, propósito y poder de conexión real."
+      },
+      "k": {
+        "letter": "K",
+        "title": "KPI & Ads",
+        "description": "Definimos indicadores claros y ejecutamos campañas pagas orientadas a resultados medibles."
+      },
+      "e": {
+        "letter": "E",
+        "title": "Embudos",
+        "description": "Diseñamos funnels de conversión que guían al usuario desde el primer contacto hasta la compra."
+      },
+      "y": {
+        "letter": "Y",
+        "title": "Yield",
+        "description": "Maximizamos el retorno de cada inversión, asegurando que los recursos generen el mayor impacto."
+      },
+      "s": {
+        "letter": "S",
+        "title": "Seguimiento",
+        "description": "Monitoreamos, reportamos y ajustamos en tiempo real. La estrategia no terminó en el lanzamiento."
+      }
+    }
+  },
+  "services_section": {
+    "eyebrow": "NUESTROS SERVICIOS",
+    "headline_line1": "TODO LO QUE",
+    "headline_line2": "NECESITAS",
+    "headline_line3": "EN UN LUGAR.",
+    "subheadline": "Cada servicio está diseñado para conectarse con los demás. Una marca no crece por partes, crece como un ecosistema.",
+    "cards": {
+      "strategy": {
+        "title": "Estrategia y Posicionamiento",
+        "description": "Construimos tu marca desde una base estratégica sólida. Analizamos el mercado, definimos posicionamiento y establecemos cómo comunicar con impacto."
+      },
+      "content": {
+        "title": "Contenido Estratégico",
+        "description": "Cada pieza responde a una estrategia. Comunicamos con intención alineando mensaje, formato y objetivo de la marca."
+      },
+      "production": {
+        "title": "Producción Audiovisual",
+        "description": "Foto y video profesional con calidad estética y mensaje estratégico. Cada visual comunica lo que tu marca necesita proyectar."
+      },
+      "ads": {
+        "title": "Campañas Digitales (Ads)",
+        "description": "Meta, Google, TikTok y LinkedIn Ads optimizados para resultados medibles. Cada peso invertido tiene propósito y retorno esperado."
+      },
+      "seo": {
+        "title": "SEO & Presencia Digital",
+        "description": "Posicionamiento orgánico para que las personas correctas te encuentren en el momento exacto en Google y más allá."
+      },
+      "web": {
+        "title": "Desarrollo Web",
+        "description": "Webs orientadas a conversión, experiencia del usuario y posicionamiento SEO. Tu web como herramienta de crecimiento real."
+      },
+      "influencers": {
+        "title": "Marketing de Influencers",
+        "description": "Colaboraciones estratégicas con creadores de contenido que aportan valor real, credibilidad y audiencias relevantes."
+      }
+    },
+    "cta_card": {
+      "title": "¿Listo para crecer con dirección?",
+      "button": "HABLEMOS"
+    }
+  },
+  "process": {
+    "left_line1": "NO SE TRATA DE HACER MARKETING.",
+    "left_line2": "SE TRATA DE CONSTRUIR MARCAS CON DIRECCIÓN.",
+    "eyebrow": "NUESTRO PROCESO",
+    "headline": "NUESTRO PROCESO TIENE LÓGICA.",
+    "steps": {
+      "analysis": {
+        "title": "Análisis",
+        "description": "Entendemos tu marca, mercado y objetivos antes de proponer cualquier solución. Sin análisis no hay dirección real."
+      },
+      "strategy": {
+        "title": "Estrategia",
+        "description": "Definimos posicionamiento, mensajes clave y el plan de acción. Cada decisión responde a un propósito claro."
+      },
+      "execution": {
+        "title": "Ejecución",
+        "description": "Producimos, publicamos y lanzamos campañas con coherencia y calidad. Un solo equipo, cero fricciones."
+      },
+      "followup": {
+        "title": "Seguimiento",
+        "description": "Medimos, aprendemos y ajustamos continuamente. Los mejores resultados se construyen iterando con datos."
+      }
+    }
   },
   "meta": {
     "home_title": "The Monkeys — Agencia Digital en Santiago, RD",

@@ -1,12 +1,12 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useCallback } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
-import { NavbarHero } from "@/components/layout/navbar-hero";
 import { SocialSidebar } from "@/components/ui/social-sidebar";
+import { StatsBar } from "@/components/sections/stats-bar";
 import type { Locale } from "@/i18n/routing";
 
 gsap.registerPlugin(useGSAP);
@@ -20,17 +20,14 @@ export function Hero({ locale }: { locale: Locale }) {
   const bodyRef = useRef<HTMLParagraphElement>(null);
   const ctasRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
-  const statsRef = useRef<HTMLDivElement>(null);
-  const socialsRef = useRef<HTMLDivElement>(null);
-  const scrollIndicatorRef = useRef<HTMLDivElement>(null);
+
+  const prefersReduced =
+    typeof window !== "undefined"
+      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      : false;
 
   useGSAP(
     () => {
-      const prefersReduced =
-        typeof window !== "undefined"
-          ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
-          : false;
-
       if (prefersReduced) return;
 
       const tl = gsap.timeline({ defaults: { ease: "expo.out", duration: 0.8 } });
@@ -39,9 +36,7 @@ export function Hero({ locale }: { locale: Locale }) {
         .from(line1Ref.current, { opacity: 0, y: 30 }, 0.5)
         .from(line2Ref.current, { opacity: 0, y: 30 }, 0.7)
         .from(bodyRef.current, { opacity: 0, y: 30 }, 1.0)
-        .from(ctasRef.current, { opacity: 0, y: 30 }, 1.2)
-        .from(statsRef.current, { opacity: 0, y: 60, duration: 0.7 }, 1.4)
-        .from(socialsRef.current, { opacity: 0, y: 60, duration: 0.7 }, 1.6);
+        .from(ctasRef.current, { opacity: 0, y: 30 }, 1.2);
 
       gsap.from(logoRef.current, {
         opacity: 0,
@@ -59,22 +54,66 @@ export function Hero({ locale }: { locale: Locale }) {
         yoyo: true,
         ease: "sine.inOut",
       });
-
-      gsap.to(scrollIndicatorRef.current, {
-        y: 8,
-        duration: 1.5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
     },
     { scope: containerRef }
+  );
+
+  /* CTA primary hover — scale + yellow glow */
+  const handleCtaPrimaryEnter = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      if (prefersReduced) return;
+      gsap.to(e.currentTarget, {
+        scale: 1.04,
+        boxShadow: "0 0 24px rgba(245,197,24,0.45)",
+        duration: 0.25,
+        ease: "expo.out",
+      });
+    },
+    [prefersReduced]
+  );
+
+  const handleCtaPrimaryLeave = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      if (prefersReduced) return;
+      gsap.to(e.currentTarget, {
+        scale: 1,
+        boxShadow: "0 0 0px rgba(245,197,24,0)",
+        duration: 0.25,
+        ease: "expo.out",
+      });
+    },
+    [prefersReduced]
+  );
+
+  /* Eyebrow hover — tracking expansion */
+  const handleEyebrowEnter = useCallback(
+    (e: React.MouseEvent<HTMLParagraphElement>) => {
+      if (prefersReduced) return;
+      gsap.to(e.currentTarget, {
+        letterSpacing: "0.35em",
+        duration: 0.3,
+        ease: "expo.out",
+      });
+    },
+    [prefersReduced]
+  );
+
+  const handleEyebrowLeave = useCallback(
+    (e: React.MouseEvent<HTMLParagraphElement>) => {
+      if (prefersReduced) return;
+      gsap.to(e.currentTarget, {
+        letterSpacing: "0.25em",
+        duration: 0.3,
+        ease: "expo.out",
+      });
+    },
+    [prefersReduced]
   );
 
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen bg-brand-black overflow-hidden flex flex-col"
+      className="relative h-screen bg-brand-black overflow-hidden flex flex-col"
     >
       <div
         className="absolute inset-0 pointer-events-none z-0"
@@ -102,14 +141,18 @@ export function Hero({ locale }: { locale: Locale }) {
         <rect width="100%" height="100%" filter="url(#hero-noise)" />
       </svg>
 
-      <NavbarHero locale={locale} />
+      <div className="hidden lg:block">
+        <SocialSidebar />
+      </div>
 
       <div className="relative z-10 flex-1 flex items-center justify-center w-full px-4 sm:px-6 lg:px-8 xl:px-12 pt-28 pb-24 lg:pt-20 lg:pb-0">
         <div className="w-full max-w-[1400px] mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-4">
           <div className="flex-1 flex flex-col justify-center w-full">
             <p
               ref={eyebrowRef}
-              className="font-mono text-xs sm:text-sm tracking-[0.25em] uppercase text-brand-yellow/80 mb-4 sm:mb-6"
+              className="font-mono text-xs sm:text-sm tracking-[0.25em] uppercase text-brand-yellow/80 mb-4 sm:mb-6 cursor-default"
+              onMouseEnter={handleEyebrowEnter}
+              onMouseLeave={handleEyebrowLeave}
             >
               <span className="inline-block w-6 h-px bg-brand-yellow/60 align-middle mr-3" />
               {t("eyebrow")}
@@ -143,15 +186,18 @@ export function Hero({ locale }: { locale: Locale }) {
             <div ref={ctasRef} className="flex flex-wrap gap-4 mt-8 sm:mt-10">
               <a
                 href="#contacto"
-                className="inline-flex items-center justify-center px-8 py-3.5 bg-brand-yellow text-brand-black font-display text-sm sm:text-base tracking-wider rounded-full hover:bg-brand-yellow/90 transition-colors duration-200 cursor-pointer"
+                className="hero-cta-primary inline-flex items-center justify-center px-8 py-3.5 bg-brand-yellow text-brand-black font-display text-sm sm:text-base tracking-wider rounded-full transition-all duration-200 cursor-pointer"
+                onMouseEnter={handleCtaPrimaryEnter}
+                onMouseLeave={handleCtaPrimaryLeave}
               >
                 {t("cta_contact")}
               </a>
               <Link
                 href="/servicios"
-                className="inline-flex items-center justify-center px-8 py-3.5 border-2 border-off-white/40 text-off-white font-display text-sm sm:text-base tracking-wider rounded-full hover:border-off-white hover:text-white transition-colors duration-200 cursor-pointer"
+                className="hero-cta-outline group relative inline-flex items-center justify-center px-8 py-3.5 border-2 border-off-white/40 text-off-white font-display text-sm sm:text-base tracking-wider rounded-full overflow-hidden transition-colors duration-200 cursor-pointer hover:border-off-white hover:text-brand-black"
               >
-                {t("cta_services")}
+                <span className="absolute inset-0 bg-off-white origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" />
+                <span className="relative z-10">{t("cta_services")}</span>
               </Link>
             </div>
           </div>
@@ -172,33 +218,20 @@ export function Hero({ locale }: { locale: Locale }) {
         </div>
       </div>
 
-      <div ref={socialsRef} className="hidden lg:block">
-        <SocialSidebar />
-      </div>
-
-      <div ref={statsRef} className="relative z-10 w-full bg-brand-yellow">
-        <div className="w-full max-w-[1400px] mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-0 sm:divide-x sm:divide-brand-black/20 px-6 py-5">
-          {(["stat1", "stat2", "stat3"] as const).map((key) => (
-            <span
-              key={key}
-              className="font-display text-brand-black text-base sm:text-lg tracking-wider uppercase px-8 whitespace-nowrap font-bold"
-            >
-              {t(key)}
-            </span>
-          ))}
+      {/* Scroll indicator */}
+      <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-10 hidden lg:flex flex-col items-center gap-2 motion-reduce:hidden">
+        <span className="font-mono text-[0.6rem] tracking-[0.2em] uppercase text-off-white/30">
+          Scroll
+        </span>
+        <div className="w-5 h-8 rounded-full border border-off-white/20 flex justify-center pt-1.5">
+          <div className="w-1 h-2 rounded-full bg-brand-yellow animate-bounce" />
         </div>
       </div>
 
-      <div
-        ref={scrollIndicatorRef}
-        className="absolute bottom-20 sm:bottom-16 left-1/2 -translate-x-1/2 z-10"
-      >
-        <span
-          className="inline-block text-2xl font-bold rotate-90 text-brand-yellow"
-          aria-hidden="true"
-        >
-          &gt;
-        </span>
+      {/* Stats bar pinned at the bottom of the hero so it's visible on load.
+          The identical <StatsBar /> in the scroll layer overlaps this seamlessly. */}
+      <div className="absolute bottom-0 left-0 right-0 z-10">
+        <StatsBar />
       </div>
     </section>
   );
