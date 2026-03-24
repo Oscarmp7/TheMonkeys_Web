@@ -6,6 +6,7 @@ import { routing } from "@/i18n/routing";
 import type { Locale } from "@/i18n/routing";
 import { SITE } from "@/lib/site";
 import { JsonLd } from "@/components/seo/json-ld";
+import { Analytics } from "@vercel/analytics/next";
 import "@/app/globals.css";
 
 const anton = Anton({
@@ -92,6 +93,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );
