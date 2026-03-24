@@ -50,6 +50,10 @@ export async function generateMetadata({
     title: t("home_title"),
     description: t("home_description"),
     metadataBase: new URL(SITE.domain),
+    icons: {
+      icon: "/logos/mk-yellow.png",
+      apple: "/logos/mk-yellow.png",
+    },
     openGraph: {
       title: t("home_title"),
       description: t("home_description"),
