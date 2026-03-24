@@ -34,23 +34,3 @@ export function LogoWordmark({
     </div>
   );
 }
-
-export function MKMonogram({
-  variant = "yellow",
-  className,
-}: {
-  variant?: "yellow" | "navy" | "white";
-  className?: string;
-}) {
-  const src = {
-    yellow: "/logos/mk-yellow.png",
-    navy: "/logos/mk-navy.png",
-    white: "/logos/mk-white.png",
-  }[variant];
-
-  return (
-    <div className={cn("relative w-12 h-12", className)}>
-      <Image src={src} alt="MK" fill className="object-contain" />
-    </div>
-  );
-}

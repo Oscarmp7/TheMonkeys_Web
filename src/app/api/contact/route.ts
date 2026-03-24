@@ -85,10 +85,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Validation failed", errors }, { status: 422 });
   }
 
-  // 6. Sanitize
+  // 6. Sanitize (escapeHtml for HTML body only, plain sanitize for email headers)
+  const cleanEmail = sanitize(values.email, MAX_LENGTHS.email);
   const safe = {
     name: escapeHtml(sanitize(values.name, MAX_LENGTHS.name)),
-    email: escapeHtml(sanitize(values.email, MAX_LENGTHS.email)),
+    email: escapeHtml(cleanEmail),
     company: escapeHtml(sanitize(values.company, MAX_LENGTHS.company)),
     service: escapeHtml(sanitize(values.service, MAX_LENGTHS.service)),
     message: escapeHtml(sanitize(values.message, MAX_LENGTHS.message)),
@@ -111,7 +112,7 @@ export async function POST(req: NextRequest) {
         <p><strong>Mensaje:</strong></p>
         <p>${safe.message.replace(/\n/g, "<br>")}</p>
       `,
-        replyTo: safe.email,
+        replyTo: cleanEmail,
       });
     } catch (err) {
       console.error("[contact] email send failed:", err);

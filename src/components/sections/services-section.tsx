@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -21,14 +22,10 @@ const SERVICE_KEYS = [
 export function ServicesSection() {
   const t = useTranslations("services_section");
   const containerRef = useRef<HTMLElement>(null);
+  const prefersReduced = usePrefersReducedMotion();
 
   useGSAP(
     () => {
-      const prefersReduced =
-        typeof window !== "undefined"
-          ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
-          : false;
-
       if (prefersReduced) return;
 
       gsap.fromTo(
@@ -92,13 +89,13 @@ export function ServicesSection() {
 
             {/* Headline */}
             <h2 data-svc-header className="mt-4">
-              <span className="block font-display text-5xl md:text-6xl lg:text-7xl text-brand-navy uppercase leading-none">
+              <span className="block font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-brand-navy uppercase leading-none">
                 {t("headline_line1")}
               </span>
-              <span className="block font-display text-5xl md:text-6xl lg:text-7xl text-brand-yellow uppercase leading-none mt-1">
+              <span className="block font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-brand-yellow uppercase leading-none mt-1">
                 {t("headline_line2")}
               </span>
-              <span className="block font-display text-5xl md:text-6xl lg:text-7xl text-brand-navy uppercase leading-none mt-1">
+              <span className="block font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-brand-navy uppercase leading-none mt-1">
                 {t("headline_line3")}
               </span>
             </h2>

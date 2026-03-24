@@ -58,6 +58,7 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full" noValidate>
+      <fieldset disabled={status === "loading"} className="flex flex-col gap-4 disabled:opacity-60">
       {/* Honeypot — spam protection, must remain hidden */}
       <input
         type="text"
@@ -150,6 +151,7 @@ export function ContactForm() {
         {status === "loading" ? "..." : t("submit")}
         {status !== "loading" && <ArrowRight size={18} aria-hidden="true" />}
       </button>
+      </fieldset>
     </form>
   );
 }

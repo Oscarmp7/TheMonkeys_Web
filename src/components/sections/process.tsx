@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -14,14 +15,10 @@ export function Process() {
   const t = useTranslations("process");
   const containerRef = useRef<HTMLElement>(null);
   const [activeStep, setActiveStep] = useState(0);
+  const prefersReduced = usePrefersReducedMotion();
 
   useGSAP(
     () => {
-      const prefersReduced =
-        typeof window !== "undefined"
-          ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
-          : false;
-
       if (prefersReduced) return;
 
       // Header animation
@@ -155,7 +152,7 @@ export function Process() {
                 </h3>
 
                 {/* Description */}
-                <p className="font-body text-sm text-brand-navy/65 text-center mt-2 leading-relaxed max-w-[200px] mx-auto">
+                <p className="font-body text-sm text-brand-navy/65 text-center mt-2 leading-relaxed max-w-[240px] lg:max-w-[200px] mx-auto">
                   {t(`steps.${step}.description`)}
                 </p>
               </div>

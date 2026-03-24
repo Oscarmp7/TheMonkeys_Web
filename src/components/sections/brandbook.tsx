@@ -5,42 +5,24 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
+import type { Locale } from "@/i18n/routing";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-const SERVICE_TAGS_ES = [
-  "ESTRATEGIA",
-  "CONTENIDO",
-  "PRODUCCIÓN",
-  "CAMPAÑAS",
-  "WEBSITES",
-  "SEO",
-] as const;
+const SERVICE_TAGS = {
+  es: ["ESTRATEGIA", "CONTENIDO", "PRODUCCIÓN", "CAMPAÑAS", "WEBSITES", "SEO"],
+  en: ["STRATEGY", "CONTENT", "PRODUCTION", "CAMPAIGNS", "WEBSITES", "SEO"],
+} as const;
 
-const SERVICE_TAGS_EN = [
-  "STRATEGY",
-  "CONTENT",
-  "PRODUCTION",
-  "CAMPAIGNS",
-  "WEBSITES",
-  "SEO",
-] as const;
-
-export function Brandbook() {
+export function Brandbook({ locale }: { locale: Locale }) {
   const t = useTranslations("brandbook");
   const containerRef = useRef<HTMLElement>(null);
-
-  // Detect locale from translated eyebrow to pick the right tags
-  const eyebrow = t("eyebrow");
-  const tags = eyebrow === "Sobre Nosotros" ? SERVICE_TAGS_ES : SERVICE_TAGS_EN;
+  const tags = SERVICE_TAGS[locale];
+  const prefersReduced = usePrefersReducedMotion();
 
   useGSAP(
     () => {
-      const prefersReduced =
-        typeof window !== "undefined"
-          ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
-          : false;
-
       if (prefersReduced) return;
 
       gsap.from("[data-bb-animate]", {

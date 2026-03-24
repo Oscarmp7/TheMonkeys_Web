@@ -12,11 +12,3 @@ export const SITE = {
   youtube: "https://www.youtube.com/@Themonkeysrd",
   pinterest: "https://www.pinterest.com/themonkeysdo/",
 } as const;
-
-export function getWhatsAppHref(messageEs: string, locale: "es" | "en"): string {
-  const messages = {
-    es: encodeURIComponent(messageEs),
-    en: encodeURIComponent("Hi! I'd like to get a quote from The Monkeys."),
-  };
-  return `https://wa.me/${SITE.whatsapp.replace(/\D/g, "")}?text=${messages[locale]}`;
-}

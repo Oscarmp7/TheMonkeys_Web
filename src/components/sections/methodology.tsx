@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -13,14 +14,10 @@ const PILLAR_KEYS = ["m", "o", "n", "k", "e", "y", "s"] as const;
 export function Methodology() {
   const t = useTranslations("methodology");
   const containerRef = useRef<HTMLElement>(null);
+  const prefersReduced = usePrefersReducedMotion();
 
   useGSAP(
     () => {
-      const prefersReduced =
-        typeof window !== "undefined"
-          ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
-          : false;
-
       if (prefersReduced) return;
 
       gsap.from("[data-meth-header]", {
@@ -94,7 +91,7 @@ export function Methodology() {
       {/* Cards grid */}
       <div
         data-meth-grid
-        className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 mt-12 w-full max-w-[1400px]"
+        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3 sm:gap-4 mt-12 w-full max-w-[1400px]"
       >
         {PILLAR_KEYS.map((key, i) => (
           <div

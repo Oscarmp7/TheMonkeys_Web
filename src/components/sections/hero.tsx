@@ -7,24 +7,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { SocialSidebar } from "@/components/ui/social-sidebar";
 import { StatsBar } from "@/components/sections/stats-bar";
-import type { Locale } from "@/i18n/routing";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
-gsap.registerPlugin(useGSAP);
-
-export function Hero({ locale }: { locale: Locale }) {
+export function Hero() {
   const t = useTranslations("hero");
   const containerRef = useRef<HTMLElement>(null);
   const eyebrowRef = useRef<HTMLParagraphElement>(null);
-  const line1Ref = useRef<HTMLHeadingElement>(null);
-  const line2Ref = useRef<HTMLHeadingElement>(null);
+  const headlineRef = useRef<HTMLHeadingElement>(null);
   const bodyRef = useRef<HTMLParagraphElement>(null);
   const ctasRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
 
-  const prefersReduced =
-    typeof window !== "undefined"
-      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      : false;
+  const prefersReduced = usePrefersReducedMotion();
 
   useGSAP(
     () => {
@@ -33,20 +27,21 @@ export function Hero({ locale }: { locale: Locale }) {
       const tl = gsap.timeline({ defaults: { ease: "expo.out", duration: 0.8 } });
 
       tl.from(eyebrowRef.current, { opacity: 0, y: 30 }, 0.3)
-        .from(line1Ref.current, { opacity: 0, y: 30 }, 0.5)
-        .from(line2Ref.current, { opacity: 0, y: 30 }, 0.7)
+        .from(headlineRef.current!.children[0], { opacity: 0, y: 30 }, 0.5)
+        .from(headlineRef.current!.children[1], { opacity: 0, y: 30 }, 0.7)
         .from(bodyRef.current, { opacity: 0, y: 30 }, 1.0)
         .from(ctasRef.current, { opacity: 0, y: 30 }, 1.2);
 
-      gsap.from(logoRef.current, {
+      // Logo entrance — attached to timeline for proper cleanup
+      tl.from(logoRef.current, {
         opacity: 0,
         scale: 0.85,
         filter: "blur(12px)",
         duration: 1.0,
-        delay: 0.6,
         ease: "expo.out",
-      });
+      }, 0.6);
 
+      // Logo float — separate infinite tween, but useGSAP scope will kill it on unmount
       gsap.to(logoRef.current, {
         y: -12,
         duration: 3,
@@ -55,7 +50,7 @@ export function Hero({ locale }: { locale: Locale }) {
         ease: "sine.inOut",
       });
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [prefersReduced] }
   );
 
   /* CTA primary hover — scale + yellow glow */
@@ -159,21 +154,21 @@ export function Hero({ locale }: { locale: Locale }) {
             </p>
 
             <h1
-              ref={line1Ref}
-              className="font-display text-[clamp(4rem,12vw,12rem)] leading-[0.85] tracking-tight text-off-white uppercase mb-3"
-            >
-              {t("line1")}
-            </h1>
-
-            <h1
-              ref={line2Ref}
+              ref={headlineRef}
               className="font-display text-[clamp(4rem,12vw,12rem)] leading-[0.85] tracking-tight uppercase"
-              style={{
-                WebkitTextStroke: "2px #F5C518",
-                WebkitTextFillColor: "transparent",
-              }}
             >
-              {t("line2")}
+              <span className="block text-off-white mb-3">
+                {t("line1")}
+              </span>
+              <span
+                className="block"
+                style={{
+                  WebkitTextStroke: "2px #F5C518",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                {t("line2")}
+              </span>
             </h1>
 
             <p
@@ -219,7 +214,7 @@ export function Hero({ locale }: { locale: Locale }) {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-10 hidden lg:flex flex-col items-center gap-2 motion-reduce:hidden">
+      <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-10 hidden lg:flex flex-col items-center gap-2 motion-reduce:hidden">
         <span className="font-mono text-[0.6rem] tracking-[0.2em] uppercase text-off-white/30">
           Scroll
         </span>
@@ -228,8 +223,7 @@ export function Hero({ locale }: { locale: Locale }) {
         </div>
       </div>
 
-      {/* Stats bar pinned at the bottom of the hero so it's visible on load.
-          The identical <StatsBar /> in the scroll layer overlaps this seamlessly. */}
+      {/* Stats bar pinned at bottom of hero — visible on load before scroll content covers it */}
       <div className="absolute bottom-0 left-0 right-0 z-10">
         <StatsBar />
       </div>

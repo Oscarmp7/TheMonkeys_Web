@@ -5,20 +5,17 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { ContactForm } from "@/components/ui/contact-form";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export function Contact() {
   const t = useTranslations("contact");
   const containerRef = useRef<HTMLElement>(null);
+  const prefersReduced = usePrefersReducedMotion();
 
   useGSAP(
     () => {
-      const prefersReduced =
-        typeof window !== "undefined"
-          ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
-          : false;
-
       if (prefersReduced) return;
 
       gsap.from("[data-contact-animate]", {
@@ -59,13 +56,13 @@ export function Contact() {
 
           {/* Headline — stacked vertically */}
           <div data-contact-animate>
-            <span className="block font-display text-[3.5rem] md:text-[5rem] lg:text-[7rem] xl:text-[9rem] text-off-white uppercase leading-none">
+            <span className="block font-display text-[2.5rem] sm:text-[3.5rem] md:text-[5rem] lg:text-[7rem] xl:text-[9rem] text-off-white uppercase leading-none">
               {t("headline_line1")}
             </span>
-            <span className="block font-display text-[3.5rem] md:text-[5rem] lg:text-[7rem] xl:text-[9rem] text-off-white uppercase leading-none">
+            <span className="block font-display text-[2.5rem] sm:text-[3.5rem] md:text-[5rem] lg:text-[7rem] xl:text-[9rem] text-off-white uppercase leading-none">
               {t("headline_line2")}
             </span>
-            <span className="block font-display text-[3.5rem] md:text-[5rem] lg:text-[7rem] xl:text-[9rem] text-brand-yellow uppercase leading-none">
+            <span className="block font-display text-[2.5rem] sm:text-[3.5rem] md:text-[5rem] lg:text-[7rem] xl:text-[9rem] text-brand-yellow uppercase leading-none">
               {t("headline_line3")}
             </span>
           </div>

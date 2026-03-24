@@ -92,7 +92,7 @@ export function StatsBar() {
         {heroStats.map((stat) => (
           <span
             key={stat}
-            className="px-8 font-display text-base font-bold uppercase tracking-wider whitespace-nowrap text-brand-black sm:text-lg"
+            className="px-4 sm:px-8 font-display text-base font-bold uppercase tracking-wider whitespace-nowrap text-brand-black sm:text-lg"
           >
             {stat}
           </span>
@@ -107,7 +107,7 @@ export function StatsBar() {
         >
           {heroStats.map((stat, index) => (
             <div key={`measure-${index}`} className="flex shrink-0 items-center">
-              <span className="px-8 font-display text-base font-bold uppercase tracking-wider text-brand-black sm:text-lg">
+              <span className="px-4 sm:px-8 font-display text-base font-bold uppercase tracking-wider text-brand-black sm:text-lg">
                 {stat}
               </span>
               <span className="h-5 w-px bg-brand-black/20" />
@@ -120,7 +120,7 @@ export function StatsBar() {
             <div key={copyIndex} className="stats-marquee-set">
               {heroStats.map((stat, index) => (
                 <div key={`${copyIndex}-${index}`} className="flex shrink-0 items-center">
-                  <span className="px-8 font-display text-base font-bold uppercase tracking-wider text-brand-black sm:text-lg">
+                  <span className="px-4 sm:px-8 font-display text-base font-bold uppercase tracking-wider text-brand-black sm:text-lg">
                     {stat}
                   </span>
                   <span className="h-5 w-px bg-brand-black/20" />

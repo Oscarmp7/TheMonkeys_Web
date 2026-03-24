@@ -7,7 +7,6 @@ import { Process } from "@/components/sections/process";
 import { Contact } from "@/components/sections/contact";
 import { Footer } from "@/components/layout/footer";
 import { NavbarHero } from "@/components/layout/navbar-hero";
-import { LayoutProvider } from "@/components/providers/layout-provider";
 import type { Locale } from "@/i18n/routing";
 
 export default async function HomePage({
@@ -17,25 +16,25 @@ export default async function HomePage({
 }) {
   const { locale } = await params;
   return (
-    <LayoutProvider>
+    <>
       <NavbarHero locale={locale} />
       <main>
         {/* Hero — fixed panel behind everything */}
         <div className="sticky top-0 z-0 h-screen">
-          <Hero locale={locale} />
+          <Hero />
         </div>
 
         {/* Scrolling content — rises over the hero */}
         <div className="relative z-10">
           <StatsBar />
-          <Brandbook />
+          <Brandbook locale={locale} />
           <Methodology />
           <ServicesSection />
           <Process />
           <Contact />
+          <Footer locale={locale} />
         </div>
       </main>
-      <Footer locale={locale} />
-    </LayoutProvider>
+    </>
   );
 }
