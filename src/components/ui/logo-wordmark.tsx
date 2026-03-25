@@ -16,7 +16,7 @@ export function LogoWordmark({
   priority = false,
 }: LogoWordmarkProps) {
   const src = {
-    main: "/logos/The%20Monkeys%20Logo.png",
+    main: "/logos/logo-main.png",
     yellow: "/logos/logo-yellow.png",
     navy: "/logos/logo-navy.png",
     white: "/logos/logo-white.png",
