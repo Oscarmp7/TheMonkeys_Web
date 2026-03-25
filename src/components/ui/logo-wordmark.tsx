@@ -3,19 +3,20 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface LogoWordmarkProps {
-  variant?: "yellow" | "navy" | "white";
+  variant?: "main" | "yellow" | "navy" | "white";
   className?: string;
   sizes?: string;
   priority?: boolean;
 }
 
 export function LogoWordmark({
-  variant = "yellow",
+  variant = "main",
   className,
   sizes = "50vw",
   priority = false,
 }: LogoWordmarkProps) {
   const src = {
+    main: "/logos/The%20Monkeys%20Logo.png",
     yellow: "/logos/logo-yellow.png",
     navy: "/logos/logo-navy.png",
     white: "/logos/logo-white.png",

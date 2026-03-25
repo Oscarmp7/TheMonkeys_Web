@@ -287,7 +287,7 @@ export function NavbarHero({ locale }: { locale: Locale }) {
             onMouseEnter={handleLogoEnter}
             onMouseLeave={handleLogoLeave}
           >
-            <LogoWordmark variant="yellow" className="w-full h-full" sizes="128px" priority />
+            <LogoWordmark variant="main" className="w-full h-full" sizes="128px" priority />
           </div>
         </Link>
 

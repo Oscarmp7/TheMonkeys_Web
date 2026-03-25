@@ -56,8 +56,26 @@ export function Contact() {
 
           {/* Headline — stacked vertically */}
           <div data-contact-animate>
-            <span className="block font-display text-[2.5rem] sm:text-[3.5rem] md:text-[3.5rem] lg:text-[5rem] xl:text-[7rem] text-off-white uppercase leading-none">
-              {t("headline_line1")}
+            {/* Line 1: ¿ in solid white + rest in yellow stroke (matches hero outline style) */}
+            <span className="block font-display text-[2.5rem] sm:text-[3.5rem] md:text-[3.5rem] lg:text-[5rem] xl:text-[7rem] uppercase leading-none">
+              {(() => {
+                const line = t("headline_line1");
+                if (line.startsWith("¿")) {
+                  return (
+                    <>
+                      <span className="text-off-white">¿</span>
+                      <span style={{ WebkitTextStroke: "2px #F5C518", WebkitTextFillColor: "transparent" }}>
+                        {line.slice(1)}
+                      </span>
+                    </>
+                  );
+                }
+                return (
+                  <span style={{ WebkitTextStroke: "2px #F5C518", WebkitTextFillColor: "transparent" }}>
+                    {line}
+                  </span>
+                );
+              })()}
             </span>
             <span className="block font-display text-[2.5rem] sm:text-[3.5rem] md:text-[3.5rem] lg:text-[5rem] xl:text-[7rem] text-off-white uppercase leading-none">
               {t("headline_line2")}

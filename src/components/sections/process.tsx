@@ -83,7 +83,7 @@ export function Process() {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12 items-end">
           {/* Left column (~40%) */}
           <div className="md:col-span-2" data-process-header>
-            <p className="font-display text-brand-navy text-lg sm:text-xl md:text-2xl uppercase leading-tight">
+            <p className="font-display-alt font-normal text-brand-navy text-sm sm:text-base md:text-lg uppercase leading-tight">
               {t("left_line1")}
               <br />
               {t("left_line2")}

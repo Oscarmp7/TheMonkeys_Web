@@ -12,9 +12,9 @@ export function Footer({ locale }: { locale: Locale }) {
       <div className="max-w-6xl mx-auto w-full">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
           <Image
-            src="/logos/logo-white.png"
+            src="/logos/The%20Monkeys%20Logo.png"
             width={160}
-            height={40}
+            height={60}
             alt="The Monkeys"
             className="object-contain h-auto"
           />
