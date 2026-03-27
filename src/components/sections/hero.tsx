@@ -149,6 +149,7 @@ export function Hero() {
 
             <h1
               ref={headlineRef}
+              aria-label={`${t("line1")} ${t("line2")}`}
               className="font-display text-[clamp(3rem,11vw,12rem)] leading-[0.85] tracking-tight uppercase"
             >
               <span data-hero-reveal className="block text-off-white mb-2 sm:mb-3">
