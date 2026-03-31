@@ -45,6 +45,13 @@ test-results/
 
 # playwright screenshots
 *.png
+contacto-redesign-attempt.jpeg
+nosotros-laptop-1024.jpeg
+nosotros-tablet-768.jpeg
+resend-contact-reference.jpeg
+servicios-laptop-1024.jpeg
+servicios-tablet-768.jpeg
+themonkeys-hero-reference.jpeg
 
 # vercel
 .vercel
