@@ -3,21 +3,35 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
 import { useParams } from "next/navigation";
 import { Link as IntlLink, usePathname, useRouter } from "@/i18n/navigation";
 import { LogoWordmark } from "@/components/ui/logo-wordmark";
-import { NAV_LINK_KEYS, NAV_ANCHORS } from "@/lib/nav";
+import { NAV_LINK_KEYS } from "@/lib/nav";
+import { SITE } from "@/lib/site";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { useFocusTrap } from "@/hooks/use-focus-trap";
 import type { Locale } from "@/i18n/routing";
 
 gsap.registerPlugin(useGSAP);
 
-/** Nav keys that correspond to real routes (not hash anchors). */
-const ROUTE_KEYS = new Set(["servicios"] as const);
+type NavbarVariant = "home" | "inner";
 
-export function NavbarHero({ locale }: { locale: Locale }) {
+const NAV_ROUTES = {
+  inicio: "/",
+  servicios: "/servicios",
+  nosotros: "/nosotros",
+  contacto: "/contacto",
+} as const;
+
+export function NavbarHero({
+  locale,
+  variant = "home",
+  compactThreshold,
+}: {
+  locale: Locale;
+  variant?: NavbarVariant;
+  compactThreshold?: number;
+}) {
   const t = useTranslations("nav");
   const pathname = usePathname();
   const params = useParams();
@@ -27,7 +41,6 @@ export function NavbarHero({ locale }: { locale: Locale }) {
   const magicLineRef = useRef<HTMLDivElement>(null);
   const navPillRef = useRef<HTMLDivElement>(null);
   const magicLineVisible = useRef(false);
-  const [scrolled, setScrolled] = useState(false);
 
   // Mobile menu state
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,6 +51,22 @@ export function NavbarHero({ locale }: { locale: Locale }) {
   const mobileLangRef = useRef<HTMLDivElement>(null);
 
   const prefersReduced = usePrefersReducedMotion();
+  const [isCompact, setIsCompact] = useState(false);
+  const isNavKeyActive = useCallback(
+    (key: (typeof NAV_LINK_KEYS)[number]) => {
+      if (key === "inicio") {
+        return pathname === "/";
+      }
+
+      if (key === "portafolio") {
+        return pathname === "/portafolio" || pathname.startsWith("/portafolio/");
+      }
+
+      const route = NAV_ROUTES[key as keyof typeof NAV_ROUTES];
+      return pathname === route || pathname.startsWith(`${route}/`);
+    },
+    [pathname]
+  );
 
   // Focus trap + Escape key for mobile menu
   const closeMenu = useCallback(() => {
@@ -70,20 +99,26 @@ export function NavbarHero({ locale }: { locale: Locale }) {
 
   // Scroll state — RAF-throttled
   useEffect(() => {
-    let ticking = false;
-    function onScroll() {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          setScrolled(window.scrollY > window.innerHeight * 0.8);
-          ticking = false;
-        });
-        ticking = true;
-      }
+    let frameId = 0;
+
+    const getThreshold = () => compactThreshold ?? (variant === "home" ? window.innerHeight * 0.8 : 96);
+
+    function updateScrollState() {
+      cancelAnimationFrame(frameId);
+      frameId = requestAnimationFrame(() => {
+        setIsCompact(window.scrollY > getThreshold());
+      });
     }
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+
+    updateScrollState();
+    window.addEventListener("scroll", updateScrollState, { passive: true });
+    window.addEventListener("resize", updateScrollState);
+    return () => {
+      cancelAnimationFrame(frameId);
+      window.removeEventListener("scroll", updateScrollState);
+      window.removeEventListener("resize", updateScrollState);
+    };
+  }, [compactThreshold, variant]);
 
   // Scroll lock when menu is open
   useEffect(() => {
@@ -241,20 +276,6 @@ export function NavbarHero({ locale }: { locale: Locale }) {
     }
   }
 
-  /** Close mobile menu, then scroll to a hash anchor after the overlay is gone. */
-  function handleMobileAnchor(e: React.MouseEvent, href: string) {
-    e.preventDefault();
-    // Close immediately (no animation delay) so scroll target is reachable
-    setIsMenuOpen(false);
-    setIsAnimating(false);
-    // Scroll after React removes the overlay
-    requestAnimationFrame(() => {
-      const id = href.replace("#", "");
-      const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    });
-  }
-
   function handleLogoLeave() {
     if (prefersReduced) return;
     const el = logoRef.current;
@@ -264,23 +285,36 @@ export function NavbarHero({ locale }: { locale: Locale }) {
 
   const mobileNavItems = NAV_LINK_KEYS.map((key) => ({
     key,
-    href: NAV_ANCHORS[key],
     label: t(key),
-    isRoute: ROUTE_KEYS.has(key as "servicios"),
+    isExternal: key === "portafolio",
+    isRoute: key !== "portafolio",
+    href:
+      key === "portafolio"
+        ? SITE.behance
+        : NAV_ROUTES[key as keyof typeof NAV_ROUTES],
+    isActive: isNavKeyActive(key),
   }));
+
+  const navShellClass = isCompact
+    ? "py-3 backdrop-blur-md bg-brand-black/80 border-b border-white/10 shadow-lg"
+    : variant === "home"
+      ? "py-6"
+      : "py-4 bg-transparent";
+
+  const navPillClass = isCompact
+    ? "relative hidden md:flex items-center gap-px rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-md"
+    : variant === "home"
+      ? "relative hidden md:flex items-center gap-px rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-md"
+      : "relative hidden md:flex items-center gap-px rounded-full border border-white/8 bg-white/[0.04] px-4 py-2 backdrop-blur-md";
 
   return (
     <>
       <nav
         ref={navRef}
         data-nav-animate
-        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 sm:px-10 lg:px-16 xl:px-24 transition-all duration-300 ${
-          scrolled
-            ? "py-3 backdrop-blur-md bg-brand-black/60 border-b border-white/10 shadow-lg"
-            : "py-6"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 sm:px-10 lg:px-16 xl:px-24 transition-[padding,background-color,border-color,box-shadow,backdrop-filter] duration-300 ${navShellClass}`}
       >
-        <Link href="/" className="relative w-20 sm:w-24 lg:w-28 xl:w-32 aspect-square -my-4 cursor-pointer">
+        <IntlLink href="/" className="relative w-20 sm:w-24 lg:w-28 xl:w-32 aspect-square -my-4 cursor-pointer">
           <div
             ref={logoRef}
             className="w-full h-full"
@@ -289,11 +323,11 @@ export function NavbarHero({ locale }: { locale: Locale }) {
           >
             <LogoWordmark variant="main" className="w-full h-full" sizes="128px" priority />
           </div>
-        </Link>
+        </IntlLink>
 
         <div
           ref={navPillRef}
-          className="relative hidden md:flex items-center gap-1 backdrop-blur-md bg-white/5 border border-white/10 rounded-full px-6 py-2"
+          className={navPillClass}
           onMouseLeave={handlePillLeave}
         >
           <div
@@ -301,28 +335,45 @@ export function NavbarHero({ locale }: { locale: Locale }) {
             className="pointer-events-none absolute bottom-2 h-px bg-brand-yellow opacity-0"
           />
           {NAV_LINK_KEYS.map((key) => {
-            const href = NAV_ANCHORS[key];
-            const linkClass =
-              "relative px-4 py-2 text-off-white/70 hover:text-brand-yellow text-sm font-body font-medium tracking-wide transition-colors duration-200 cursor-pointer";
-            if (!ROUTE_KEYS.has(key as "servicios")) {
+            const isActive = isNavKeyActive(key);
+            const linkClass = `relative px-3 py-2 text-[0.92rem] font-body font-medium tracking-wide transition-colors duration-200 cursor-pointer lg:px-3.5 ${
+              isActive
+                ? "text-brand-yellow"
+                : "text-off-white/70 hover:text-brand-yellow"
+            }`;
+            if (key === "portafolio") {
               return (
-                <Link key={key} href={href} className={linkClass} onMouseEnter={handleLinkEnter}>
+                <a
+                  key={key}
+                  href={SITE.behance}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={linkClass}
+                  onMouseEnter={handleLinkEnter}
+                  aria-current={isActive ? "page" : undefined}
+                >
                   {t(key)}
-                </Link>
+                </a>
               );
             }
             return (
-              <IntlLink key={key} href={href as "/"} className={linkClass} onMouseEnter={handleLinkEnter}>
+              <IntlLink
+                key={key}
+                href={NAV_ROUTES[key as keyof typeof NAV_ROUTES] as "/"}
+                className={linkClass}
+                onMouseEnter={handleLinkEnter}
+                aria-current={isActive ? "page" : undefined}
+              >
                 {t(key)}
               </IntlLink>
             );
           })}
-          <Link
-            href="#contacto"
-            className="ml-3 px-6 py-2 bg-brand-yellow text-brand-black text-sm font-display tracking-wider rounded-full transition-all duration-200 cursor-pointer hover:scale-105 hover:shadow-[0_0_20px_rgba(245,197,24,0.5)] active:scale-95"
+          <IntlLink
+            href="/contacto"
+            className="ml-2 px-5 py-2 bg-brand-yellow text-brand-black text-sm font-display tracking-wider rounded-full transition-all duration-200 cursor-pointer hover:scale-105 hover:shadow-[0_0_20px_rgba(245,197,24,0.5)] active:scale-95 lg:px-6"
           >
             {t("cotizar")}
-          </Link>
+          </IntlLink>
         </div>
 
         <div className="flex items-center gap-3">
@@ -375,31 +426,37 @@ export function NavbarHero({ locale }: { locale: Locale }) {
               const linkClass =
                 "font-display text-4xl text-off-white uppercase tracking-wider transition-colors duration-200 cursor-pointer hover:text-brand-yellow";
 
+              if (item.isExternal) {
+                return (
+                  <a
+                    key={item.key}
+                    ref={(el) => { mobileLinkRefs.current[i] = el; }}
+                    href={SITE.behance}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${linkClass} ${item.isActive ? "text-brand-yellow" : ""}`}
+                    onClick={closeMenu}
+                    aria-current={item.isActive ? "page" : undefined}
+                  >
+                    {item.label}
+                  </a>
+                );
+              }
               if (item.isRoute) {
                 return (
                   <IntlLink
                     key={item.key}
                     ref={(el) => { mobileLinkRefs.current[i] = el; }}
                     href={item.href as "/"}
-                    className={linkClass}
+                    className={`${linkClass} ${item.isActive ? "text-brand-yellow" : ""}`}
                     onClick={closeMenu}
+                    aria-current={item.isActive ? "page" : undefined}
                   >
                     {item.label}
                   </IntlLink>
                 );
               }
-              // Hash anchor — close menu first, then scroll
-              return (
-                <a
-                  key={item.key}
-                  ref={(el) => { mobileLinkRefs.current[i] = el; }}
-                  href={item.href}
-                  className={linkClass}
-                  onClick={(e) => handleMobileAnchor(e, item.href)}
-                >
-                  {item.label}
-                </a>
-              );
+              return null;
             })}
           </div>
 
@@ -432,14 +489,14 @@ export function NavbarHero({ locale }: { locale: Locale }) {
             </button>
           </div>
 
-          <a
+          <IntlLink
             ref={mobileCtaRef}
-            href="#contacto"
+            href="/contacto"
             className="bg-brand-yellow text-brand-black font-display px-8 py-4 tracking-widest uppercase mt-8 transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95"
-            onClick={(e) => handleMobileAnchor(e, "#contacto")}
+            onClick={closeMenu}
           >
             {t("cotizar")}
-          </a>
+          </IntlLink>
         </div>
       )}
     </>

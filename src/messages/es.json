@@ -4,15 +4,16 @@
     "contacto": "Contacto",
     "nosotros": "Nosotros",
     "servicios": "Servicios",
+    "portafolio": "Portafolio",
     "cotizar": "Cotizar"
   },
   "hero": {
     "eyebrow": "Bienvenidos a nuestra",
     "line1": "AGENCIA",
     "line2": "CREATIVA",
-    "body": "Potenciamos marcas a través de estrategias creativas, contenido visual de alto impacto y presencia digital que genera resultados.",
+    "body": "Estrategia, contenido, producción y campañas en un solo equipo. Todo conectado. Todo con resultados.",
     "cta_contact": "CONTÁCTANOS",
-    "cta_services": "SERVICIOS",
+    "cta_services": "PORTAFOLIO",
     "stat1": "Creativos 100%",
     "stat2": "Visión Integral 360",
     "stat3": "Aliado Estratégico #1"
@@ -48,7 +49,7 @@
   "contact": {
     "title": "¿Listo para crecer?",
     "eyebrow": "Trabajemos Juntos",
-    "headline_line1": "\u00bfLISTO",
+    "headline_line1": "¿LISTO",
     "headline_line2": "PARA",
     "headline_line3": "CRECER?",
     "body": "Tu próximo paso es simple: cuéntanos sobre tu marca. Nosotros nos encargamos del resto, con estrategia, estructura y ejecución que genera resultados reales desde el primer día.",
@@ -115,32 +116,32 @@
     "subheadline": "Cada servicio está diseñado para conectarse con los demás. Una marca no crece por partes, crece como un ecosistema.",
     "cards": {
       "strategy": {
-        "title": "Estrategia y Posicionamiento",
-        "description": "Construimos tu marca desde una base estratégica sólida. Analizamos el mercado, definimos posicionamiento y establecemos cómo comunicar con impacto."
+        "title": "Estrategia y Posicionamiento de Marca",
+        "description": "Analizamos tu mercado, definimos tu diferenciador y establecemos cómo debe comunicarse tu marca para crecer con dirección. Sin estrategia, no hay resultados sostenibles."
       },
       "content": {
-        "title": "Contenido Estratégico",
-        "description": "Cada pieza responde a una estrategia. Comunicamos con intención alineando mensaje, formato y objetivo de la marca."
+        "title": "Creación de Contenido",
+        "description": "Fotografía, video, cobertura de eventos y producción audiovisual profesional. Cada pieza comunica lo que tu marca necesita proyectar, con calidad estética y mensaje estratégico."
       },
       "production": {
-        "title": "Producción Audiovisual",
-        "description": "Foto y video profesional con calidad estética y mensaje estratégico. Cada visual comunica lo que tu marca necesita proyectar."
+        "title": "Campañas Digitales",
+        "description": "Diseñamos y ejecutamos campañas en Meta Ads, Google Ads, TikTok Ads y LinkedIn Ads orientadas a resultados medibles. Cada peso invertido tiene un propósito claro."
       },
       "ads": {
-        "title": "Campañas Digitales (Ads)",
-        "description": "Meta, Google, TikTok y LinkedIn Ads optimizados para resultados medibles. Cada peso invertido tiene propósito y retorno esperado."
+        "title": "Inbound Marketing",
+        "description": "Atraemos, nutrimos y convertimos clientes potenciales a través de contenido estratégico, embudos de conversión y automatización. Marketing que trabaja para ti las 24 horas."
       },
       "seo": {
         "title": "SEO & Presencia Digital",
-        "description": "Posicionamiento orgánico para que las personas correctas te encuentren en el momento exacto en Google y más allá."
+        "description": "Optimizamos tu visibilidad en Google para que las personas correctas te encuentren en el momento exacto. Posicionamiento orgánico con estrategia real y resultados medibles."
       },
       "web": {
         "title": "Desarrollo Web",
-        "description": "Webs orientadas a conversión, experiencia del usuario y posicionamiento SEO. Tu web como herramienta de crecimiento real."
+        "description": "Creamos sitios web orientados a conversión, experiencia del usuario y posicionamiento SEO. Tu web no es solo presencia — es tu mejor herramienta de ventas."
       },
       "influencers": {
         "title": "Marketing de Influencers",
-        "description": "Colaboraciones estratégicas con creadores de contenido que aportan valor real, credibilidad y audiencias relevantes."
+        "description": "Gestionamos colaboraciones estratégicas con creadores de contenido relevantes para tu industria. Alcance real, credibilidad genuina y conexión con la audiencia correcta."
       }
     },
     "cta_card": {
@@ -173,7 +174,275 @@
     }
   },
   "meta": {
-    "home_title": "The Monkeys — Agencia Digital en Santiago, RD",
-    "home_description": "Agencia creativa digital especializada en SEO, desarrollo web, producción de contenidos y campañas digitales. Santiago de los Caballeros, República Dominicana."
+    "home_title": "The Monkeys — Agencia de Marketing en República Dominicana",
+    "home_description": "Agencia creativa en RD especializada en estrategia de marca, contenido, producción y campañas digitales. Un solo equipo, resultados reales."
+  },
+  "services_page": {
+    "meta_title": "Servicios | The Monkeys — Agencia en Santiago, RD",
+    "meta_description": "Estrategia, contenido, campañas digitales, SEO, web e influencer marketing. 7 servicios integrados bajo un mismo techo en Santiago, RD.",
+    "breadcrumb_home": "Inicio",
+    "breadcrumb_current": "Servicios",
+    "hero_eyebrow": "Lo que hacemos",
+    "hero_title_line1": "Todo lo que",
+    "hero_title_line2": "tu marca",
+    "hero_title_line3_outline": "nece",
+    "hero_title_line3_yellow": "sita.",
+    "hero_subtitle": "7 servicios integrados bajo un mismo techo.",
+    "hero_subtitle_bold": "Sin terceros, sin fricciones.",
+    "hero_subtitle_end": "Estrategia, contenido, producción y campañas en un solo equipo — desde Santiago para todo el país.",
+    "grid_eyebrow": "Nuestros Servicios",
+    "grid_intro": "Una marca no crece por partes. Cada servicio que ofrecemos está diseñado para conectarse con el siguiente. Puedes contratar uno o todos — siempre tendrás el mismo criterio estratégico detrás.",
+    "grid_intro_bold": "conectarse con el siguiente",
+    "services": {
+      "strategy": {
+        "title": "Estrategia y Posicionamiento de Marca",
+        "description": "Analizamos tu mercado, definimos tu diferenciador y establecemos cómo debe comunicarse tu marca para crecer con dirección. Sin estrategia, no hay resultados sostenibles.",
+        "tags": ["Análisis de mercado", "Posicionamiento", "Manual de comunicación"]
+      },
+      "content": {
+        "title": "Creación de Contenido",
+        "description": "Fotografía, video, cobertura de eventos y producción audiovisual profesional. Cada pieza comunica lo que tu marca necesita proyectar, con calidad estética y mensaje estratégico.",
+        "tags": ["Fotografía comercial", "Video corporativo", "Cobertura de eventos"]
+      },
+      "campaigns": {
+        "title": "Campañas Digitales",
+        "description": "Diseñamos y ejecutamos campañas en Meta Ads, Google Ads, TikTok Ads y LinkedIn Ads orientadas a resultados medibles. Cada peso invertido tiene un propósito claro.",
+        "tags": ["Meta & Google Ads", "TikTok & LinkedIn", "Optimización continua"]
+      },
+      "inbound": {
+        "title": "Inbound Marketing",
+        "description": "Atraemos, nutrimos y convertimos clientes potenciales a través de contenido estratégico, embudos de conversión y automatización. Marketing que trabaja para ti las 24 horas.",
+        "tags": ["Estrategia de atracción", "Embudos", "Automatización"]
+      },
+      "seo": {
+        "title": "SEO & Presencia Digital",
+        "description": "Optimizamos tu visibilidad en Google para que las personas correctas te encuentren en el momento exacto. Posicionamiento orgánico con estrategia real y resultados medibles.",
+        "tags": ["Auditoría SEO", "Optimización on-page", "Keywords para RD"]
+      },
+      "web": {
+        "title": "Desarrollo Web",
+        "description": "Creamos sitios web orientados a conversión, experiencia del usuario y posicionamiento SEO. Tu web no es solo presencia — es tu mejor herramienta de ventas.",
+        "tags": ["Diseño UX/UI", "Landing pages", "SEO técnico"]
+      },
+      "influencers": {
+        "title": "Marketing de Influencers",
+        "description": "Gestionamos colaboraciones estratégicas con creadores de contenido relevantes para tu industria. Alcance real, credibilidad genuina y conexión con la audiencia correcta.",
+        "tags": ["Selección estratégica", "Gestión de campañas", "Medición de resultados"]
+      }
+    },
+    "cta_card_title": "¿No sabes por dónde empezar?",
+    "cta_card_body": "No tienes que tenerlo todo claro. Cuéntanos sobre tu marca y nosotros te orientamos hacia lo que realmente necesitas.",
+    "cta_card_button": "Hablemos de tu marca",
+    "quote_line1": "No se trata de hacer marketing.",
+    "quote_line2": "Se trata de construir marcas con dirección.",
+    "process_eyebrow": "Nuestro Proceso",
+    "process_title_line1": "Cada proyecto",
+    "process_title_line2": "tiene una lógica.",
+    "process_description": "No improvisamos. Cada proyecto sigue un proceso estructurado que garantiza coherencia, calidad y resultados sostenibles desde el primer día.",
+    "process_steps": {
+      "analysis": {
+        "title": "Análisis",
+        "description": "Entendemos tu marca, tu mercado y tus objetivos antes de proponer cualquier solución."
+      },
+      "strategy": {
+        "title": "Estrategia",
+        "description": "Definimos posicionamiento, mensajes clave y plan de acción. Cada decisión responde a un propósito claro."
+      },
+      "execution": {
+        "title": "Ejecución",
+        "description": "Producimos, publicamos y lanzamos con coherencia. Un solo equipo, cero fricciones."
+      },
+      "followup": {
+        "title": "Seguimiento",
+        "description": "Medimos, aprendemos y ajustamos. La estrategia no termina en el lanzamiento."
+      }
+    },
+    "cta_eyebrow": "¿Listo para crecer?",
+    "cta_title_outline": "Hablemos",
+    "cta_title_mid": "de tu",
+    "cta_title_yellow": "marca.",
+    "cta_subtitle": "Cuéntanos sobre tu negocio y lo que necesitas lograr. Sin compromisos, sin rodeos.",
+    "cta_button_primary": "Cotizar ahora",
+    "cta_button_secondary": "Conócenos primero"
+  },
+  "about_page": {
+    "meta_title": "Nosotros | The Monkeys — Agencia Creativa en Santiago, RD",
+    "meta_description": "Giovanny y Guillermo — The Monkeys. Más de 10 años en marketing estratégico y 15 en producción audiovisual. Agencia creativa con dirección real en Santiago, RD.",
+    "breadcrumb_home": "Inicio",
+    "breadcrumb_current": "Nosotros",
+    "hero_eyebrow": "Conócenos",
+    "hero_title_line1_outline": "Somos",
+    "hero_title_line2_yellow": "The",
+    "hero_title_line3": "Monkeys.",
+    "hero_subtitle": "No somos una agencia más. Somos dos profesionales que decidieron hacer el marketing de otra manera — con",
+    "hero_subtitle_bold": "dirección, estructura y resultados reales",
+    "hero_subtitle_end": "desde Santiago para todo el país.",
+    "history_eyebrow": "Nuestra Historia",
+    "history_title_line1": "Marketing con",
+    "history_title_line2": "dirección.",
+    "history_title_line3": "Desde Santiago,",
+    "history_title_line4": "para todo el país.",
+    "history_body1": "The Monkeys nace de una complementación real entre dos profesionales: uno domina la estrategia, lo digital y la planificación. El otro transforma ideas en piezas visuales de alto impacto. Juntos, construimos una agencia que hace marketing con sentido.",
+    "history_body1_bold": "complementación real entre dos profesionales",
+    "history_body2": "No creemos en el marketing por inercia. Cada marca merece una dirección clara, una estrategia que genere impacto medible y una ejecución coherente de principio a fin. Analizamos antes de crear, definimos antes de ejecutar.",
+    "history_body2_bold": "dirección clara",
+    "history_body3": "Nacimos en Santiago de los Caballeros con una misión clara: cambiar cómo se hace el marketing en República Dominicana. Integramos estrategia, contenido, producción y campañas en un solo equipo —",
+    "history_body3_bold": "sin depender de terceros, sin fricciones, con resultados reales.",
+    "history_badge_number": "25+",
+    "history_badge_label": "Años de experiencia combinada",
+    "values": ["Calidad", "Confianza", "Dinamismo", "Innovación", "Responsabilidad"],
+    "values_cta": "Trabajemos juntos",
+    "team_eyebrow": "Nuestro Equipo",
+    "team_title_line1": "Dos mentes,",
+    "team_title_line2": "un objetivo.",
+    "team_subtitle": "Cada uno en su área, siempre alineados. Así es como The Monkeys puede ofrecer un servicio 360 sin depender de nadie más.",
+    "team": {
+      "giovanny": {
+        "initials": "GF",
+        "badge": "Co-Founder & Estratega",
+        "name": "Giovanny Fernández",
+        "role": "Estrategia / Marketing Digital / Planificación",
+        "tags": ["Campañas Digitales", "Redes Sociales", "Briefing"],
+        "bio1": "Profesional del marketing con más de 10 años de experiencia construyendo marcas y estrategias digitales. Especializado en branding, campañas publicitarias y manuales de comunicación.",
+        "bio1_bold": "10 años de experiencia",
+        "bio2": "Giovanny lidera la parte estratégica y digital: organiza los proyectos, trabaja directamente con los clientes y asegura que cada acción tenga una dirección clara y un propósito medible.",
+        "stat1_num": "10+",
+        "stat1_label": "Años en Marketing",
+        "stat2_num": "360",
+        "stat2_label": "Visión integral",
+        "stat3_num": "RD",
+        "stat3_label": "Mercado principal"
+      },
+      "guillermo": {
+        "initials": "GH",
+        "badge": "Co-Founder & Director Visual",
+        "name": "Guillermo Hernández",
+        "role": "Fotografía / Videografía / Producción Visual",
+        "tags": ["Fotografía", "Video", "Cobertura de Eventos", "Foto Gastronómica", "Premio Nacional"],
+        "bio1": "Profesional de la fotografía y el video con más de 15 años de trayectoria. Se formó en Colombia, realizó cursos especializados en fotografía gastronómica y es ganador del Premio Nacional de Fotografía.",
+        "bio1_bold": "15 años de trayectoria",
+        "bio2": "Guillermo lleva las ideas de lo estratégico a lo visual: crea cada pieza con la calidad, precisión y estética que cada marca necesita proyectar.",
+        "stat1_num": "15+",
+        "stat1_label": "Años en Fotografía",
+        "stat2_num": "Premio",
+        "stat2_label": "Nacional de Fotografía",
+        "stat3_num": "COL",
+        "stat3_label": "Formación"
+      }
+    },
+    "why_eyebrow": "¿Por qué elegirnos?",
+    "why_title_line1": "Tu marca",
+    "why_title_line2": "necesita",
+    "why_title_line3": "más que",
+    "why_title_line4": "un proveedor.",
+    "why_items": {
+      "team": {
+        "title": "Todo en un solo equipo",
+        "description": "Estrategia, contenido, fotografía, video, web y campañas bajo un mismo techo. Sin subcontratos, sin fricciones, sin pérdida de coherencia."
+      },
+      "investment": {
+        "title": "Inversión que rinde más",
+        "description": "Al no depender de terceros, ofrecemos tarifas competitivas sin sacrificar calidad. Cada peso invertido tiene un propósito claro."
+      },
+      "transparency": {
+        "title": "Transparencia en cada paso",
+        "description": "Verás lo que hacemos, cómo lo hacemos y qué está generando para tu negocio. Sin rodeos, con comunicación directa y constante."
+      },
+      "allies": {
+        "title": "Aliados, no solo proveedores",
+        "description": "Nos comprometemos con el crecimiento de tu marca como si fuera la nuestra. El resultado es compartido."
+      }
+    },
+    "why_quote": "Damos más de lo que ofrecemos, siempre.",
+    "why_quote_body": "Muchos negocios tienen potencial pero no tienen dirección. No saben qué necesitan, cómo comunicarlo o cómo ejecutar acciones que realmente impulsen su crecimiento. Ahí es donde entramos: para ordenar, estructurar y construir con intención.",
+    "cta_eyebrow": "¿Listos para conocernos?",
+    "cta_title_outline": "Hablemos",
+    "cta_title_mid": "de tu",
+    "cta_title_yellow": "marca.",
+    "cta_subtitle": "Cuéntanos sobre tu negocio y lo que necesitas lograr. Sin compromisos, sin rodeos.",
+    "cta_button_primary": "Comenzar ahora",
+    "cta_button_secondary": "Ver nuestros servicios"
+  },
+  "contact_page": {
+    "meta_title": "Contacto | The Monkeys — Agencia en Santiago, RD",
+    "meta_description": "¿Listo para crecer con dirección? Contáctanos en Santiago, RD — hola@themonkeys.do | +1 (809) 756-1847",
+    "breadcrumb_home": "Inicio",
+    "breadcrumb_current": "Contacto",
+    "hero_eyebrow": "Hablemos",
+    "hero_title_line1_prefix": "¿",
+    "hero_title_line1_outline": "Listo",
+    "hero_title_line2": "para",
+    "hero_title_line3_yellow": "crecer?",
+    "hero_subtitle": "No tienes que saber exactamente qué necesitas.",
+    "hero_subtitle_bold": "Cuéntanos sobre tu marca",
+    "hero_subtitle_end": " y nosotros te orientamos hacia lo que realmente funciona para tu negocio.",
+    "card_email_label": "Email",
+    "card_phone_label": "Teléfono",
+    "card_location_label": "Ubicación",
+    "channel_whatsapp": "WhatsApp",
+    "channel_whatsapp_cta": "Escribirnos",
+    "channel_instagram": "Instagram",
+    "channel_instagram_handle": "@themonkeys.do",
+    "channel_maps": "Google Maps",
+    "channel_maps_cta": "Ver ubicación",
+    "form_eyebrow": "Cuéntanos sobre tu marca",
+    "form_title_line1": "Solicita tu",
+    "form_title_line2": "propuesta.",
+    "form_subtitle": "Completa el formulario y te respondemos en menos de 24 horas, sin rodeos.",
+    "form_label_name": "Nombre",
+    "form_label_company": "Empresa / Marca",
+    "form_label_email": "Email",
+    "form_label_phone": "Teléfono / WhatsApp",
+    "form_label_service": "¿Qué servicio te interesa?",
+    "form_label_message": "Cuéntanos sobre tu marca",
+    "form_placeholder_name": "Tu nombre",
+    "form_placeholder_company": "Nombre de tu marca",
+    "form_placeholder_email": "tu@email.com",
+    "form_placeholder_phone": "+1 (809) 000-0000",
+    "form_placeholder_service": "Selecciona un servicio",
+    "form_placeholder_message": "¿Qué hace tu marca? ¿Cuál es tu objetivo? ¿Qué necesitas lograr?",
+    "form_service_strategy": "Estrategia y Posicionamiento de Marca",
+    "form_service_content": "Creación de Contenido (foto/video/cobertura)",
+    "form_service_campaigns": "Campañas Digitales (Meta, Google, TikTok, LinkedIn)",
+    "form_service_inbound": "Inbound Marketing",
+    "form_service_seo": "SEO & Presencia Digital",
+    "form_service_web": "Desarrollo Web",
+    "form_service_influencers": "Marketing de Influencers",
+    "form_service_full": "Paquete completo / No estoy seguro",
+    "form_submit": "Enviar mensaje",
+    "form_note": "Respondemos en menos de 24 horas - Sin compromisos",
+    "form_success": "¡Mensaje enviado! Te contactaremos pronto.",
+    "form_error": "Hubo un error. Por favor intenta de nuevo.",
+    "faq_eyebrow": "Preguntas Frecuentes",
+    "faq_title_line1": "¿Tienes",
+    "faq_title_line2": "dudas?",
+    "faq_subtitle": "Estas son las preguntas que más nos hacen antes de empezar. Si la tuya no está aquí, escríbenos directamente.",
+    "faq_cta": "Hacer una pregunta",
+    "faq_items": {
+      "q1": {
+        "question": "¿Trabajamos con marcas en cualquier industria?",
+        "answer": "Sí. Nuestra metodología MONKEYS se adapta a cualquier tipo de negocio o marca. Hemos trabajado con marcas locales, nacionales e internacionales en diferentes sectores."
+      },
+      "q2": {
+        "question": "¿Cuánto tiempo tarda en verse los resultados?",
+        "answer": "Depende del servicio. Las campañas digitales generan resultados desde la primera semana. El SEO y posicionamiento orgánico toman entre 3 y 6 meses. Lo importante es que cada acción tiene un propósito y un seguimiento claro."
+      },
+      "q3": {
+        "question": "¿Qué pasa si no sé qué necesito?",
+        "answer": "Eso es exactamente para lo que estamos. Cuéntanos sobre tu marca y tus objetivos, nosotros hacemos el diagnóstico y te proponemos lo que realmente necesitas, sin venderte más de lo necesario."
+      },
+      "q4": {
+        "question": "¿Pueden manejar todo el marketing de mi marca?",
+        "answer": "Sí. Ese es nuestro diferencial. Tenemos todo en casa: estrategia, contenido, producción visual, campañas digitales, SEO y desarrollo web. Sin subcontratar, sin fricciones."
+      },
+      "q5": {
+        "question": "¿Trabajan con marcas que están iniciando?",
+        "answer": "Claro. Acompañar marcas desde su lanzamiento es algo que nos apasiona. Podemos ayudarte a definir tu identidad, estrategia y comunicarte correctamente desde el día uno."
+      },
+      "q6": {
+        "question": "¿Cómo son los precios?",
+        "answer": "Cada propuesta es personalizada según el alcance del proyecto. Al no subcontratar, nuestros precios son más asequibles que contratar a múltiples personas o agencias por separado. Contáctanos y te preparamos una propuesta a medida."
+      }
+    }
   }
 }

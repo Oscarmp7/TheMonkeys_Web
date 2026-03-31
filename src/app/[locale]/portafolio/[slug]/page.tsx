@@ -1,18 +1,63 @@
-import { setRequestLocale } from "next-intl/server";
-import { getTranslations } from "next-intl/server";
-import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import Image from "next/image";
-import { routing } from "@/i18n/routing";
-import { PROJECTS } from "@/lib/portfolio";
-import { SERVICE_ICONS, type ServiceKey } from "@/lib/services";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { notFound } from "next/navigation";
 import { Footer } from "@/components/layout/footer";
+import { NavbarHero } from "@/components/layout/navbar-hero";
+import { routing, type Locale } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
-import type { Locale } from "@/i18n/routing";
+import { PROJECTS } from "@/lib/portfolio";
+import { buildPageMetadata } from "@/lib/seo";
+import { SERVICE_ICONS, type ServiceKey } from "@/lib/services";
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
     PROJECTS.map((project) => ({ locale, slug: project.slug }))
   );
+}
+
+function getPortfolioIndexMetadata(locale: Locale): Metadata {
+  return buildPageMetadata({
+    locale,
+    route: "portfolio",
+    title:
+      locale === "es"
+        ? "Portafolio | The Monkeys - Casos y proyectos en RD"
+        : "Portfolio | The Monkeys - Selected projects in the Dominican Republic",
+    description:
+      locale === "es"
+        ? "Casos, proyectos y ejecuciones de estrategia, contenido, SEO y crecimiento digital de The Monkeys."
+        : "Selected strategy, content, SEO, and digital growth projects by The Monkeys.",
+    noIndex: true,
+  });
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const typedLocale = locale as Locale;
+  const project = PROJECTS.find((entry) => entry.slug === slug);
+
+  if (!project) {
+    return getPortfolioIndexMetadata(typedLocale);
+  }
+
+  const title = typedLocale === "es" ? project.titleEs : project.titleEn;
+  const description = typedLocale === "es" ? project.descriptionEs : project.descriptionEn;
+
+  return buildPageMetadata({
+    locale: typedLocale,
+    route: "portfolioProject",
+    params: { slug },
+    title: `${title} | ${project.client} | The Monkeys`,
+    description,
+    type: "article",
+    image: project.coverImage,
+    noIndex: true,
+  });
 }
 
 export default async function ProjectPage({
@@ -23,26 +68,29 @@ export default async function ProjectPage({
   const { locale, slug } = await params;
   setRequestLocale(locale);
 
-  const project = PROJECTS.find((p) => p.slug === slug);
-  if (!project) notFound();
+  const project = PROJECTS.find((entry) => entry.slug === slug);
+  if (!project) {
+    notFound();
+  }
 
-  const tPortfolio = await getTranslations({ locale: locale as Locale, namespace: "portfolio" });
-  const tServices = await getTranslations({ locale: locale as Locale, namespace: "services" });
+  const typedLocale = locale as Locale;
+  const tPortfolio = await getTranslations({ locale: typedLocale, namespace: "portfolio" });
+  const tServices = await getTranslations({ locale: typedLocale, namespace: "services" });
 
-  const title = locale === "es" ? project.titleEs : project.titleEn;
-  const description = locale === "es" ? project.descriptionEs : project.descriptionEn;
+  const title = typedLocale === "es" ? project.titleEs : project.titleEn;
+  const description = typedLocale === "es" ? project.descriptionEs : project.descriptionEn;
 
   return (
     <>
+      <NavbarHero locale={typedLocale} variant="inner" />
       <main className="min-h-screen bg-off-white">
-        {/* Header */}
         <div className="bg-brand-navy py-24 px-8">
           <div className="max-w-4xl mx-auto">
             <Link
               href="/portafolio"
               className="inline-flex items-center gap-2 text-brand-yellow/70 hover:text-brand-yellow text-sm mb-8 transition-colors"
             >
-              ← {tPortfolio("title")}
+              {"\u2190"} {tPortfolio("title")}
             </Link>
             <p className="text-brand-yellow text-sm font-semibold uppercase tracking-widest mb-3">
               {project.client}
@@ -53,7 +101,6 @@ export default async function ProjectPage({
           </div>
         </div>
 
-        {/* Cover image */}
         <div className="relative aspect-video max-h-[500px] overflow-hidden">
           <Image
             src={project.coverImage}
@@ -65,22 +112,21 @@ export default async function ProjectPage({
           />
         </div>
 
-        {/* Content */}
         <div className="max-w-4xl mx-auto px-8 py-16">
           <p className="text-lg text-brand-navy/70 leading-relaxed mb-12 max-w-2xl">
             {description}
           </p>
 
-          {/* Services used */}
           <div className="flex flex-wrap gap-3">
             {project.services.map((key) => {
               const Icon = SERVICE_ICONS[key as ServiceKey];
+
               return (
                 <div
                   key={key}
                   className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm"
                 >
-                  {Icon && <Icon size={16} className="text-brand-yellow" />}
+                  {Icon ? <Icon size={16} className="text-brand-yellow" /> : null}
                   <span className="text-sm font-medium text-brand-navy">
                     {tServices(key as ServiceKey)}
                   </span>
@@ -91,7 +137,7 @@ export default async function ProjectPage({
         </div>
       </main>
 
-      <Footer locale={locale as Locale} />
+      <Footer locale={typedLocale} />
     </>
   );
 }

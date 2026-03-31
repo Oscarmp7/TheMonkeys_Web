@@ -1,6 +1,22 @@
 import { Linkedin, Youtube, Instagram, Facebook } from "lucide-react";
 import { SITE } from "./site";
 
+/** Behance brand icon matching the Lucide component interface. */
+export function BehanceIcon({ size = 24, ...props }: { size?: number } & React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      {...props}
+    >
+      <path d="M7.803 5.731c.589 0 1.119.051 1.605.155.483.103.895.273 1.243.508.343.235.611.547.804.938.19.386.287.873.287 1.452 0 .623-.141 1.145-.424 1.564-.283.421-.7.767-1.254 1.036.757.219 1.318.602 1.69 1.146.37.541.555 1.195.555 1.965 0 .628-.12 1.174-.363 1.638a3.323 3.323 0 0 1-.988 1.15 4.386 4.386 0 0 1-1.435.67 6.322 6.322 0 0 1-1.7.225H1V5.731zm-.351 4.972c.48 0 .878-.114 1.192-.345.312-.228.469-.588.469-1.073 0-.271-.05-.496-.149-.673a1.138 1.138 0 0 0-.404-.42 1.708 1.708 0 0 0-.58-.22 3.316 3.316 0 0 0-.691-.066H3.654v2.797zm.151 5.239c.267 0 .521-.025.76-.074.241-.051.455-.136.641-.258.186-.12.335-.285.446-.495.111-.208.166-.478.166-.804 0-.641-.178-1.1-.534-1.373-.356-.275-.833-.411-1.428-.411H3.654v3.415zM16.042 16.59c.396.388.966.581 1.71.581.533 0 .993-.133 1.38-.399.385-.267.623-.549.713-.845h2.483c-.397 1.234-1.005 2.118-1.824 2.651-.82.531-1.81.798-2.971.798a6.2 6.2 0 0 1-2.248-.394 4.908 4.908 0 0 1-1.71-1.113 4.957 4.957 0 0 1-1.094-1.713 5.898 5.898 0 0 1-.386-2.164c0-.772.131-1.493.393-2.157a4.994 4.994 0 0 1 1.112-1.713 5.148 5.148 0 0 1 1.714-1.126 5.638 5.638 0 0 1 2.219-.412c.906 0 1.698.175 2.375.521a4.657 4.657 0 0 1 1.657 1.39c.437.584.749 1.255.937 2.012.187.757.254 1.553.202 2.388h-7.4c0 .934.199 1.627.598 2.015zm2.99-5.404c-.315-.347-.801-.521-1.458-.521-.422 0-.775.071-1.058.214a2.17 2.17 0 0 0-.685.541 2.045 2.045 0 0 0-.371.703 3.474 3.474 0 0 0-.126.712h4.754c-.089-.69-.341-1.301-.056-1.649zM14.594 6.69h5.414v1.407h-5.414z" />
+    </svg>
+  );
+}
+
 /** Pinterest brand icon matching the Lucide component interface. */
 export function PinterestIcon({ size = 24, ...props }: { size?: number } & React.SVGProps<SVGSVGElement>) {
   return (
@@ -19,6 +35,7 @@ export function PinterestIcon({ size = 24, ...props }: { size?: number } & React
 
 /** Shared social links config — used by SocialSidebar and Footer. */
 export const SOCIALS_CONFIG = [
+  { icon: BehanceIcon, href: SITE.behance, label: "Behance" },
   { icon: Instagram, href: SITE.instagram, label: "Instagram" },
   { icon: Linkedin, href: SITE.linkedin, label: "LinkedIn" },
   { icon: Youtube, href: SITE.youtube, label: "YouTube" },

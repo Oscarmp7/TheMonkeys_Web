@@ -1,0 +1,16 @@
+{
+  "target": "TheMonkeys Web — src/ completo (Next.js 15 + React 19 + Tailwind v4 + GSAP + next-intl)",
+  "status": "in_progress",
+  "flags": {
+    "security_focus": false,
+    "performance_critical": true,
+    "strict_mode": false,
+    "framework": "Next.js 15 App Router"
+  },
+  "current_step": "1A-1B-1C",
+  "current_phase": 1,
+  "completed_steps": ["00-scope"],
+  "files_created": ["00-scope.md"],
+  "started_at": "2026-03-30T00:00:00Z",
+  "last_updated": "2026-03-30T00:00:00Z"
+}

@@ -4,15 +4,16 @@
     "contacto": "Contact",
     "nosotros": "About Us",
     "servicios": "Services",
+    "portafolio": "Portfolio",
     "cotizar": "Get a Quote"
   },
   "hero": {
     "eyebrow": "Welcome to our",
     "line1": "CREATIVE",
     "line2": "AGENCY",
-    "body": "We empower brands through creative strategies, high-impact visual content, and a digital presence that drives real results.",
+    "body": "Strategy, content, production, and campaigns in one team. All connected. All with results.",
     "cta_contact": "CONTACT US",
-    "cta_services": "SERVICES",
+    "cta_services": "PORTFOLIO",
     "stat1": "100% Creative",
     "stat2": "360 Full Vision",
     "stat3": "#1 Strategic Ally"
@@ -115,32 +116,32 @@
     "subheadline": "Each service is designed to connect with the rest. A brand doesn't grow in parts, it grows as an ecosystem.",
     "cards": {
       "strategy": {
-        "title": "Strategy & Positioning",
-        "description": "We build your brand from a solid strategic foundation. We analyze the market, define positioning, and establish how to communicate with impact."
+        "title": "Brand Strategy & Positioning",
+        "description": "We analyze your market, define your differentiator, and establish how your brand should communicate to grow with direction. Without strategy, there are no sustainable results."
       },
       "content": {
-        "title": "Strategic Content",
-        "description": "Every piece responds to a strategy. We communicate with intention, aligning message, format, and brand objectives."
+        "title": "Content Creation",
+        "description": "Photography, video, event coverage, and professional audiovisual production. Each piece communicates what your brand needs to project, with aesthetic quality and strategic messaging."
       },
       "production": {
-        "title": "Audiovisual Production",
-        "description": "Professional photo and video with aesthetic quality and strategic messaging. Every visual communicates what your brand needs to project."
+        "title": "Digital Campaigns",
+        "description": "We design and execute campaigns on Meta Ads, Google Ads, TikTok Ads, and LinkedIn Ads focused on measurable results. Every dollar invested has a clear purpose."
       },
       "ads": {
-        "title": "Digital Campaigns (Ads)",
-        "description": "Meta, Google, TikTok, and LinkedIn Ads optimized for measurable results. Every dollar invested has purpose and expected return."
+        "title": "Inbound Marketing",
+        "description": "We attract, nurture, and convert potential clients through strategic content, conversion funnels, and automation. Marketing that works for you 24 hours a day."
       },
       "seo": {
         "title": "SEO & Digital Presence",
-        "description": "Organic positioning so the right people find you at the exact moment on Google and beyond."
+        "description": "We optimize your visibility on Google so the right people find you at the exact moment. Organic positioning with real strategy and measurable results."
       },
       "web": {
         "title": "Web Development",
-        "description": "Websites focused on conversion, user experience, and SEO positioning. Your website as a real growth tool."
+        "description": "We create websites focused on conversion, user experience, and SEO positioning. Your website is not just a presence — it's your best sales tool."
       },
       "influencers": {
         "title": "Influencer Marketing",
-        "description": "Strategic collaborations with content creators who bring real value, credibility, and relevant audiences."
+        "description": "We manage strategic collaborations with content creators relevant to your industry. Real reach, genuine credibility, and connection with the right audience."
       }
     },
     "cta_card": {
@@ -173,7 +174,275 @@
     }
   },
   "meta": {
-    "home_title": "The Monkeys — Digital Agency in Santiago, DR",
-    "home_description": "Creative digital agency specializing in SEO, web development, content production, and digital campaigns. Santiago de los Caballeros, Dominican Republic."
+    "home_title": "The Monkeys | Marketing & Brand Positioning Agency in the Dominican Republic",
+    "home_description": "Creative agency in DR specializing in brand strategy, content, production, and digital campaigns. One team, real results."
+  },
+  "services_page": {
+    "meta_title": "Services | The Monkeys - Marketing Agency in Santiago, Dominican Republic",
+    "meta_description": "Brand strategy, content creation, digital campaigns, inbound marketing, SEO, web development and influencer marketing. 7 integrated services under one roof in Santiago, DR.",
+    "breadcrumb_home": "Home",
+    "breadcrumb_current": "Services",
+    "hero_eyebrow": "What we do",
+    "hero_title_line1": "Everything",
+    "hero_title_line2": "your brand",
+    "hero_title_line3_outline": "nee",
+    "hero_title_line3_yellow": "ds.",
+    "hero_subtitle": "7 integrated services under one roof.",
+    "hero_subtitle_bold": "No outsourcing, no friction.",
+    "hero_subtitle_end": "Strategy, content, production and campaigns in one team — from Santiago for the entire country.",
+    "grid_eyebrow": "Our Services",
+    "grid_intro": "A brand does not grow in parts. Each service we offer is designed to connect with the next. You can hire one or all — you will always have the same strategic criteria behind it.",
+    "grid_intro_bold": "connect with the next",
+    "services": {
+      "strategy": {
+        "title": "Brand Strategy & Positioning",
+        "description": "We analyze your market, define your differentiator and establish how your brand should communicate to grow with direction. Without strategy, there are no sustainable results.",
+        "tags": ["Market analysis", "Positioning", "Communication manual"]
+      },
+      "content": {
+        "title": "Content Creation",
+        "description": "Photography, video, event coverage and professional audiovisual production. Each piece communicates what your brand needs to project, with aesthetic quality and strategic messaging.",
+        "tags": ["Commercial photography", "Corporate video", "Event coverage"]
+      },
+      "campaigns": {
+        "title": "Digital Campaigns",
+        "description": "We design and execute campaigns on Meta Ads, Google Ads, TikTok Ads and LinkedIn Ads focused on measurable results. Every dollar invested has a clear purpose.",
+        "tags": ["Meta & Google Ads", "TikTok & LinkedIn", "Continuous optimization"]
+      },
+      "inbound": {
+        "title": "Inbound Marketing",
+        "description": "We attract, nurture and convert potential clients through strategic content, conversion funnels and automation. Marketing that works for you 24 hours a day.",
+        "tags": ["Attraction strategy", "Funnels", "Automation"]
+      },
+      "seo": {
+        "title": "SEO & Digital Presence",
+        "description": "We optimize your visibility on Google so the right people find you at the exact moment. Organic positioning with real strategy and measurable results.",
+        "tags": ["SEO audit", "On-page optimization", "Keywords for DR"]
+      },
+      "web": {
+        "title": "Web Development",
+        "description": "We create websites focused on conversion, user experience and SEO positioning. Your website is not just a presence — it is your best sales tool.",
+        "tags": ["UX/UI Design", "Landing pages", "Technical SEO"]
+      },
+      "influencers": {
+        "title": "Influencer Marketing",
+        "description": "We manage strategic collaborations with content creators relevant to your industry. Real reach, genuine credibility and connection with the right audience.",
+        "tags": ["Strategic selection", "Campaign management", "Results measurement"]
+      }
+    },
+    "cta_card_title": "Don't know where to start?",
+    "cta_card_body": "You don't have to have it all figured out. Tell us about your brand and we'll guide you towards what you really need.",
+    "cta_card_button": "Let's talk about your brand",
+    "quote_line1": "It's not about doing marketing.",
+    "quote_line2": "It's about building brands with direction.",
+    "process_eyebrow": "Our Process",
+    "process_title_line1": "Every project",
+    "process_title_line2": "has a logic.",
+    "process_description": "We don't improvise. Every project follows a structured process that guarantees coherence, quality and sustainable results from day one.",
+    "process_steps": {
+      "analysis": {
+        "title": "Analysis",
+        "description": "We understand your brand, market and goals before proposing any solution."
+      },
+      "strategy": {
+        "title": "Strategy",
+        "description": "We define positioning, key messages and action plan. Every decision responds to a clear purpose."
+      },
+      "execution": {
+        "title": "Execution",
+        "description": "We produce, publish and launch with coherence. One team, zero friction."
+      },
+      "followup": {
+        "title": "Follow-up",
+        "description": "We measure, learn and adjust. Strategy does not end at launch."
+      }
+    },
+    "cta_eyebrow": "Ready to grow?",
+    "cta_title_outline": "Let's talk",
+    "cta_title_mid": "about your",
+    "cta_title_yellow": "brand.",
+    "cta_subtitle": "Tell us about your business and what you need to achieve. No commitments, no runarounds.",
+    "cta_button_primary": "Get a quote now",
+    "cta_button_secondary": "Get to know us first"
+  },
+  "about_page": {
+    "meta_title": "About Us | The Monkeys - Creative Agency in Santiago, Dominican Republic",
+    "meta_description": "We are Giovanny and Guillermo, founders of The Monkeys. Over 10 years in strategic marketing and 15 in audiovisual production. A creative agency in Santiago, DR, built to do marketing with direction and real results.",
+    "breadcrumb_home": "Home",
+    "breadcrumb_current": "About",
+    "hero_eyebrow": "About us",
+    "hero_title_line1_outline": "We are",
+    "hero_title_line2_yellow": "The",
+    "hero_title_line3": "Monkeys.",
+    "hero_subtitle": "We are not just another agency. We are two professionals who decided to do marketing differently — with",
+    "hero_subtitle_bold": "direction, structure and real results",
+    "hero_subtitle_end": "from Santiago for the entire country.",
+    "history_eyebrow": "Our Story",
+    "history_title_line1": "Marketing with",
+    "history_title_line2": "direction.",
+    "history_title_line3": "From Santiago,",
+    "history_title_line4": "for the entire country.",
+    "history_body1": "The Monkeys is born from a real complementation between two professionals: one masters strategy, digital and planning. The other transforms ideas into high-impact visual pieces. Together, we build an agency that does marketing with purpose.",
+    "history_body1_bold": "real complementation between two professionals",
+    "history_body2": "We don't believe in marketing by inertia. Every brand deserves a clear direction, a strategy that generates measurable impact and coherent execution from start to finish. We analyze before creating, we define before executing.",
+    "history_body2_bold": "clear direction",
+    "history_body3": "We were born in Santiago de los Caballeros with a clear mission: to change how marketing is done in the Dominican Republic. We integrate strategy, content, production and campaigns in one team —",
+    "history_body3_bold": "without depending on third parties, without friction, with real results.",
+    "history_badge_number": "25+",
+    "history_badge_label": "Years of combined experience",
+    "values": ["Quality", "Trust", "Dynamism", "Innovation", "Responsibility"],
+    "values_cta": "Let's work together",
+    "team_eyebrow": "Our Team",
+    "team_title_line1": "Two minds,",
+    "team_title_line2": "one goal.",
+    "team_subtitle": "Each in their area, always aligned. That is how The Monkeys can offer a 360 service without depending on anyone else.",
+    "team": {
+      "giovanny": {
+        "initials": "GF",
+        "badge": "Co-Founder & Strategist",
+        "name": "Giovanny Fernandez",
+        "role": "Strategy / Digital Marketing / Planning",
+        "tags": ["Digital Campaigns", "Social Media", "Briefing"],
+        "bio1": "Marketing professional with over 10 years of experience building brands and digital strategies. Specialized in branding, advertising campaigns and communication manuals.",
+        "bio1_bold": "10 years of experience",
+        "bio2": "Giovanny leads the strategic and digital side: organizes projects, works directly with clients and ensures every action has a clear direction and measurable purpose.",
+        "stat1_num": "10+",
+        "stat1_label": "Years in Marketing",
+        "stat2_num": "360",
+        "stat2_label": "Full vision",
+        "stat3_num": "DR",
+        "stat3_label": "Main market"
+      },
+      "guillermo": {
+        "initials": "GH",
+        "badge": "Co-Founder & Visual Director",
+        "name": "Guillermo Hernandez",
+        "role": "Photography / Videography / Visual Production",
+        "tags": ["Photography", "Video", "Event Coverage", "Food Photography", "National Award"],
+        "bio1": "Photography and video professional with over 15 years of experience. Trained in Colombia, specialized in food photography and is a National Photography Award winner.",
+        "bio1_bold": "15 years of experience",
+        "bio2": "Guillermo takes ideas from strategic to visual: creates each piece with the quality, precision and aesthetics that each brand needs to project.",
+        "stat1_num": "15+",
+        "stat1_label": "Years in Photography",
+        "stat2_num": "Award",
+        "stat2_label": "National Photography",
+        "stat3_num": "COL",
+        "stat3_label": "Training"
+      }
+    },
+    "why_eyebrow": "Why choose us?",
+    "why_title_line1": "Your brand",
+    "why_title_line2": "needs",
+    "why_title_line3": "more than",
+    "why_title_line4": "a vendor.",
+    "why_items": {
+      "team": {
+        "title": "Everything in one team",
+        "description": "Strategy, content, photography, video, web and campaigns under one roof. No subcontracts, no friction, no loss of coherence."
+      },
+      "investment": {
+        "title": "Investment that yields more",
+        "description": "By not depending on third parties, we offer competitive rates without sacrificing quality. Every dollar invested has a clear purpose."
+      },
+      "transparency": {
+        "title": "Transparency every step",
+        "description": "You will see what we do, how we do it and what it is generating for your business. No runarounds, with direct and constant communication."
+      },
+      "allies": {
+        "title": "Allies, not just vendors",
+        "description": "We commit to the growth of your brand as if it were our own. The result is shared."
+      }
+    },
+    "why_quote": "We give more than we offer, always.",
+    "why_quote_body": "Many businesses have potential but lack direction. They don't know what they need, how to communicate it or how to execute actions that truly drive their growth. That's where we come in: to organize, structure and build with intention.",
+    "cta_eyebrow": "Ready to meet us?",
+    "cta_title_outline": "Let's talk",
+    "cta_title_mid": "about your",
+    "cta_title_yellow": "brand.",
+    "cta_subtitle": "Tell us about your business and what you need to achieve. No commitments, no runarounds.",
+    "cta_button_primary": "Start now",
+    "cta_button_secondary": "See our services"
+  },
+  "contact_page": {
+    "meta_title": "Contact | The Monkeys - Marketing Agency in Santiago, Dominican Republic",
+    "meta_description": "Ready to grow with direction? Contact us and tell us about your brand. We are in Santiago de los Caballeros, DR. hola@themonkeys.do | +1 (809) 756-1847",
+    "breadcrumb_home": "Home",
+    "breadcrumb_current": "Contact",
+    "hero_eyebrow": "Let's Talk",
+    "hero_title_line1_prefix": "",
+    "hero_title_line1_outline": "Ready",
+    "hero_title_line2": "to",
+    "hero_title_line3_yellow": "grow?",
+    "hero_subtitle": "You don't need to know exactly what you need.",
+    "hero_subtitle_bold": "Tell us about your brand",
+    "hero_subtitle_end": " and we'll guide you towards what really works for your business.",
+    "card_email_label": "Email",
+    "card_phone_label": "Phone",
+    "card_location_label": "Location",
+    "channel_whatsapp": "WhatsApp",
+    "channel_whatsapp_cta": "Message us",
+    "channel_instagram": "Instagram",
+    "channel_instagram_handle": "@themonkeys.do",
+    "channel_maps": "Google Maps",
+    "channel_maps_cta": "See location",
+    "form_eyebrow": "Tell us about your brand",
+    "form_title_line1": "Request your",
+    "form_title_line2": "proposal.",
+    "form_subtitle": "Fill out the form and we'll get back to you in less than 24 hours, no runarounds.",
+    "form_label_name": "Name",
+    "form_label_company": "Company / Brand",
+    "form_label_email": "Email",
+    "form_label_phone": "Phone / WhatsApp",
+    "form_label_service": "What service are you interested in?",
+    "form_label_message": "Tell us about your brand",
+    "form_placeholder_name": "Your name",
+    "form_placeholder_company": "Your brand name",
+    "form_placeholder_email": "you@email.com",
+    "form_placeholder_phone": "+1 (809) 000-0000",
+    "form_placeholder_service": "Select a service",
+    "form_placeholder_message": "What does your brand do? What is your goal? What do you need to achieve?",
+    "form_service_strategy": "Brand Strategy & Positioning",
+    "form_service_content": "Content Creation (photo/video/coverage)",
+    "form_service_campaigns": "Digital Campaigns (Meta, Google, TikTok, LinkedIn)",
+    "form_service_inbound": "Inbound Marketing",
+    "form_service_seo": "SEO & Digital Presence",
+    "form_service_web": "Web Development",
+    "form_service_influencers": "Influencer Marketing",
+    "form_service_full": "Full package / Not sure yet",
+    "form_submit": "Send message",
+    "form_note": "We respond in less than 24 hours - No commitments",
+    "form_success": "Message sent! We'll be in touch soon.",
+    "form_error": "Something went wrong. Please try again.",
+    "faq_eyebrow": "Frequently Asked Questions",
+    "faq_title_line1": "Have",
+    "faq_title_line2": "questions?",
+    "faq_subtitle": "These are the questions we get asked the most before starting. If yours isn't here, write to us directly.",
+    "faq_cta": "Ask a question",
+    "faq_items": {
+      "q1": {
+        "question": "Do you work with brands in any industry?",
+        "answer": "Yes. Our MONKEYS methodology adapts to any type of business or brand. We have worked with local, national and international brands across different sectors."
+      },
+      "q2": {
+        "question": "How long does it take to see results?",
+        "answer": "It depends on the service. Digital campaigns generate results from the first week. SEO and organic positioning take between 3 and 6 months. The important thing is that every action has a purpose and clear follow-up."
+      },
+      "q3": {
+        "question": "What if I don't know what I need?",
+        "answer": "That's exactly what we're here for. Tell us about your brand and your goals, we'll do the diagnosis and propose what you really need, without selling you more than necessary."
+      },
+      "q4": {
+        "question": "Can you handle all of my brand's marketing?",
+        "answer": "Yes. That's our differentiator. We have everything in-house: strategy, content, visual production, digital campaigns, SEO and web development. No outsourcing, no friction."
+      },
+      "q5": {
+        "question": "Do you work with brands that are just starting?",
+        "answer": "Absolutely. Accompanying brands from their launch is something we're passionate about. We can help you define your identity, strategy and communicate correctly from day one."
+      },
+      "q6": {
+        "question": "What are your prices like?",
+        "answer": "Each proposal is customized according to the project scope. By not outsourcing, our prices are more affordable than hiring multiple people or agencies separately. Contact us and we'll prepare a tailored proposal."
+      }
+    }
   }
 }

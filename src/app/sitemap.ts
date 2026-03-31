@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/site";
-import { PROJECTS } from "@/lib/portfolio";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE.domain;
@@ -10,14 +9,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/en`, lastModified: new Date(), changeFrequency: "monthly", priority: 1 },
     { url: `${base}/servicios`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/en/services`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
-    { url: `${base}/portafolio`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
-    { url: `${base}/en/portfolio`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${base}/nosotros`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${base}/en/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${base}/contacto`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${base}/en/contact`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
   ];
 
-  const projectRoutes: MetadataRoute.Sitemap = PROJECTS.flatMap((p) => [
-    { url: `${base}/portafolio/${p.slug}`, lastModified: new Date(), priority: 0.6 },
-    { url: `${base}/en/portfolio/${p.slug}`, lastModified: new Date(), priority: 0.6 },
-  ]);
-
-  return [...staticRoutes, ...projectRoutes];
+  return staticRoutes;
 }

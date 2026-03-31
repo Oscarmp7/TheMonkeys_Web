@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Anton, Barlow_Condensed, Syne, DM_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import type { Locale } from "@/i18n/routing";
 import { SITE } from "@/lib/site";
+import { buildPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/json-ld";
+import { PageTransition } from "@/components/layout/page-transition";
 import { Analytics } from "@vercel/analytics/next";
 import "@/app/globals.css";
 
@@ -48,23 +51,16 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale: locale as Locale, namespace: "meta" });
   return {
-    title: t("home_title"),
-    description: t("home_description"),
+    ...buildPageMetadata({
+      locale: locale as Locale,
+      route: "home",
+      title: t("home_title"),
+      description: t("home_description"),
+    }),
     metadataBase: new URL(SITE.domain),
     icons: {
       icon: "/logos/mk-main.png",
       apple: "/logos/mk-main.png",
-    },
-    openGraph: {
-      title: t("home_title"),
-      description: t("home_description"),
-      locale: locale === "es" ? "es_DO" : "en_US",
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: t("home_title"),
-      description: t("home_description"),
     },
   };
 }
@@ -80,6 +76,7 @@ export default async function LocaleLayout({
   // Required for next-intl static rendering
   setRequestLocale(locale);
   const messages = await getMessages();
+  const shouldLoadVercelAnalytics = Boolean(process.env.VERCEL || process.env.VERCEL_URL);
 
   return (
     <html
@@ -91,9 +88,47 @@ export default async function LocaleLayout({
       </head>
       <body>
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <PageTransition>
+            {children}
+          </PageTransition>
         </NextIntlClientProvider>
-        <Analytics />
+        {shouldLoadVercelAnalytics ? <Analytics /> : null}
+
+        {/* Meta Pixel */}
+        <Script id="meta-pixel" strategy="afterInteractive">{`
+          !function(f,b,e,v,n,t,s)
+          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window,document,'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init','2481755865582352');
+          fbq('track','PageView');
+        `}</Script>
+        <noscript>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=2481755865582352&ev=PageView&noscript=1"
+            alt=""
+          />
+        </noscript>
+
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-DJB60KVLWB"
+          strategy="afterInteractive"
+        />
+        <Script id="ga-init" strategy="afterInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-DJB60KVLWB');
+        `}</Script>
       </body>
     </html>
   );

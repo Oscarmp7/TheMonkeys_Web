@@ -14,9 +14,9 @@ export const PROJECTS: Project[] = [
   {
     slug: "jimetor",
     client: "Jimetor",
-    titleEs: "Identidad digital & SEO",
-    titleEn: "Digital identity & SEO",
-    descriptionEs: "Fotografía, video, manejo de redes sociales y posicionamiento SEO para Jimetor.",
+    titleEs: "Identidad digital y SEO",
+    titleEn: "Digital identity and SEO",
+    descriptionEs: "Fotografia, video, manejo de redes sociales y posicionamiento SEO para Jimetor.",
     descriptionEn: "Photography, video, social media management and SEO positioning for Jimetor.",
     services: ["foto_video", "seo", "contenidos"],
     coverImage: "/portfolio/jimetor-logo.jpeg",

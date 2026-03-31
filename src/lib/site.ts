@@ -11,4 +11,5 @@ export const SITE = {
   facebook: "https://www.facebook.com/themonkeys.do",
   youtube: "https://www.youtube.com/@Themonkeysrd",
   pinterest: "https://www.pinterest.com/themonkeysdo/",
+  behance: "https://www.behance.net/themonkeys",
 } as const;

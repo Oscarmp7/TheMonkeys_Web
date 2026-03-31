@@ -8,6 +8,7 @@ import {
   escapeHtml,
   MAX_LENGTHS,
 } from "@/lib/validation";
+import { getContactDeliveryMode } from "@/lib/contact-delivery";
 import { SITE } from "@/lib/site";
 
 // Initialize clients lazily so missing env vars don't break builds
@@ -95,8 +96,17 @@ export async function POST(req: NextRequest) {
     message: escapeHtml(sanitize(values.message, MAX_LENGTHS.message)),
   };
 
-  // 7. Send email
-  if (process.env.RESEND_API_KEY) {
+  // 7. Delivery mode
+  const deliveryMode = getContactDeliveryMode();
+  if (deliveryMode === "misconfigured") {
+    return NextResponse.json(
+      { error: "Contact delivery not configured" },
+      { status: 503 }
+    );
+  }
+
+  // 8. Send email
+  if (deliveryMode === "active") {
     const resend = getResend();
     try {
       await resend.emails.send({
@@ -120,5 +130,7 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json(
+    deliveryMode === "development" ? { ok: true, delivery: "skipped" } : { ok: true }
+  );
 }

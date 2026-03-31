@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { Footer } from "@/components/layout/footer";
 import { NavbarHero } from "@/components/layout/navbar-hero";
-import { ServiciosContent } from "@/components/pages/servicios-content";
+import { NosotrosContent } from "@/components/pages/nosotros-content";
 import type { Locale } from "@/i18n/routing";
 import type { Metadata } from "next";
 import { buildPageMetadata } from "@/lib/seo";
@@ -18,16 +18,16 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale: locale as Locale, namespace: "services_page" });
+  const t = await getTranslations({ locale: locale as Locale, namespace: "about_page" });
   return buildPageMetadata({
     locale: locale as Locale,
-    route: "services",
+    route: "about",
     title: t("meta_title"),
     description: t("meta_description"),
   });
 }
 
-export default async function ServiciosPage({
+export default async function NosotrosPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
@@ -39,7 +39,7 @@ export default async function ServiciosPage({
     <>
       <NavbarHero locale={locale as Locale} variant="inner" />
       <main>
-        <ServiciosContent />
+        <NosotrosContent />
       </main>
       <Footer locale={locale as Locale} />
     </>

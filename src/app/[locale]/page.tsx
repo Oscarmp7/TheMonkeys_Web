@@ -17,7 +17,7 @@ export default async function HomePage({
   const { locale } = await params;
   return (
     <>
-      <NavbarHero locale={locale} />
+      <NavbarHero locale={locale} variant="home" />
       <main>
         {/* Hero — fixed panel behind everything */}
         <div className="sticky top-0 z-0 h-screen">

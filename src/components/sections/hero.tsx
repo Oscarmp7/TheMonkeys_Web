@@ -4,7 +4,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
+import { SITE } from "@/lib/site";
 import { SocialSidebar } from "@/components/ui/social-sidebar";
 import { StatsBar } from "@/components/sections/stats-bar";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
@@ -184,13 +184,15 @@ export function Hero() {
               >
                 {t("cta_contact")}
               </a>
-              <Link
-                href="/servicios"
+              <a
+                href={SITE.behance}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hero-cta-outline group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-3.5 border-2 border-off-white/40 text-off-white font-display text-sm sm:text-base tracking-wider rounded-full overflow-hidden transition-colors duration-200 cursor-pointer hover:border-off-white hover:text-brand-black"
               >
                 <span className="absolute inset-0 bg-off-white origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" />
                 <span className="relative z-10">{t("cta_services")}</span>
-              </Link>
+              </a>
             </div>
           </div>
 

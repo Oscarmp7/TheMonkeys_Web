@@ -35,7 +35,9 @@
 /* Elements that GSAP will animate in — hidden via CSS to prevent FOUC.
    GSAP's fromTo animates them to opacity:1.
    Reduced-motion users see everything immediately. */
-[data-hero-reveal] {
+[data-hero-reveal],
+[data-hero-title],
+[data-deco-number] {
   opacity: 0;
 }
 
@@ -45,7 +47,14 @@ nav[data-nav-animate] {
 
 @media (prefers-reduced-motion: reduce) {
   [data-hero-reveal],
+  [data-hero-title],
+  [data-deco-number],
   nav[data-nav-animate] {
+    opacity: 1 !important;
+  }
+
+  /* Ensure page transition wrapper is visible immediately */
+  [data-page-transition] {
     opacity: 1 !important;
   }
 }
