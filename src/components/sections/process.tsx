@@ -68,12 +68,21 @@ export function Process() {
   return (
     <section
       ref={containerRef}
-      className="bg-[#F1F0EB] py-10 sm:py-16 px-5 sm:px-6 md:px-8 relative overflow-hidden"
+      className="bg-[#F1F0EB] py-12 sm:py-20 px-5 sm:px-6 md:px-8 relative overflow-hidden"
     >
       <div className="max-w-6xl mx-auto w-full relative z-10">
         {/* Header — two columns aligned to bottom */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12 items-end">
-          {/* Left column — heading (~60%) */}
+          {/* Left column (~40%) */}
+          <div className="md:col-span-2" data-process-header>
+            <p className="font-display-alt font-normal text-brand-navy text-sm sm:text-base md:text-lg uppercase leading-tight">
+              {t("left_line1")}
+              <br />
+              {t("left_line2")}
+            </p>
+          </div>
+
+          {/* Right column (~60%) */}
           <div className="md:col-span-3" data-process-header>
             <div className="flex items-center gap-3 mb-4">
               <span className="w-8 h-px bg-brand-navy" aria-hidden="true" />
@@ -85,13 +94,6 @@ export function Process() {
               <span className="block">{t("headline_line1")}</span>
               <span className="block text-brand-yellow">{t("headline_line2")}</span>
             </h2>
-          </div>
-
-          {/* Right column — description (~40%) */}
-          <div className="md:col-span-2" data-process-header>
-            <p className="font-display-alt font-normal text-brand-navy/70 text-sm sm:text-base md:text-lg leading-relaxed">
-              {t("description")}
-            </p>
           </div>
         </div>
 

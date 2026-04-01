@@ -69,7 +69,7 @@ export function ServicesSection() {
     <section
       id="servicios"
       ref={containerRef}
-      className="bg-off-white flex flex-col justify-center py-14"
+      className="bg-off-white flex flex-col justify-center py-16 sm:py-20"
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-8 w-full">
         {/* Header — two columns */}

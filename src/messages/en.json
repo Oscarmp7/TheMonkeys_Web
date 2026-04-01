@@ -150,10 +150,11 @@
     }
   },
   "process": {
+    "left_line1": "IT'S NOT ABOUT DOING MARKETING.",
+    "left_line2": "IT'S ABOUT BUILDING BRANDS WITH DIRECTION.",
     "eyebrow": "OUR PROCESS",
     "headline_line1": "EACH PROJECT",
     "headline_line2": "HAS ITS LOGIC.",
-    "description": "We don't improvise. Every project follows a structured process that guarantees coherence, quality and sustainable results from day one.",
     "steps": {
       "analysis": {
         "title": "Analysis",

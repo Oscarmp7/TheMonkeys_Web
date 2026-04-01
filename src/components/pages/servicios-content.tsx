@@ -392,29 +392,27 @@ export function ServiciosContent() {
 
       <section
         data-srv-process
-        className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-brand-navy-dark px-6 py-20 sm:px-8 sm:py-28"
+        className="relative flex flex-col justify-center overflow-hidden bg-[#F1F0EB] px-6 py-16 sm:px-8 sm:py-24"
       >
         <div className="relative z-10 mx-auto w-full max-w-6xl">
           <div className="grid grid-cols-1 items-end gap-8 md:grid-cols-5 md:gap-12">
-            <div className="md:col-span-2" data-srv-process-header>
-              <p className="font-display text-sm uppercase leading-tight text-brand-yellow sm:text-base md:text-lg">
-                {t("quote_line1")}
-                <br />
-                {t("quote_line2")}
-              </p>
-            </div>
             <div className="md:col-span-3" data-srv-process-header>
               <div className="mb-4 flex items-center gap-3">
-                <span className="h-[2px] w-8 bg-brand-yellow" aria-hidden="true" />
-                <span className="font-mono text-xs uppercase tracking-[0.25em] text-off-white/50">
+                <span className="h-[2px] w-8 bg-brand-navy" aria-hidden="true" />
+                <span className="font-mono text-xs uppercase tracking-[0.25em] text-brand-navy/60">
                   {t("process_eyebrow")}
                 </span>
               </div>
-              <h2 className="font-display text-4xl uppercase leading-none text-off-white sm:text-5xl md:text-6xl lg:text-7xl">
+              <h2 className="font-display text-4xl uppercase leading-none text-brand-navy sm:text-5xl md:text-6xl lg:text-7xl">
                 {t("process_title_line1")}
                 <br />
                 <span className="text-brand-yellow">{t("process_title_line2")}</span>
               </h2>
+            </div>
+            <div className="md:col-span-2" data-srv-process-header>
+              <p className="font-display-alt font-normal text-brand-navy/70 text-sm sm:text-base md:text-lg leading-relaxed">
+                {t("process_description")}
+              </p>
             </div>
           </div>
 
@@ -426,7 +424,7 @@ export function ServiciosContent() {
           >
             <div
               data-srv-process-line
-              className="absolute top-10 left-[10%] right-[10%] hidden border-t-2 border-white/10 lg:block"
+              className="absolute top-10 left-[10%] right-[10%] hidden border-t-2 border-brand-navy/20 lg:block"
               aria-hidden="true"
             />
             <div
@@ -452,12 +450,12 @@ export function ServiciosContent() {
                     className={`flex h-16 w-16 items-center justify-center rounded-full border-2 transition-all duration-300 ease-out hover:scale-[1.08] sm:h-20 sm:w-20 ${
                       isActive
                         ? "border-brand-yellow bg-brand-yellow shadow-[0_0_0_10px_rgba(245,197,24,0.08)]"
-                        : "border-white/20 bg-brand-navy"
+                        : "border-brand-navy/30 bg-[#F1F0EB]"
                     }`}
                   >
                     <span
                       className={`font-display text-2xl transition-colors duration-300 ease-out sm:text-3xl ${
-                        isActive ? "text-brand-black" : "text-off-white/50"
+                        isActive ? "text-brand-black" : "text-brand-navy/50"
                       }`}
                     >
                       {num}
@@ -465,14 +463,14 @@ export function ServiciosContent() {
                   </div>
                   <h3
                     className={`mt-3 text-center font-display text-base uppercase transition-colors duration-300 sm:mt-4 sm:text-lg ${
-                      isActive ? "text-brand-yellow" : "text-off-white"
+                      isActive ? "text-brand-yellow" : "text-brand-navy"
                     }`}
                   >
                     {t(`process_steps.${step}.title`)}
                   </h3>
                   <p
                     className={`mx-auto mt-2 max-w-[240px] text-center font-body text-xs leading-relaxed transition-colors duration-300 sm:text-sm lg:max-w-[200px] ${
-                      isActive ? "text-off-white/72" : "text-off-white/50"
+                      isActive ? "text-brand-navy/72" : "text-brand-navy/55"
                     }`}
                   >
                     {t(`process_steps.${step}.description`)}

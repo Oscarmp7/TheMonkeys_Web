@@ -343,17 +343,15 @@ export function NavbarHero({
             }`;
             if (key === "portafolio") {
               return (
-                <a
+                <IntlLink
                   key={key}
-                  href={SITE.behance}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/portafolio"
                   className={linkClass}
                   onMouseEnter={handleLinkEnter}
                   aria-current={isActive ? "page" : undefined}
                 >
                   {t(key)}
-                </a>
+                </IntlLink>
               );
             }
             return (
@@ -428,18 +426,16 @@ export function NavbarHero({
 
               if (item.isExternal) {
                 return (
-                  <a
+                  <IntlLink
                     key={item.key}
                     ref={(el) => { mobileLinkRefs.current[i] = el; }}
-                    href={SITE.behance}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="/portafolio"
                     className={`${linkClass} ${item.isActive ? "text-brand-yellow" : ""}`}
                     onClick={closeMenu}
                     aria-current={item.isActive ? "page" : undefined}
                   >
                     {item.label}
-                  </a>
+                  </IntlLink>
                 );
               }
               if (item.isRoute) {
