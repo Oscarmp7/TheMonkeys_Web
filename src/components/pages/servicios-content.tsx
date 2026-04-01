@@ -404,13 +404,12 @@ export function ServiciosContent() {
                 </span>
               </div>
               <h2 className="font-display text-4xl uppercase leading-none text-brand-navy sm:text-5xl md:text-6xl lg:text-7xl">
-                {t("process_title_line1")}
-                <br />
-                <span className="text-brand-yellow">{t("process_title_line2")}</span>
+                <span className="block">{t("process_title_line1")}</span>
+                <span className="block text-brand-yellow mt-1">{t("process_title_line2")}</span>
               </h2>
             </div>
             <div className="md:col-span-2" data-srv-process-header>
-              <p className="font-display-alt font-normal text-brand-navy/70 text-sm sm:text-base md:text-lg leading-relaxed">
+              <p className="font-body text-brand-navy/65 text-sm sm:text-[0.96rem] leading-relaxed">
                 {t("process_description")}
               </p>
             </div>

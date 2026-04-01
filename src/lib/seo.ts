@@ -6,20 +6,13 @@ export type SeoRoute =
   | "home"
   | "services"
   | "about"
-  | "contact"
-  | "portfolio"
-  | "portfolioProject";
-
-interface SeoParams {
-  slug?: string;
-}
+  | "contact";
 
 interface BuildPageMetadataOptions {
   locale: Locale;
   route: SeoRoute;
   title: string;
   description: string;
-  params?: SeoParams;
   type?: "website" | "article";
   image?: string;
   noIndex?: boolean;
@@ -27,19 +20,11 @@ interface BuildPageMetadataOptions {
 
 const DEFAULT_SOCIAL_IMAGE = "/logos/logo-main.png";
 
-function getPortfolioSlug(params?: SeoParams): string {
-  if (!params?.slug) {
-    throw new Error("SEO route 'portfolioProject' requires a slug.");
-  }
-
-  return params.slug;
-}
-
 function withBase(path: string): string {
   return new URL(path, SITE.domain).toString();
 }
 
-export function buildLocalizedPath(route: SeoRoute, locale: Locale, params?: SeoParams): string {
+export function buildLocalizedPath(route: SeoRoute, locale: Locale): string {
   switch (route) {
     case "home":
       return locale === "es" ? "/" : "/en";
@@ -49,12 +34,6 @@ export function buildLocalizedPath(route: SeoRoute, locale: Locale, params?: Seo
       return locale === "es" ? "/nosotros" : "/en/about";
     case "contact":
       return locale === "es" ? "/contacto" : "/en/contact";
-    case "portfolio":
-      return locale === "es" ? "/portafolio" : "/en/portfolio";
-    case "portfolioProject": {
-      const slug = getPortfolioSlug(params);
-      return locale === "es" ? `/portafolio/${slug}` : `/en/portfolio/${slug}`;
-    }
     default:
       return "/";
   }
@@ -65,14 +44,13 @@ export function buildPageMetadata({
   route,
   title,
   description,
-  params,
   type = "website",
   image = DEFAULT_SOCIAL_IMAGE,
   noIndex = false,
 }: BuildPageMetadataOptions): Metadata {
-  const canonical = withBase(buildLocalizedPath(route, locale, params));
-  const spanishUrl = withBase(buildLocalizedPath(route, "es", params));
-  const englishUrl = withBase(buildLocalizedPath(route, "en", params));
+  const canonical = withBase(buildLocalizedPath(route, locale));
+  const spanishUrl = withBase(buildLocalizedPath(route, "es"));
+  const englishUrl = withBase(buildLocalizedPath(route, "en"));
 
   return {
     title,

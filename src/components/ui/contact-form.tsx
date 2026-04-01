@@ -74,6 +74,7 @@ export function ContactForm() {
       {/* Name */}
       <div className="flex flex-col gap-1">
         <input
+          suppressHydrationWarning
           id="contact-name"
           name="name"
           type="text"
@@ -92,6 +93,7 @@ export function ContactForm() {
       {/* Email */}
       <div className="flex flex-col gap-1">
         <input
+          suppressHydrationWarning
           id="contact-email"
           name="email"
           type="email"
@@ -110,6 +112,7 @@ export function ContactForm() {
       {/* Company */}
       <div className="flex flex-col gap-1">
         <input
+          suppressHydrationWarning
           id="contact-company"
           name="company"
           type="text"

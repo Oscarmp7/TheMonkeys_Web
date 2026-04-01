@@ -38,7 +38,7 @@ export function Contact() {
     <section
       ref={containerRef}
       id="contacto"
-      className="bg-brand-black py-20 px-6 md:px-8"
+      className="bg-brand-black py-24 sm:py-32 px-6 md:px-8"
     >
       <div className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
         {/* Left column — headline */}

@@ -68,7 +68,7 @@ export function Process() {
   return (
     <section
       ref={containerRef}
-      className="bg-[#F1F0EB] py-12 sm:py-20 px-5 sm:px-6 md:px-8 relative overflow-hidden"
+      className="bg-[#F1F0EB] py-20 sm:py-28 px-5 sm:px-6 md:px-8 relative overflow-hidden"
     >
       <div className="max-w-6xl mx-auto w-full relative z-10">
         {/* Header — two columns aligned to bottom */}
@@ -85,14 +85,14 @@ export function Process() {
           {/* Right column (~60%) */}
           <div className="md:col-span-3" data-process-header>
             <div className="flex items-center gap-3 mb-4">
-              <span className="w-8 h-px bg-brand-navy" aria-hidden="true" />
-              <span className="font-mono text-xs tracking-widest text-brand-navy uppercase">
+              <span className="w-8 h-[2px] bg-brand-navy/40" aria-hidden="true" />
+              <span className="font-mono text-[0.65rem] tracking-[0.25em] uppercase text-brand-navy/60">
                 {t("eyebrow")}
               </span>
             </div>
             <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-brand-navy uppercase leading-none">
               <span className="block">{t("headline_line1")}</span>
-              <span className="block text-brand-yellow">{t("headline_line2")}</span>
+              <span className="block text-brand-yellow mt-1">{t("headline_line2")}</span>
             </h2>
           </div>
         </div>

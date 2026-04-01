@@ -59,7 +59,7 @@ export function NavbarHero({
       }
 
       if (key === "portafolio") {
-        return pathname === "/portafolio" || pathname.startsWith("/portafolio/");
+        return false; // external Behance link — never active within the app
       }
 
       const route = NAV_ROUTES[key as keyof typeof NAV_ROUTES];
@@ -343,15 +343,16 @@ export function NavbarHero({
             }`;
             if (key === "portafolio") {
               return (
-                <IntlLink
+                <a
                   key={key}
-                  href="/portafolio"
+                  href={SITE.behance}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={linkClass}
                   onMouseEnter={handleLinkEnter}
-                  aria-current={isActive ? "page" : undefined}
                 >
                   {t(key)}
-                </IntlLink>
+                </a>
               );
             }
             return (
@@ -384,6 +385,7 @@ export function NavbarHero({
               }}
             />
             <button
+              suppressHydrationWarning
               onClick={() => switchLocale("es")}
               className={`relative z-10 rounded-full px-3 py-1 text-sm font-mono uppercase cursor-pointer transition-colors duration-200 ${
                 locale === "es" ? "text-white" : "text-white/40 hover:text-white/60"
@@ -392,6 +394,7 @@ export function NavbarHero({
               ES
             </button>
             <button
+              suppressHydrationWarning
               onClick={() => switchLocale("en")}
               className={`relative z-10 rounded-full px-3 py-1 text-sm font-mono uppercase cursor-pointer transition-colors duration-200 ${
                 locale === "en" ? "text-white" : "text-white/40 hover:text-white/60"
@@ -426,16 +429,17 @@ export function NavbarHero({
 
               if (item.isExternal) {
                 return (
-                  <IntlLink
+                  <a
                     key={item.key}
-                    ref={(el) => { mobileLinkRefs.current[i] = el; }}
-                    href="/portafolio"
+                    ref={(el) => { mobileLinkRefs.current[i] = el as unknown as HTMLAnchorElement; }}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={`${linkClass} ${item.isActive ? "text-brand-yellow" : ""}`}
                     onClick={closeMenu}
-                    aria-current={item.isActive ? "page" : undefined}
                   >
                     {item.label}
-                  </IntlLink>
+                  </a>
                 );
               }
               if (item.isRoute) {

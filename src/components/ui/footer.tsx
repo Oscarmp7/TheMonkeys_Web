@@ -27,8 +27,8 @@ export interface EditorialFooterProps extends React.HTMLAttributes<HTMLElement> 
   logoAlt: string;
   kicker: string;
   description: string;
-  navTitle: string;
-  navLinks: FooterLinkItem[];
+  navTitle?: string;
+  navLinks?: FooterLinkItem[];
   contactTitle: string;
   contactItems: FooterContactItem[];
   socialTitle: string;
@@ -43,6 +43,8 @@ export function EditorialFooter({
   logoAlt,
   kicker,
   description,
+  navTitle: _navTitle,
+  navLinks: _navLinks,
   contactTitle,
   contactItems,
   socialTitle,
@@ -63,16 +65,16 @@ export function EditorialFooter({
     >
       <div className="relative mx-auto max-w-[1400px]">
         <div className="grid gap-10 border-b border-white/8 pb-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,0.9fr)] lg:gap-10 lg:pb-10">
-          <div className="max-w-[28rem]">
+          <div className="flex flex-col gap-5">
+            <Link href="/" className="inline-flex cursor-pointer">
+              <Image src={logoSrc} width={110} height={40} alt={logoAlt} className="h-auto object-contain" />
+            </Link>
+
             <p className="font-mono text-[0.58rem] uppercase tracking-[0.24em] text-brand-yellow/72">
               {kicker}
             </p>
 
-            <Link href="/" className="mt-4 inline-flex cursor-pointer">
-              <Image src={logoSrc} width={122} height={44} alt={logoAlt} className="h-auto object-contain" />
-            </Link>
-
-            <p className="mt-4 font-mono text-[0.56rem] uppercase tracking-[0.16em] text-off-white/28 leading-relaxed max-w-[34ch]">
+            <p className="font-mono text-[0.56rem] uppercase tracking-[0.16em] text-off-white/28 leading-relaxed max-w-none">
               {description}
             </p>
           </div>

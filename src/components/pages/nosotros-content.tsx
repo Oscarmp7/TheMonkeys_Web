@@ -282,11 +282,12 @@ export function NosotrosContent() {
 
               <h2
                 data-about-history
-                className="mb-7 max-w-[13.2ch] font-display text-3xl uppercase leading-[0.9] text-brand-navy sm:text-4xl md:text-[3.8rem]"
+                className="mb-7 font-display text-3xl uppercase leading-[0.95] text-brand-navy sm:text-4xl md:text-[3.4rem]"
               >
-                <span className="block">{t("history_title_line1")}</span>
-                <span className="block text-brand-yellow">{t("history_title_line2")}</span>
-                <span className="mt-1 block">{`${t("history_title_line3")} ${t("history_title_line4")}`}</span>
+                <span className="block pb-1">{t("history_title_line1")}</span>
+                <span className="block text-brand-yellow mt-1">{t("history_title_line2")}</span>
+                <span className="mt-1 block pb-1">{t("history_title_line3")}</span>
+                <span className="block">{t("history_title_line4")}</span>
               </h2>
 
               <div className="space-y-4">
@@ -492,7 +493,7 @@ export function NosotrosContent() {
 
               <h2
                 data-about-why-intro
-                className="max-w-[11.8ch] font-display text-4xl uppercase leading-[0.92] text-off-white sm:text-5xl md:text-[5rem]"
+                className="max-w-[11.8ch] font-display text-4xl uppercase leading-[0.95] text-off-white sm:text-5xl md:text-[5rem]"
               >
                 <span className="block">{`${t("why_title_line1")} ${t("why_title_line2")}`}</span>
                 <span className="mt-1 block text-brand-yellow">{`${t("why_title_line3")} ${t("why_title_line4")}`}</span>
@@ -538,7 +539,7 @@ export function NosotrosContent() {
               </div>
               <p
                 data-about-quote
-                className="mt-5 max-w-[13.6ch] font-display text-[clamp(2.1rem,4vw,4rem)] uppercase leading-[0.9] text-brand-black"
+                className="mt-5 max-w-[13.6ch] font-display text-[clamp(2.1rem,4vw,4rem)] uppercase leading-[0.95] text-brand-black"
               >
                 {t("why_quote")}
               </p>
