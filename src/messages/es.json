@@ -150,10 +150,10 @@
     }
   },
   "process": {
-    "left_line1": "NO SE TRATA DE HACER MARKETING.",
-    "left_line2": "SE TRATA DE CONSTRUIR MARCAS CON DIRECCIÓN.",
     "eyebrow": "NUESTRO PROCESO",
-    "headline": "NUESTRO PROCESO TIENE LÓGICA.",
+    "headline_line1": "CADA PROYECTO",
+    "headline_line2": "TIENE UNA LÓGICA.",
+    "description": "No improvisamos. Cada proyecto sigue un proceso estructurado que garantiza coherencia, calidad y resultados sostenibles desde el primer día.",
     "steps": {
       "analysis": {
         "title": "Análisis",

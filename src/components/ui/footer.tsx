@@ -21,37 +21,6 @@ type FooterSocialItem = {
   icon: React.ReactNode;
 };
 
-function isNativeAnchorHref(href: string) {
-  return href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:");
-}
-
-function FooterLink({
-  item,
-  className,
-}: {
-  item: FooterLinkItem;
-  className?: string;
-}) {
-  if (item.external || isNativeAnchorHref(item.href)) {
-    return (
-      <a
-        href={item.href}
-        target={item.href.startsWith("http") ? "_blank" : undefined}
-        rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-        aria-label={item.ariaLabel ?? item.label}
-        className={className}
-      >
-        {item.label}
-      </a>
-    );
-  }
-
-  return (
-    <Link href={item.href as "/"} aria-label={item.ariaLabel ?? item.label} className={className}>
-      {item.label}
-    </Link>
-  );
-}
 
 export interface EditorialFooterProps extends React.HTMLAttributes<HTMLElement> {
   logoSrc: string;
@@ -74,8 +43,6 @@ export function EditorialFooter({
   logoAlt,
   kicker,
   description,
-  navTitle,
-  navLinks,
   contactTitle,
   contactItems,
   socialTitle,
@@ -105,27 +72,12 @@ export function EditorialFooter({
               <Image src={logoSrc} width={122} height={44} alt={logoAlt} className="h-auto object-contain" />
             </Link>
 
-            <p className="mt-4 max-w-[31ch] font-body text-sm leading-relaxed text-off-white/54 sm:text-[0.95rem]">
+            <p className="mt-4 font-mono text-[0.56rem] uppercase tracking-[0.16em] text-off-white/28 leading-relaxed max-w-[34ch]">
               {description}
             </p>
           </div>
 
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[minmax(140px,0.7fr)_minmax(220px,1fr)] lg:border-l lg:border-white/8 lg:pl-10">
-            <div>
-              <p className="font-mono text-[0.58rem] uppercase tracking-[0.24em] text-brand-yellow/72">
-                {navTitle}
-              </p>
-              <nav className="mt-4 grid gap-2.5" aria-label={navTitle}>
-                {navLinks.map((item) => (
-                  <FooterLink
-                    key={`${item.label}-${item.href}`}
-                    item={item}
-                    className="w-fit cursor-pointer font-display text-[0.95rem] uppercase leading-none text-off-white/72 transition-colors duration-200 hover:text-brand-yellow"
-                  />
-                ))}
-              </nav>
-            </div>
-
+          <div className="flex items-start justify-end lg:border-l lg:border-white/8 lg:pl-10">
             <div>
               <p className="font-mono text-[0.58rem] uppercase tracking-[0.24em] text-brand-yellow/72">
                 {contactTitle}

@@ -68,31 +68,13 @@ export function Process() {
   return (
     <section
       ref={containerRef}
-      className="min-h-screen flex flex-col justify-center bg-off-white py-16 sm:py-24 px-5 sm:px-6 md:px-8 relative overflow-hidden"
+      className="bg-[#F1F0EB] py-10 sm:py-16 px-5 sm:px-6 md:px-8 relative overflow-hidden"
     >
-      {/* Decorative large translucent section number */}
-      <span
-        className="absolute top-0 right-8 font-display text-[12rem] md:text-[16rem] lg:text-[20rem] text-brand-yellow/[0.04] leading-none select-none pointer-events-none"
-        aria-hidden="true"
-      >
-        03
-      </span>
-
       <div className="max-w-6xl mx-auto w-full relative z-10">
         {/* Header — two columns aligned to bottom */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12 items-end">
-          {/* Left column (~40%) */}
-          <div className="md:col-span-2" data-process-header>
-            <p className="font-display-alt font-normal text-brand-navy text-sm sm:text-base md:text-lg uppercase leading-tight">
-              {t("left_line1")}
-              <br />
-              {t("left_line2")}
-            </p>
-          </div>
-
-          {/* Right column (~60%) */}
+          {/* Left column — heading (~60%) */}
           <div className="md:col-span-3" data-process-header>
-            {/* Eyebrow */}
             <div className="flex items-center gap-3 mb-4">
               <span className="w-8 h-px bg-brand-navy" aria-hidden="true" />
               <span className="font-mono text-xs tracking-widest text-brand-navy uppercase">
@@ -100,8 +82,16 @@ export function Process() {
               </span>
             </div>
             <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-brand-navy uppercase leading-none">
-              {t("headline")}
+              <span className="block">{t("headline_line1")}</span>
+              <span className="block text-brand-yellow">{t("headline_line2")}</span>
             </h2>
+          </div>
+
+          {/* Right column — description (~40%) */}
+          <div className="md:col-span-2" data-process-header>
+            <p className="font-display-alt font-normal text-brand-navy/70 text-sm sm:text-base md:text-lg leading-relaxed">
+              {t("description")}
+            </p>
           </div>
         </div>
 

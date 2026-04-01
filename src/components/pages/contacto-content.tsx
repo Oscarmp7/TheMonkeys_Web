@@ -625,7 +625,7 @@ function FaqSection({ t }: { t: ContactPageT }) {
         </div>
 
         <div className="mt-14 flex justify-center" data-faq-reveal>
-          <a href={`mailto:${SITE.email}`} className="group inline-flex items-center gap-3 cursor-pointer">
+          <a href="https://wa.me/18097561847" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-3 cursor-pointer">
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-brand-yellow/40 text-brand-yellow transition-all duration-200 group-hover:bg-brand-yellow group-hover:text-brand-black">
               <ArrowRight size={14} aria-hidden="true" />
             </span>

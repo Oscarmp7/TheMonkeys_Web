@@ -55,7 +55,7 @@ export function Methodology() {
   return (
     <section
       ref={containerRef}
-      className="bg-brand-navy-dark min-h-screen flex flex-col items-center justify-center py-20 px-6"
+      className="bg-brand-navy-dark flex flex-col items-center py-14 px-6"
     >
       {/* Header block */}
       <div className="flex flex-col items-center text-center">

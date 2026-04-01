@@ -222,39 +222,39 @@ export function NosotrosContent() {
       <section
         data-about-history-section
         data-about-surface
-        className="relative overflow-hidden bg-brand-navy-dark py-20 sm:py-28"
+        className="relative overflow-hidden bg-[#F1F0EB] py-20 sm:py-28"
       >
         <div
           data-about-scroll-glow
           className="pointer-events-none absolute left-[-8%] top-8 h-[320px] w-[420px]"
           style={{
-            background: "radial-gradient(circle, rgba(255,255,255,0.045) 0%, transparent 72%)",
+            background: "radial-gradient(circle, rgba(30,36,63,0.06) 0%, transparent 72%)",
           }}
         />
-        <div className="pointer-events-none absolute inset-0 opacity-[0.02] [background-image:radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.8)_1px,transparent_0)] [background-size:18px_18px]" />
+        <div className="pointer-events-none absolute inset-0 opacity-[0.02] [background-image:radial-gradient(circle_at_1px_1px,rgba(30,36,63,0.08)_1px,transparent_0)] [background-size:18px_18px]" />
 
         <div className="relative mx-auto max-w-[1400px] px-6 sm:px-12">
           <div className="grid items-center gap-14 lg:grid-cols-[minmax(320px,0.92fr)_minmax(0,1.08fr)] lg:gap-16">
             <div data-about-history className="relative">
-              <div className="overflow-hidden border border-white/10 bg-brand-navy/70">
+              <div className="overflow-hidden border border-brand-navy/15 bg-brand-navy/8">
                 <div className="aspect-[4/3] bg-[linear-gradient(180deg,rgba(255,255,255,0.04),transparent_62%)] p-4 sm:p-6">
                   <div className="flex h-full flex-col justify-between border border-white/8 px-5 py-5 sm:px-7 sm:py-6">
                     <div className="flex items-center justify-between gap-4">
-                      <span className="font-mono text-[0.52rem] uppercase tracking-[0.24em] text-off-white/42">
+                      <span className="font-mono text-[0.52rem] uppercase tracking-[0.24em] text-brand-navy/50">
                         founders / placeholder
                       </span>
-                      <span className="font-mono text-[0.52rem] uppercase tracking-[0.24em] text-off-white/28">
+                      <span className="font-mono text-[0.52rem] uppercase tracking-[0.24em] text-brand-navy/35">
                         the monkeys
                       </span>
                     </div>
 
                     <div className="flex flex-1 items-center justify-center">
-                      <span className="font-display text-[7rem] uppercase leading-none text-brand-yellow/[0.08] sm:text-[9rem]">
+                      <span className="font-display text-[7rem] uppercase leading-none text-brand-yellow/[0.18] sm:text-[9rem]">
                         TM
                       </span>
                     </div>
 
-                    <div className="flex items-center justify-between gap-4 font-mono text-[0.52rem] uppercase tracking-[0.24em] text-off-white/30">
+                    <div className="flex items-center justify-between gap-4 font-mono text-[0.52rem] uppercase tracking-[0.24em] text-brand-navy/40">
                       <span>Santiago, RD</span>
                       <span>strategy + visual</span>
                     </div>
@@ -275,14 +275,14 @@ export function NosotrosContent() {
             <div className="lg:pl-2">
               <div data-about-history className="mb-4 flex items-center gap-3">
                 <span className="inline-block h-[2px] w-8 bg-brand-yellow" aria-hidden="true" />
-                <span className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-off-white/50">
+                <span className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-brand-navy/55">
                   {t("history_eyebrow")}
                 </span>
               </div>
 
               <h2
                 data-about-history
-                className="mb-7 max-w-[13.2ch] font-display text-4xl uppercase leading-[0.9] text-off-white sm:text-5xl md:text-[5.35rem]"
+                className="mb-7 max-w-[13.2ch] font-display text-3xl uppercase leading-[0.9] text-brand-navy sm:text-4xl md:text-[3.8rem]"
               >
                 <span className="block">{t("history_title_line1")}</span>
                 <span className="block text-brand-yellow">{t("history_title_line2")}</span>
@@ -290,15 +290,15 @@ export function NosotrosContent() {
               </h2>
 
               <div className="space-y-4">
-                <p data-about-history className="font-body text-sm leading-relaxed text-off-white/58 sm:text-[0.96rem]">
+                <p data-about-history className="font-body text-sm leading-relaxed text-brand-navy/65 sm:text-[0.96rem]">
                   {t("history_body1")}
                 </p>
-                <p data-about-history className="font-body text-sm leading-relaxed text-off-white/58 sm:text-[0.96rem]">
+                <p data-about-history className="font-body text-sm leading-relaxed text-brand-navy/65 sm:text-[0.96rem]">
                   {t("history_body2")}
                 </p>
-                <p data-about-history className="font-body text-sm leading-relaxed text-off-white/58 sm:text-[0.96rem]">
+                <p data-about-history className="font-body text-sm leading-relaxed text-brand-navy/65 sm:text-[0.96rem]">
                   {t("history_body3")}{" "}
-                  <strong className="text-off-white">{t("history_body3_bold")}</strong>
+                  <strong className="text-brand-navy">{t("history_body3_bold")}</strong>
                 </p>
               </div>
 
@@ -306,20 +306,22 @@ export function NosotrosContent() {
                 {values.map((value) => (
                   <span
                     key={value}
-                    className="border-b border-brand-yellow/18 pb-1 font-mono text-[0.58rem] uppercase tracking-[0.18em] text-off-white/48 transition-colors duration-200 hover:border-brand-yellow/40 hover:text-off-white/72"
+                    className="border-b border-brand-yellow/18 pb-1 font-mono text-[0.58rem] uppercase tracking-[0.18em] text-brand-navy/55 transition-colors duration-200 hover:border-brand-yellow/40 hover:text-brand-navy"
                   >
                     {value}
                   </span>
                 ))}
               </div>
 
-              <NextLink
+              <a
                 data-about-history
-                href="/contacto"
+                href="https://wa.me/18097561847"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-10 inline-flex min-w-[16rem] items-center justify-center gap-3 rounded-full border border-brand-yellow/70 bg-brand-yellow px-7 py-4 font-display text-base tracking-[0.04em] text-brand-black transition-all duration-200 hover:scale-[1.035] hover:shadow-[0_0_26px_rgba(245,197,24,0.38)] sm:min-w-[17rem] sm:px-9 sm:py-4.5"
               >
                 {t("values_cta")}
-              </NextLink>
+              </a>
             </div>
           </div>
         </div>
@@ -359,7 +361,7 @@ export function NosotrosContent() {
               const media = (
                 <div className="relative overflow-hidden border border-white/10 bg-brand-navy/55 transition-all duration-300 group-hover:border-white/16">
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.045),transparent_60%)]" />
-                  <div className="relative aspect-[4/4.7] px-5 py-5 sm:px-6 sm:py-6">
+                  <div className="relative aspect-[4/3] px-5 py-5 sm:px-6 sm:py-6">
                     <div className="flex h-full flex-col justify-between border border-white/8 p-5 sm:p-6">
                       <div className="flex items-center justify-between gap-4">
                         <span className="font-mono text-[0.5rem] uppercase tracking-[0.24em] text-off-white/40">
@@ -601,12 +603,14 @@ export function NosotrosContent() {
           </p>
 
           <div data-about-cta className="mt-10 flex flex-wrap justify-center gap-3 sm:mt-12 sm:gap-4">
-            <NextLink
-              href="/contacto"
+            <a
+              href="https://wa.me/18097561847"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-full bg-brand-yellow px-6 py-3 font-display text-sm tracking-wider text-brand-black transition-all duration-200 hover:scale-[1.03] hover:shadow-[0_0_24px_rgba(245,197,24,0.38)] sm:px-8 sm:py-3.5 sm:text-base"
             >
               {t("cta_button_primary")}
-            </NextLink>
+            </a>
             <NextLink
               href="/servicios"
               className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border-2 border-off-white/38 px-6 py-3 font-display text-sm tracking-wider text-off-white transition-colors duration-200 hover:border-off-white hover:text-brand-black sm:px-8 sm:py-3.5 sm:text-base"
