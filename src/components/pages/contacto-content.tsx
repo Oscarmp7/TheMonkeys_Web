@@ -77,7 +77,6 @@ function ContactCard({ item }: { item: ContactItem }) {
     return (
       <div
         className="group flex items-start gap-4 rounded-[1.25rem] border border-white/8 bg-white/[0.04] px-4 py-4"
-        data-contact-reveal
       >
         {content}
       </div>
@@ -90,7 +89,6 @@ function ContactCard({ item }: { item: ContactItem }) {
       target={item.external ? "_blank" : undefined}
       rel={item.external ? "noopener noreferrer" : undefined}
       className="group flex items-start gap-4 rounded-[1.25rem] border border-white/8 bg-white/[0.04] px-4 py-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-yellow/25 hover:bg-white/[0.06] cursor-pointer"
-      data-contact-reveal
     >
       {content}
     </a>
@@ -119,7 +117,7 @@ function ContactInfoStack({ t }: { t: ContactPageT }) {
   ];
 
   return (
-    <div className="grid gap-3">
+    <div className="grid gap-3" data-contact-reveal>
       {items.map((item) => (
         <ContactCard key={item.label} item={item} />
       ))}

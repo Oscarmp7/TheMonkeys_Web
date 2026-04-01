@@ -79,7 +79,7 @@ export function EditorialFooter({
             </p>
           </div>
 
-          <div className="flex items-start justify-end lg:border-l lg:border-white/8 lg:pl-10">
+          <div className="flex items-start lg:justify-end lg:border-l lg:border-white/8 lg:pl-10">
             <div>
               <p className="font-mono text-[0.58rem] uppercase tracking-[0.24em] text-brand-yellow/72">
                 {contactTitle}
