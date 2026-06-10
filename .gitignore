@@ -15,6 +15,7 @@
 
 # next.js
 /.next/
+/.next-preview/
 /out/
 
 # production
@@ -38,6 +39,7 @@ yarn-error.log*
 .claude/
 .agents/
 .mateo/
+.impeccable/
 .playwright-cli/
 .playwright-mcp/
 output/

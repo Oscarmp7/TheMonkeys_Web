@@ -18,17 +18,30 @@ export function Contact() {
     () => {
       if (prefersReduced) return;
 
+      const trigger = {
+        trigger: containerRef.current,
+        start: "top 80%",
+        once: true,
+      } as const;
+
+      // Signature: the big headline wipes in line by line (clip mask),
+      // then the supporting copy and form fade up under it.
+      gsap.from("[data-contact-headline] > span", {
+        clipPath: "inset(0 100% 0 0)",
+        duration: 0.7,
+        stagger: 0.12,
+        ease: "expo.out",
+        scrollTrigger: trigger,
+      });
+
       gsap.from("[data-contact-animate]", {
         opacity: 0,
         y: 20,
         duration: 0.6,
         stagger: 0.1,
         ease: "expo.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-          once: true,
-        },
+        delay: 0.2,
+        scrollTrigger: trigger,
       });
     },
     { scope: containerRef }
@@ -41,21 +54,10 @@ export function Contact() {
       className="bg-brand-black py-24 sm:py-32 px-6 md:px-8"
     >
       <div className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-        {/* Left column — headline */}
+        {/* Left column — headline leads (no eyebrow) */}
         <div className="flex flex-col">
-          {/* Eyebrow */}
-          <div className="flex items-center gap-3 mb-8" data-contact-animate>
-            <span
-              className="w-8 h-[2px] bg-brand-yellow"
-              aria-hidden="true"
-            />
-            <span className="font-mono text-[0.65rem] tracking-[0.25em] uppercase text-brand-yellow">
-              {t("eyebrow")}
-            </span>
-          </div>
-
-          {/* Headline — stacked vertically */}
-          <div data-contact-animate>
+          {/* Headline — stacked vertically, wipes in line by line */}
+          <div data-contact-headline>
             {/* Line 1: ¿ in solid white + rest in yellow stroke (matches hero outline style) */}
             <span className="block font-display text-[2.5rem] sm:text-[3.5rem] md:text-[3.5rem] lg:text-[5rem] xl:text-[7rem] uppercase leading-none">
               {(() => {

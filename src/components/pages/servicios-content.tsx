@@ -68,14 +68,16 @@ export function ServiciosContent() {
         }
       );
 
+      // Same wipe language as the home services grid — cards reveal from a
+      // bottom clip, our consistent "service card" motion signature.
       gsap.fromTo(
         "[data-srv-card]",
-        { opacity: 0, y: 30 },
+        { clipPath: "inset(100% 0 0 0)", y: 16 },
         {
-          opacity: 1,
+          clipPath: "inset(0% 0 0 0)",
           y: 0,
-          duration: 0.5,
-          stagger: 0.06,
+          duration: 0.7,
+          stagger: 0.07,
           ease: "expo.out",
           scrollTrigger: {
             trigger: "[data-srv-grid]",
@@ -206,13 +208,6 @@ export function ServiciosContent() {
         </svg>
 
         <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 sm:px-12">
-          <div data-srv-hero className="mb-5 flex items-center gap-3 sm:mb-7">
-            <span className="inline-block h-px w-6 bg-brand-yellow/60" aria-hidden="true" />
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-brand-yellow/80 sm:text-sm">
-              {t("hero_eyebrow")}
-            </span>
-          </div>
-
           <h1
             data-srv-hero
             className="font-display text-[clamp(3rem,11vw,10rem)] uppercase leading-[0.85] tracking-tight"
@@ -240,17 +235,12 @@ export function ServiciosContent() {
         <div className="mx-auto max-w-[1400px] px-6 sm:px-12">
           <div className="mb-14 flex flex-col gap-8 lg:flex-row lg:items-end lg:gap-16">
             <div className="lg:w-[55%]">
-              <div data-srv-grid-header className="mb-4 flex items-center gap-3">
-                <span className="inline-block h-[2px] w-8 bg-brand-yellow" aria-hidden="true" />
-                <span className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-off-white/50">
-                  {t("grid_eyebrow")}
-                </span>
-              </div>
               <h2
                 data-srv-grid-header
                 className="font-display text-4xl uppercase leading-none text-off-white sm:text-5xl md:text-6xl lg:text-7xl"
               >
-                {t("grid_eyebrow")}
+                <span className="block">{t("grid_title_line1")}</span>
+                <span className="block text-brand-yellow mt-1">{t("grid_title_line2")}</span>
               </h2>
             </div>
             <div data-srv-grid-header className="lg:w-[45%]">
@@ -374,12 +364,6 @@ export function ServiciosContent() {
         <div className="relative z-10 mx-auto w-full max-w-6xl">
           <div className="grid grid-cols-1 items-end gap-8 md:grid-cols-5 md:gap-12">
             <div className="md:col-span-3" data-srv-process-header>
-              <div className="mb-4 flex items-center gap-3">
-                <span className="h-[2px] w-8 bg-brand-navy" aria-hidden="true" />
-                <span className="font-mono text-xs uppercase tracking-[0.25em] text-brand-navy/60">
-                  {t("process_eyebrow")}
-                </span>
-              </div>
               <h2 className="font-display text-4xl uppercase leading-none text-brand-navy sm:text-5xl md:text-6xl lg:text-7xl">
                 <span className="block">{t("process_title_line1")}</span>
                 <span className="block text-brand-yellow mt-1">{t("process_title_line2")}</span>
@@ -432,14 +416,6 @@ export function ServiciosContent() {
         </svg>
 
         <div className="relative z-10 mx-auto max-w-[1400px] px-6 sm:px-12">
-          <div data-srv-cta className="mb-4 flex items-center justify-center gap-3 sm:mb-6">
-            <span className="h-px w-6 bg-brand-yellow/60" aria-hidden="true" />
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-brand-yellow/80 sm:text-sm">
-              {t("cta_eyebrow")}
-            </span>
-            <span className="h-px w-6 bg-brand-yellow/60" aria-hidden="true" />
-          </div>
-
           <h2
             data-srv-cta
             className="font-display text-[clamp(3rem,10vw,10rem)] uppercase leading-[0.85] tracking-tight"

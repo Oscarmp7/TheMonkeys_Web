@@ -33,19 +33,35 @@ export function Methodology() {
         },
       });
 
+      // Signature: the MONKEYS letters assemble left-to-right — cards rise
+      // while each big Anton letter scales up from a tucked state.
+      const grid = {
+        trigger: "[data-meth-grid]",
+        start: "top 85%",
+        toggleActions: "play none none none",
+      } as const;
+
       gsap.fromTo("[data-meth-card]",
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 24 },
         {
           opacity: 1,
           y: 0,
           duration: 0.5,
-          stagger: 0.05,
+          stagger: 0.07,
           ease: "expo.out",
-          scrollTrigger: {
-            trigger: "[data-meth-grid]",
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
+          scrollTrigger: grid,
+        }
+      );
+
+      gsap.fromTo("[data-meth-letter]",
+        { scale: 0.55, opacity: 0, transformOrigin: "left bottom" },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 0.6,
+          stagger: 0.07,
+          ease: "expo.out",
+          scrollTrigger: grid,
         }
       );
     },
@@ -57,23 +73,12 @@ export function Methodology() {
       ref={containerRef}
       className="bg-brand-navy-dark flex flex-col items-center py-16 sm:py-20 px-6"
     >
-      {/* Header block */}
+      {/* Header block — headline leads (no eyebrow) */}
       <div className="flex flex-col items-center text-center">
-        {/* Eyebrow */}
-        <div data-meth-header className="flex items-center gap-3">
-          <span
-            className="inline-block w-8 h-[2px] bg-brand-yellow"
-            aria-hidden="true"
-          />
-          <span className="font-mono text-[0.65rem] tracking-[0.25em] uppercase text-off-white/50">
-            {t("eyebrow")}
-          </span>
-        </div>
-
         {/* Headline */}
         <h2
           data-meth-header
-          className="mt-4 font-display text-4xl md:text-5xl lg:text-6xl uppercase text-off-white"
+          className="font-display text-4xl md:text-5xl lg:text-6xl uppercase text-off-white"
         >
           {t("headline1")}{" "}
           <span className="text-brand-yellow">{t("headline2")}</span>
@@ -100,7 +105,10 @@ export function Methodology() {
             className="group bg-brand-navy border border-white/10 hover:border-white/20 rounded-sm p-4 sm:p-5 flex flex-col transition-all duration-200 hover:-translate-y-1 cursor-default"
           >
             {/* Letter */}
-            <span className="font-display text-4xl sm:text-5xl md:text-6xl text-brand-yellow leading-none mb-3 transition-transform duration-200 group-hover:scale-110">
+            <span
+              data-meth-letter
+              className="font-display text-4xl sm:text-5xl md:text-6xl text-brand-yellow leading-none mb-3 transition-transform duration-200 group-hover:scale-110"
+            >
               {t(`pillars.${key}.letter`)}
             </span>
             {/* Title */}

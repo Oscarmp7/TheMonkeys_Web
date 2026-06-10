@@ -36,13 +36,13 @@ export function Process() {
         },
       });
 
-      // Steps stagger animation
-      gsap.from("[data-process-step]", {
-        opacity: 0,
-        y: 32,
-        duration: 0.5,
-        stagger: 0.15,
-        ease: "expo.out",
+      // Signature: the connecting line draws first, then each step pops in
+      // along it (scale from the circle) — a sequence, not a uniform fade.
+      gsap.from("[data-process-line]", {
+        scaleX: 0,
+        transformOrigin: "left center",
+        duration: 0.9,
+        ease: "power2.out",
         scrollTrigger: {
           trigger: "[data-process-grid]",
           start: "top 85%",
@@ -50,12 +50,15 @@ export function Process() {
         },
       });
 
-      // Connecting line draw
-      gsap.from("[data-process-line]", {
-        scaleX: 0,
-        transformOrigin: "left center",
-        duration: 0.8,
-        ease: "power2.out",
+      gsap.from("[data-process-step]", {
+        opacity: 0,
+        scale: 0.82,
+        y: 16,
+        transformOrigin: "top center",
+        duration: 0.5,
+        stagger: 0.14,
+        ease: "expo.out",
+        delay: 0.25,
         scrollTrigger: {
           trigger: "[data-process-grid]",
           start: "top 85%",
@@ -83,14 +86,8 @@ export function Process() {
             </p>
           </div>
 
-          {/* Right column (~60%) */}
+          {/* Right column (~60%) — headline leads (no eyebrow) */}
           <div className="md:col-span-3" data-process-header>
-            <div className="flex items-center gap-3 mb-4">
-              <span className="w-8 h-[2px] bg-brand-navy/40" aria-hidden="true" />
-              <span className="font-mono text-[0.65rem] tracking-[0.25em] uppercase text-brand-navy/60">
-                {t("eyebrow")}
-              </span>
-            </div>
             <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-brand-navy uppercase leading-none">
               <span className="block">{t("headline_line1")}</span>
               <span className="block text-brand-yellow mt-1">{t("headline_line2")}</span>

@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
-    "test": "node --test --require tsx/cjs tests/**/*.test.ts"
+    "test": "node --test --require tsx/cjs tests/**/*.test.ts",
+    "preview": "cross-env NEXT_DIST_DIR=.next-preview next build && cross-env NEXT_DIST_DIR=.next-preview next start -p 3110",
+    "preview:start": "cross-env NEXT_DIST_DIR=.next-preview next start -p 3110"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -29,6 +31,7 @@
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "cross-env": "^10.1.0",
     "eslint": "^9.0.0",
     "eslint-config-next": "^15.2.0",
     "playwright": "^1.58.2",

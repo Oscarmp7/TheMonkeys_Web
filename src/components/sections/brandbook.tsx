@@ -32,10 +32,11 @@ export function Brandbook() {
         },
       });
 
+      // Signature: the founders plate wipes open from the left (clip mask)
+      // rather than sliding — feels like a frame being revealed.
       gsap.from("[data-bb-photo]", {
-        opacity: 0,
-        x: -20,
-        duration: 0.7,
+        clipPath: "inset(0 0 0 100%)",
+        duration: 0.85,
         ease: "expo.out",
         scrollTrigger: {
           trigger: containerRef.current,
@@ -92,19 +93,8 @@ export function Brandbook() {
 
           {/* RIGHT — Copy */}
           <div className="flex flex-1 flex-col">
-            {/* Eyebrow */}
-            <div data-bb-animate className="flex items-center gap-3">
-              <span
-                className="inline-block h-0 w-7 border-t-2 border-brand-navy/40"
-                aria-hidden="true"
-              />
-              <span className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-brand-navy/60">
-                {t("eyebrow")}
-              </span>
-            </div>
-
-            {/* Headline */}
-            <div data-bb-animate className="mt-4">
+            {/* Headline leads (no eyebrow) */}
+            <div data-bb-animate>
               <h2 className="font-display text-[2.25rem] leading-[1] text-brand-navy md:text-5xl lg:text-[3.5rem]">
                 {t("headline1")}
               </h2>

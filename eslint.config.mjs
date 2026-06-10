@@ -14,11 +14,15 @@ const config = [
   {
     ignores: [
       ".next/**",
+      ".next-preview/**",
       "node_modules/**",
       "output/**",
       "test-results/**",
       "coverage/**",
       "next-env.d.ts",
+      // Installed skill packages (git-ignored, not our source)
+      ".agents/**",
+      ".claude/**",
     ],
   },
   ...compat.extends("next/core-web-vitals", "next/typescript"),

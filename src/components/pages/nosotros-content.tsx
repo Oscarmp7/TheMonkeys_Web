@@ -170,13 +170,6 @@ export function NosotrosContent() {
 
         <div className="relative mx-auto flex min-h-[80svh] max-w-[1400px] items-center px-6 pb-28 pt-36 sm:px-12 sm:pb-32 sm:pt-40">
           <div className="max-w-[1020px]">
-            <div data-about-hero className="mb-4 flex items-center gap-3 sm:mb-6">
-              <span className="inline-block h-px w-6 bg-brand-yellow/65" aria-hidden="true" />
-              <span className="font-mono text-xs uppercase tracking-[0.25em] text-brand-yellow/78 sm:text-sm">
-                {t("hero_eyebrow")}
-              </span>
-            </div>
-
             <h1
               data-about-hero
               className="max-w-[12.5ch] font-display text-[clamp(3.4rem,10vw,9.5rem)] uppercase leading-[0.84] tracking-tight"
@@ -268,13 +261,6 @@ export function NosotrosContent() {
             </div>
 
             <div className="lg:pl-2">
-              <div data-about-history className="mb-4 flex items-center gap-3">
-                <span className="inline-block h-[2px] w-8 bg-brand-yellow" aria-hidden="true" />
-                <span className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-brand-navy/55">
-                  {t("history_eyebrow")}
-                </span>
-              </div>
-
               <h2
                 data-about-history
                 className="mb-7 font-display text-3xl uppercase leading-[0.95] text-brand-navy sm:text-4xl md:text-[3.4rem]"
@@ -326,13 +312,6 @@ export function NosotrosContent() {
       <section data-about-team-section className="bg-brand-black py-20 sm:py-28">
         <div className="mx-auto max-w-[1400px] px-6 sm:px-12">
           <div className="mb-14 flex flex-col items-center text-center sm:mb-16">
-            <div data-about-team-header className="mb-4 flex items-center gap-3">
-              <span className="h-[2px] w-8 bg-brand-yellow" aria-hidden="true" />
-              <span className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-off-white/50">
-                {t("team_eyebrow")}
-              </span>
-              <span className="h-[2px] w-8 bg-brand-yellow" aria-hidden="true" />
-            </div>
             <h2
               data-about-team-header
               className="font-display text-4xl uppercase leading-[0.92] text-off-white sm:text-5xl md:text-6xl lg:text-7xl"
@@ -479,13 +458,6 @@ export function NosotrosContent() {
         <div className="relative mx-auto max-w-[1400px] px-6 sm:px-12">
           <div className="overflow-hidden border border-white/10 lg:grid lg:grid-cols-[minmax(0,1.06fr)_minmax(360px,0.94fr)]">
             <div className="bg-brand-navy-dark px-8 py-12 sm:px-12 sm:py-14 lg:px-14 lg:py-16">
-              <div data-about-why-intro className="mb-4 flex items-center gap-3">
-                <span className="inline-block h-[2px] w-8 bg-brand-yellow" aria-hidden="true" />
-                <span className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-off-white/50">
-                  {t("why_eyebrow")}
-                </span>
-              </div>
-
               <h2
                 data-about-why-intro
                 className="max-w-[11.8ch] font-display text-4xl uppercase leading-[0.95] text-off-white sm:text-5xl md:text-[5rem]"
@@ -564,14 +536,6 @@ export function NosotrosContent() {
         <div className="pointer-events-none absolute inset-0 opacity-[0.018] [background-image:radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.82)_1px,transparent_0)] [background-size:18px_18px]" />
 
         <div className="relative z-10 mx-auto max-w-[1400px] px-6 sm:px-12">
-          <div data-about-cta className="mb-4 flex items-center justify-center gap-3 sm:mb-6">
-            <span className="h-px w-6 bg-brand-yellow/60" aria-hidden="true" />
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-brand-yellow/80 sm:text-sm">
-              {t("cta_eyebrow")}
-            </span>
-            <span className="h-px w-6 bg-brand-yellow/60" aria-hidden="true" />
-          </div>
-
           <h2
             data-about-cta
             className="mx-auto max-w-[12.6ch] font-display text-[clamp(3rem,9vw,8.5rem)] uppercase leading-[0.85] tracking-tight"

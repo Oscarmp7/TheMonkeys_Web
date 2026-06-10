@@ -607,13 +607,6 @@ function FaqSection({ t }: { t: ContactPageT }) {
 
       <div className="relative z-10 mx-auto max-w-6xl">
         <div className="mb-16 md:mb-20" data-faq-reveal>
-          <div className="mb-6 flex items-center gap-3">
-            <span className="h-px w-8 bg-brand-yellow" aria-hidden="true" />
-            <span className="font-mono text-[0.55rem] tracking-[0.25em] uppercase text-brand-yellow">
-              {t("faq_eyebrow")}
-            </span>
-          </div>
-
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <h2 className="font-display-alt text-[clamp(3rem,7vw,5.5rem)] uppercase leading-[0.9] tracking-[0.01em]">
               <span className="block text-off-white">{t("faq_title_line1")}</span>
@@ -797,15 +790,8 @@ export function ContactoContent() {
                 />
 
                 <div className="relative z-10 mx-auto max-w-[560px]">
-                  <div className="flex items-center gap-3" data-contact-reveal>
-                    <span className="h-px w-8 bg-brand-yellow" aria-hidden="true" />
-                    <span className="font-mono text-[0.55rem] tracking-[0.25em] uppercase text-brand-yellow">
-                      {t("hero_eyebrow")}
-                    </span>
-                  </div>
-
                   <h1
-                    className="mt-5 uppercase"
+                    className="uppercase"
                     data-hero-title
                   >
                     <span className="flex flex-wrap items-end gap-x-1 gap-y-0 font-display-alt text-[clamp(3.9rem,9vw,6.9rem)] leading-[0.88] tracking-[0.005em] text-off-white sm:gap-x-1.5">
@@ -856,14 +842,7 @@ export function ContactoContent() {
 
                 <div className="relative z-10 mx-auto max-w-[760px]">
                   <div className="mb-10" data-form-panel>
-                    <div className="flex items-center gap-3">
-                      <span className="h-px w-8 bg-brand-navy/35" aria-hidden="true" />
-                      <span className="font-mono text-[0.55rem] tracking-[0.25em] uppercase text-brand-navy/55">
-                        {t("form_eyebrow")}
-                      </span>
-                    </div>
-
-                    <h2 className="mt-4 font-display-alt text-[clamp(2.6rem,5vw,4.9rem)] uppercase leading-[0.92] tracking-[0.01em] text-brand-black">
+                    <h2 className="font-display-alt text-[clamp(2.6rem,5vw,4.9rem)] uppercase leading-[0.92] tracking-[0.01em] text-brand-black">
                       <span className="block">{t("form_title_line1")}</span>
                       <span className="block text-brand-yellow">{t("form_title_line2")}</span>
                     </h2>

@@ -36,14 +36,16 @@ export function ServicesSection() {
         }
       );
 
+      // Signature: cards wipe up from a bottom clip instead of a flat fade —
+      // reads like panels being revealed, not content fading in.
       gsap.fromTo(
         "[data-svc-card]",
-        { opacity: 0, y: 30 },
+        { clipPath: "inset(100% 0 0 0)", y: 16 },
         {
-          opacity: 1,
+          clipPath: "inset(0% 0 0 0)",
           y: 0,
-          duration: 0.5,
-          stagger: 0.06,
+          duration: 0.7,
+          stagger: 0.07,
           ease: "expo.out",
           scrollTrigger: {
             trigger: "[data-svc-grid]",
@@ -65,21 +67,9 @@ export function ServicesSection() {
       <div className="max-w-[1400px] mx-auto px-6 lg:px-8 w-full">
         {/* Header — two columns */}
         <div className="flex flex-col lg:flex-row lg:items-end gap-8 lg:gap-16 mb-12">
-          {/* Left column */}
+          {/* Left column — headline leads (no eyebrow) */}
           <div className="lg:w-[55%]">
-            {/* Eyebrow */}
-            <div data-svc-header className="flex items-center gap-3">
-              <span
-                className="inline-block w-8 h-[2px] bg-brand-navy/40"
-                aria-hidden="true"
-              />
-              <span className="font-mono text-[0.65rem] tracking-[0.25em] uppercase text-brand-navy/60">
-                {t("eyebrow")}
-              </span>
-            </div>
-
-            {/* Headline */}
-            <h2 data-svc-header className="mt-4">
+            <h2 data-svc-header>
               <span className="block font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-brand-navy uppercase leading-none">
                 {t("headline_line1")}
               </span>
