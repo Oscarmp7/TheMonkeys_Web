@@ -83,7 +83,7 @@ export function Contact() {
 
           {/* Body text */}
           <p
-            className="font-body text-off-white/55 text-sm leading-relaxed text-justify max-w-md mt-6"
+            className="font-body text-off-white/55 text-sm leading-relaxed text-left max-w-md mt-6"
             data-contact-animate
           >
             {t("body")}

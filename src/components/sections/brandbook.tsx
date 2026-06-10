@@ -106,7 +106,7 @@ export function Brandbook() {
             {/* Body paragraphs */}
             <p
               data-bb-animate
-              className="mt-6 text-sm leading-relaxed text-brand-navy/80 text-justify md:text-base"
+              className="mt-6 text-sm leading-relaxed text-brand-navy/80 text-left md:text-base"
             >
               {t("body1_before")}
               <strong className="font-bold text-brand-navy">
@@ -116,7 +116,7 @@ export function Brandbook() {
             </p>
             <p
               data-bb-animate
-              className="mt-4 text-sm leading-relaxed text-brand-navy/80 text-justify md:text-base"
+              className="mt-4 text-sm leading-relaxed text-brand-navy/80 text-left md:text-base"
             >
               {t("body2_before")}
               <strong className="font-bold text-brand-navy">

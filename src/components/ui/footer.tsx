@@ -63,7 +63,7 @@ export function EditorialFooter({
               {kicker}
             </p>
 
-            <p className="font-mono text-[0.56rem] uppercase tracking-[0.16em] text-off-white/28 leading-relaxed max-w-none">
+            <p className="font-mono text-[0.56rem] uppercase tracking-[0.16em] text-off-white/60 leading-relaxed max-w-none">
               {description}
             </p>
           </div>
@@ -79,16 +79,16 @@ export function EditorialFooter({
                     <a
                       key={`${item.label}-${item.value}`}
                       href={item.href}
-                      className="w-fit cursor-pointer font-body text-sm text-off-white/60 transition-colors duration-200 hover:text-brand-yellow"
+                      className="w-fit cursor-pointer font-body text-sm text-off-white/70 transition-colors duration-200 hover:text-brand-yellow"
                     >
-                      <span className="mr-2 font-mono text-[0.56rem] uppercase tracking-[0.2em] text-off-white/28">
+                      <span className="mr-2 font-mono text-[0.56rem] uppercase tracking-[0.2em] text-off-white/55">
                         {item.label}
                       </span>
                       {item.value}
                     </a>
                   ) : (
-                    <div key={`${item.label}-${item.value}`} className="font-body text-sm text-off-white/48">
-                      <span className="mr-2 font-mono text-[0.56rem] uppercase tracking-[0.2em] text-off-white/28">
+                    <div key={`${item.label}-${item.value}`} className="font-body text-sm text-off-white/70">
+                      <span className="mr-2 font-mono text-[0.56rem] uppercase tracking-[0.2em] text-off-white/55">
                         {item.label}
                       </span>
                       {item.value}
@@ -98,7 +98,7 @@ export function EditorialFooter({
               </div>
 
               <div className="mt-6 border-t border-white/8 pt-4">
-                <p className="font-mono text-[0.56rem] uppercase tracking-[0.24em] text-off-white/32">
+                <p className="font-mono text-[0.56rem] uppercase tracking-[0.24em] text-off-white/55">
                   {socialTitle}
                 </p>
                 <div className="mt-3 flex flex-wrap items-center gap-2.5">
@@ -109,7 +109,7 @@ export function EditorialFooter({
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={label}
-                      className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-white/8 text-off-white/34 transition-all duration-200 hover:border-white/14 hover:text-off-white/58"
+                      className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-white/8 text-off-white/55 transition-all duration-200 hover:border-white/14 hover:text-brand-yellow"
                     >
                       {icon}
                     </a>
@@ -122,15 +122,15 @@ export function EditorialFooter({
 
         <div className="flex flex-col gap-4 pt-5 md:flex-row md:items-end md:justify-between">
           <div className="flex flex-col gap-1">
-            <span className="font-mono text-[0.56rem] uppercase tracking-[0.2em] text-off-white/28">
+            <span className="font-mono text-[0.56rem] uppercase tracking-[0.2em] text-off-white/60">
               {bottomLocation}
             </span>
-            <span className="font-mono text-[0.56rem] uppercase tracking-[0.18em] text-off-white/22">
+            <span className="font-mono text-[0.56rem] uppercase tracking-[0.18em] text-off-white/55">
               {bottomRights}
             </span>
           </div>
 
-          <div className="font-mono text-[0.54rem] uppercase tracking-[0.2em] text-off-white/18">
+          <div className="font-mono text-[0.54rem] uppercase tracking-[0.2em] text-off-white/48">
             {bottomSignature}
           </div>
         </div>

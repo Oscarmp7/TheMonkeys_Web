@@ -222,7 +222,7 @@ export function ServiciosContent() {
 
           <p
             data-srv-hero
-            className="mt-6 max-w-[580px] font-body text-sm leading-relaxed text-off-white/60 text-justify sm:mt-8 sm:text-base lg:text-lg"
+            className="mt-6 max-w-[580px] font-body text-sm leading-relaxed text-off-white/60 text-left sm:mt-8 sm:text-base lg:text-lg"
           >
             {t("hero_subtitle")}{" "}
             <strong className="text-off-white">{t("hero_subtitle_bold")}</strong>{" "}

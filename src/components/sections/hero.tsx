@@ -131,7 +131,7 @@ export function Hero() {
             <p
               ref={bodyRef}
               data-hero-reveal
-              className="font-body text-off-white/60 text-sm sm:text-base lg:text-lg max-w-md mt-4 sm:mt-6 lg:mt-8 leading-relaxed text-justify"
+              className="font-body text-off-white/60 text-sm sm:text-base lg:text-lg max-w-md mt-4 sm:mt-6 lg:mt-8 leading-relaxed text-left"
             >
               {t("body")}
             </p>
@@ -178,7 +178,7 @@ export function Hero() {
           Scroll
         </span>
         <div className="w-5 h-8 rounded-full border border-off-white/20 flex justify-center pt-1.5">
-          <div className="w-1 h-2 rounded-full bg-brand-yellow animate-bounce" />
+          <div className="w-1 h-2 rounded-full bg-brand-yellow animate-scroll-hint motion-reduce:animate-none" />
         </div>
       </div>
 
