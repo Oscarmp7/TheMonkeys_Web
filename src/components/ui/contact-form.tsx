@@ -2,10 +2,12 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { validateContactForm, type ContactFormValues } from "@/lib/validation";
+import { trackEvent } from "@/lib/analytics";
 import { ArrowRight } from "lucide-react";
 
 export function ContactForm() {
   const t = useTranslations("contact");
+  const tError = useTranslations("form_errors");
 
   const [values, setValues] = useState<ContactFormValues & { website: string }>({
     name: "",
@@ -39,6 +41,7 @@ export function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
       });
+      if (res.ok) trackEvent("lead_submit", { form_location: "home" });
       setStatus(res.ok ? "success" : "error");
     } catch {
       setStatus("error");
@@ -86,7 +89,7 @@ export function ContactForm() {
           className={inputClass}
         />
         {errors.name && (
-          <span role="alert" className="text-xs text-red-400">{errors.name}</span>
+          <span role="alert" className="text-xs text-red-400">{tError(errors.name)}</span>
         )}
       </div>
 
@@ -105,7 +108,7 @@ export function ContactForm() {
           className={inputClass}
         />
         {errors.email && (
-          <span role="alert" className="text-xs text-red-400">{errors.email}</span>
+          <span role="alert" className="text-xs text-red-400">{tError(errors.email)}</span>
         )}
       </div>
 
@@ -138,7 +141,7 @@ export function ContactForm() {
           className={`${inputClass} resize-none`}
         />
         {errors.message && (
-          <span role="alert" className="text-xs text-red-400">{errors.message}</span>
+          <span role="alert" className="text-xs text-red-400">{tError(errors.message)}</span>
         )}
       </div>
 

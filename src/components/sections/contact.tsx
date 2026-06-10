@@ -64,17 +64,11 @@ export function Contact() {
                   return (
                     <>
                       <span className="text-off-white">¿</span>
-                      <span style={{ WebkitTextStroke: "2px #F5C518", WebkitTextFillColor: "transparent" }}>
-                        {line.slice(1)}
-                      </span>
+                      <span className="text-stroke-yellow">{line.slice(1)}</span>
                     </>
                   );
                 }
-                return (
-                  <span style={{ WebkitTextStroke: "2px #F5C518", WebkitTextFillColor: "transparent" }}>
-                    {line}
-                  </span>
-                );
+                return <span className="text-stroke-yellow">{line}</span>;
               })()}
             </span>
             <span className="block font-display text-[2.5rem] sm:text-[3.5rem] md:text-[3.5rem] lg:text-[5rem] xl:text-[7rem] text-off-white uppercase leading-none">

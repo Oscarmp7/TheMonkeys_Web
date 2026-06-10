@@ -5,8 +5,9 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
-import NextLink from "next/link";
+import { Link } from "@/i18n/navigation";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
+import { buildWhatsAppHref } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -180,13 +181,7 @@ export function NosotrosContent() {
               data-about-hero
               className="max-w-[12.5ch] font-display text-[clamp(3.4rem,10vw,9.5rem)] uppercase leading-[0.84] tracking-tight"
             >
-              <span
-                className="block"
-                style={{
-                  WebkitTextStroke: "2px #F5C518",
-                  WebkitTextFillColor: "transparent",
-                }}
-              >
+              <span className="block text-stroke-yellow">
                 {t("hero_title_line1_outline")}
               </span>
               <span className="mt-3 block sm:mt-5">
@@ -222,7 +217,7 @@ export function NosotrosContent() {
       <section
         data-about-history-section
         data-about-surface
-        className="relative overflow-hidden bg-[#F1F0EB] py-20 sm:py-28"
+        className="relative overflow-hidden bg-off-white-warm py-20 sm:py-28"
       >
         <div
           data-about-scroll-glow
@@ -316,7 +311,7 @@ export function NosotrosContent() {
 
               <a
                 data-about-history
-                href="https://wa.me/18097561847"
+                href={buildWhatsAppHref()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-10 inline-flex min-w-[16rem] items-center justify-center gap-3 rounded-full border border-brand-yellow/70 bg-brand-yellow px-7 py-4 font-display text-base tracking-[0.04em] text-brand-black transition-all duration-200 hover:scale-[1.035] hover:shadow-[0_0_26px_rgba(245,197,24,0.38)] sm:min-w-[17rem] sm:px-9 sm:py-4.5"
@@ -581,15 +576,7 @@ export function NosotrosContent() {
             data-about-cta
             className="mx-auto max-w-[12.6ch] font-display text-[clamp(3rem,9vw,8.5rem)] uppercase leading-[0.85] tracking-tight"
           >
-            <span
-              className="block"
-              style={{
-                WebkitTextStroke: "2px #F5C518",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              {t("cta_title_outline")}
-            </span>
+            <span className="block text-stroke-yellow">{t("cta_title_outline")}</span>
             <span className="mt-4 block sm:mt-5">
               <span className="text-off-white">{t("cta_title_mid")}</span>{" "}
               <span className="text-brand-yellow">{t("cta_title_yellow")}</span>
@@ -605,20 +592,20 @@ export function NosotrosContent() {
 
           <div data-about-cta className="mt-10 flex flex-wrap justify-center gap-3 sm:mt-12 sm:gap-4">
             <a
-              href="https://wa.me/18097561847"
+              href={buildWhatsAppHref()}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-full bg-brand-yellow px-6 py-3 font-display text-sm tracking-wider text-brand-black transition-all duration-200 hover:scale-[1.03] hover:shadow-[0_0_24px_rgba(245,197,24,0.38)] sm:px-8 sm:py-3.5 sm:text-base"
             >
               {t("cta_button_primary")}
             </a>
-            <NextLink
+            <Link
               href="/servicios"
               className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border-2 border-off-white/38 px-6 py-3 font-display text-sm tracking-wider text-off-white transition-colors duration-200 hover:border-off-white hover:text-brand-black sm:px-8 sm:py-3.5 sm:text-base"
             >
-              <span className="absolute inset-0 origin-left scale-x-0 bg-off-white transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
+              <span className="absolute inset-0 origin-left scale-x-0 bg-off-white transition-transform duration-300 ease-premium group-hover:scale-x-100" />
               <span className="relative z-10">{t("cta_button_secondary")}</span>
-            </NextLink>
+            </Link>
           </div>
         </div>
       </section>

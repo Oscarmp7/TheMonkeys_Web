@@ -6,18 +6,9 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
+import { SERVICE_KEYS } from "@/lib/services";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
-
-const SERVICE_KEYS = [
-  "strategy",
-  "content",
-  "production",
-  "ads",
-  "seo",
-  "web",
-  "influencers",
-] as const;
 
 export function ServicesSection() {
   const t = useTranslations("services_section");
@@ -123,7 +114,7 @@ export function ServicesSection() {
             >
               {/* Yellow left border reveal */}
               <span
-                className="absolute left-0 top-0 w-1 h-full bg-brand-yellow origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                className="absolute left-0 top-0 w-1 h-full bg-brand-yellow origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-300 ease-premium"
                 aria-hidden="true"
               />
               <h3 className="font-display text-xl text-brand-navy leading-tight mb-3">
@@ -145,7 +136,7 @@ export function ServicesSection() {
             </h3>
             <a
               href="#contacto"
-              className="block bg-brand-navy text-off-white font-display text-sm tracking-widest uppercase px-6 py-3 w-full text-center cursor-pointer transition-all duration-200 group-hover:bg-[#0a0f22] group-hover:shadow-lg"
+              className="block bg-brand-navy text-off-white font-display text-sm tracking-widest uppercase px-6 py-3 w-full text-center cursor-pointer transition-all duration-200 group-hover:bg-brand-navy-deepest group-hover:shadow-lg"
             >
               {t("cta_card.button")}
             </a>

@@ -2,13 +2,6 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
-type FooterLinkItem = {
-  label: string;
-  href: string;
-  external?: boolean;
-  ariaLabel?: string;
-};
-
 type FooterContactItem = {
   label: string;
   value: string;
@@ -27,8 +20,6 @@ export interface EditorialFooterProps extends React.HTMLAttributes<HTMLElement> 
   logoAlt: string;
   kicker: string;
   description: string;
-  navTitle?: string;
-  navLinks?: FooterLinkItem[];
   contactTitle: string;
   contactItems: FooterContactItem[];
   socialTitle: string;
@@ -43,8 +34,6 @@ export function EditorialFooter({
   logoAlt,
   kicker,
   description,
-  navTitle: _navTitle,
-  navLinks: _navLinks,
   contactTitle,
   contactItems,
   socialTitle,

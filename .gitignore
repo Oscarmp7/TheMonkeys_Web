@@ -43,15 +43,12 @@ yarn-error.log*
 output/
 test-results/
 
-# playwright screenshots
-*.png
-contacto-redesign-attempt.jpeg
-nosotros-laptop-1024.jpeg
-nosotros-tablet-768.jpeg
-resend-contact-reference.jpeg
-servicios-laptop-1024.jpeg
-servicios-tablet-768.jpeg
-themonkeys-hero-reference.jpeg
+# playwright/QA screenshots — workspace root only.
+# NEVER use a global *.png here: it silently ignores new images in public/.
+/*.png
+/*.jpeg
+/*.jpg
+/*.webp
 
 # vercel
 .vercel

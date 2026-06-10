@@ -9,6 +9,18 @@
   --color-brand-sky: #48A0D6;
   --color-off-white: #F4F3EE;
 
+  /* Light surfaces */
+  --color-off-white-warm: #F1F0EB;
+
+  /* Dark editorial surfaces (contact page set) */
+  --color-brand-black-deep: #060b15;
+  --color-brand-black-panel: #070c16;
+  --color-brand-black-elevated: #08111f;
+
+  /* Interactive navy shades */
+  --color-brand-navy-hover: #121a33;
+  --color-brand-navy-deepest: #0a0f22;
+
   /* Typography — references next/font CSS variables injected via <html> className */
   --font-display: var(--font-anton, "Anton", sans-serif);
   --font-display-alt: var(--font-barlow, "Barlow Condensed", sans-serif);
@@ -17,12 +29,20 @@
 
   /* Motion */
   --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Shadows */
+  --shadow-glow-yellow: 0 0 24px rgba(245, 197, 24, 0.45);
 }
 
 @layer base {
   html {
-    scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
 
   body {
@@ -32,17 +52,25 @@
   }
 }
 
-/* Elements that GSAP will animate in — hidden via CSS to prevent FOUC.
-   GSAP's fromTo animates them to opacity:1.
-   Reduced-motion users see everything immediately. */
-[data-hero-reveal],
-[data-hero-title],
-[data-deco-number] {
-  opacity: 0;
+/* Elements that GSAP animates in — hidden ONLY while JS is available
+   (html.js is set by an inline script in the layout <head>), so content is
+   never invisible for no-JS visitors or crawlers.
+   Failsafe: if GSAP never reveals them (broken chunk, script error), a CSS
+   animation forces them visible after 3s. GSAP finishes its entrance in ~2s,
+   so the failsafe is invisible in the happy path.
+   Reduced-motion users see everything immediately (override below). */
+@keyframes reveal-failsafe {
+  to {
+    opacity: 1;
+  }
 }
 
-nav[data-nav-animate] {
+html.js [data-hero-reveal],
+html.js [data-hero-title],
+html.js [data-deco-number],
+html.js nav[data-nav-animate] {
   opacity: 0;
+  animation: reveal-failsafe 0.4s var(--ease-premium) 3s forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -52,17 +80,28 @@ nav[data-nav-animate] {
   nav[data-nav-animate] {
     opacity: 1 !important;
   }
-
-  /* Ensure page transition wrapper is visible immediately */
-  [data-page-transition] {
-    opacity: 1 !important;
-  }
 }
 
 /* Fade-in utility for deferred elements */
 @keyframes fadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
+}
+
+/* Page entrance fade — CSS-only so it works without JS and before hydration */
+.page-fade {
+  animation: fadeIn 0.5s var(--ease-premium) both;
+}
+
+/* Outline display text — brand signature treatment */
+.text-stroke-yellow {
+  -webkit-text-stroke: 2px var(--color-brand-yellow);
+  -webkit-text-fill-color: transparent;
+}
+
+.text-stroke-white-thin {
+  -webkit-text-stroke: 1.8px var(--color-off-white);
+  -webkit-text-fill-color: transparent;
 }
 
 /* (noise texture now rendered as inline SVG in hero component) */

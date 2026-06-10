@@ -1,7 +1,7 @@
 /** Contact form validation — used by both client and server. */
 
 export const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-export const MAX_LENGTHS = { name: 120, email: 254, company: 120, service: 120, message: 4000 };
+export const MAX_LENGTHS = { name: 120, email: 254, company: 120, phone: 40, service: 120, message: 4000 };
 
 export function isValidEmail(email: string): boolean {
   return EMAIL_REGEX.test(email.trim());
@@ -24,6 +24,7 @@ export interface ContactFormValues {
   name: string;
   email: string;
   company?: string;
+  phone?: string;
   service: string;
   message: string;
 }
@@ -42,6 +43,8 @@ export function validateContactForm(values: ContactFormValues): ValidationResult
   if (!values.email.trim()) errors.email = "required";
   else if (!isValidEmail(values.email)) errors.email = "invalid";
   else if (values.email.length > MAX_LENGTHS.email) errors.email = "too_long";
+
+  if (values.phone && values.phone.length > MAX_LENGTHS.phone) errors.phone = "too_long";
 
   if (!values.service.trim()) errors.service = "required";
   else if (values.service.length > MAX_LENGTHS.service) errors.service = "too_long";

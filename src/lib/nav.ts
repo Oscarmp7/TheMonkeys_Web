@@ -4,22 +4,14 @@
 export const NAV_LINK_KEYS = ["inicio", "servicios", "nosotros", "portafolio", "contacto"] as const;
 export type NavLinkKey = (typeof NAV_LINK_KEYS)[number];
 
-export const NAV_ANCHORS: Record<NavLinkKey, string> = {
+/**
+ * Internal route targets for navbar keys.
+ * "portafolio" is intentionally absent — it is an external Behance link (SITE.behance).
+ */
+export const NAV_ROUTES = {
   inicio: "/",
   servicios: "/servicios",
   nosotros: "/nosotros",
-  portafolio: "BEHANCE", // sentinel - handled as external Behance link
   contacto: "/contacto",
-};
-
-/** @deprecated Use NAV_LINK_KEYS + NavbarHero variant="inner" instead. */
-export const INNER_NAV_KEYS = ["inicio", "servicios", "nosotros", "portafolio"] as const;
-export type InnerNavKey = (typeof INNER_NAV_KEYS)[number];
-
-/** @deprecated */
-export const INNER_NAV_TARGETS: Record<InnerNavKey, string> = {
-  inicio: "/",
-  servicios: "/servicios",
-  nosotros: "/nosotros",
-  portafolio: "BEHANCE",
-};
+} as const;
+export type NavRouteKey = keyof typeof NAV_ROUTES;

@@ -5,7 +5,10 @@
     "nosotros": "About Us",
     "servicios": "Services",
     "portafolio": "Portfolio",
-    "cotizar": "Get a Quote"
+    "cotizar": "Get a Quote",
+    "menu_open": "Open menu",
+    "menu_close": "Close menu",
+    "menu_label": "Navigation menu"
   },
   "hero": {
     "eyebrow": "Welcome to our",
@@ -13,7 +16,7 @@
     "line2": "AGENCY",
     "body": "Strategy, content, production, and campaigns in one team. All connected. All with results.",
     "cta_contact": "CONTACT US",
-    "cta_services": "PORTFOLIO",
+    "cta_portfolio": "PORTFOLIO",
     "stat1": "100% Creative",
     "stat2": "360 Full Vision",
     "stat3": "#1 Strategic Ally"
@@ -30,24 +33,10 @@
     "body2_after": ". We were born in the Dominican Republic to change how marketing is done here.",
     "badge_line1": "+100%",
     "badge_line2": "REAL STRATEGY",
+    "tags": ["STRATEGY", "CONTENT", "PRODUCTION", "CAMPAIGNS", "WEBSITES", "SEO"],
     "cta": "Get a Quote"
   },
-  "services": {
-    "title": "Services",
-    "inbound": "Inbound Marketing",
-    "contenidos": "Content Production",
-    "seo": "SEO",
-    "web": "Web Development",
-    "influencers": "Influencer Marketing",
-    "ads": "Digital Campaigns",
-    "foto_video": "Photo & Video"
-  },
-  "portfolio": {
-    "title": "Our Work",
-    "cta": "View full portfolio"
-  },
   "contact": {
-    "title": "Ready to grow?",
     "eyebrow": "Let's Work Together",
     "headline_line1": "READY",
     "headline_line2": "TO",
@@ -62,8 +51,31 @@
     "error": "Something went wrong. Please try again."
   },
   "footer": {
-    "location": "Santiago de los Caballeros, DR",
-    "rights": "All rights reserved"
+    "kicker": "Marketing with direction",
+    "description": "Strategy, content, production and campaigns in one team. Everything connected, guided by the same creative and commercial logic.",
+    "contact_title": "Contact",
+    "social_title": "Presence",
+    "email_label": "Email",
+    "phone_label": "Tel",
+    "location_label": "Base",
+    "rights": "© {year} The Monkeys. All rights reserved",
+    "signature": "the monkeys / marketing with direction"
+  },
+  "form_errors": {
+    "required": "This field is required",
+    "invalid": "Invalid email address",
+    "too_long": "Text is too long"
+  },
+  "not_found": {
+    "eyebrow": "Error 404",
+    "headline": "Page not found",
+    "body": "The page you're looking for doesn't exist or has moved. Head back home and keep exploring.",
+    "cta": "Back to home"
+  },
+  "error_page": {
+    "headline": "OOPS",
+    "body": "Something went wrong on our side. Please try again.",
+    "cta": "Try again"
   },
   "methodology": {
     "eyebrow": "Our Methodology",
@@ -123,11 +135,11 @@
         "title": "Content Creation",
         "description": "Photography, video, event coverage, and professional audiovisual production. Each piece communicates what your brand needs to project, with aesthetic quality and strategic messaging."
       },
-      "production": {
+      "campaigns": {
         "title": "Digital Campaigns",
         "description": "We design and execute campaigns on Meta Ads, Google Ads, TikTok Ads, and LinkedIn Ads focused on measurable results. Every dollar invested has a clear purpose."
       },
-      "ads": {
+      "inbound": {
         "title": "Inbound Marketing",
         "description": "We attract, nurture, and convert potential clients through strategic content, conversion funnels, and automation. Marketing that works for you 24 hours a day."
       },
@@ -193,7 +205,7 @@
     "hero_subtitle_end": "Strategy, content, production and campaigns in one team — from Santiago for the entire country.",
     "grid_eyebrow": "Our Services",
     "grid_intro": "A brand does not grow in parts. Each service we offer is designed to connect with the next. You can hire one or all — you will always have the same strategic criteria behind it.",
-    "grid_intro_bold": "connect with the next",
+    "whatsapp_prefill": "Hi The Monkeys, I'd like to get a quote for your services.",
     "services": {
       "strategy": {
         "title": "Brand Strategy & Positioning",
@@ -284,9 +296,7 @@
     "history_title_line3": "From Santiago,",
     "history_title_line4": "for the entire country.",
     "history_body1": "The Monkeys is born from a real complementation between two professionals: one masters strategy, digital and planning. The other transforms ideas into high-impact visual pieces. Together, we build an agency that does marketing with purpose.",
-    "history_body1_bold": "real complementation between two professionals",
     "history_body2": "We don't believe in marketing by inertia. Every brand deserves a clear direction, a strategy that generates measurable impact and coherent execution from start to finish. We analyze before creating, we define before executing.",
-    "history_body2_bold": "clear direction",
     "history_body3": "We were born in Santiago de los Caballeros with a clear mission: to change how marketing is done in the Dominican Republic. We integrate strategy, content, production and campaigns in one team —",
     "history_body3_bold": "without depending on third parties, without friction, with real results.",
     "history_badge_number": "25+",
@@ -305,7 +315,6 @@
         "role": "Strategy / Digital Marketing / Planning",
         "tags": ["Digital Campaigns", "Social Media", "Briefing"],
         "bio1": "Marketing professional with over 10 years of experience building brands and digital strategies. Specialized in branding, advertising campaigns and communication manuals.",
-        "bio1_bold": "10 years of experience",
         "bio2": "Giovanny leads the strategic and digital side: organizes projects, works directly with clients and ensures every action has a clear direction and measurable purpose.",
         "stat1_num": "10+",
         "stat1_label": "Years in Marketing",
@@ -321,7 +330,6 @@
         "role": "Photography / Videography / Visual Production",
         "tags": ["Photography", "Video", "Event Coverage", "Food Photography", "National Award"],
         "bio1": "Photography and video professional with over 15 years of experience. Trained in Colombia, specialized in food photography and is a National Photography Award winner.",
-        "bio1_bold": "15 years of experience",
         "bio2": "Guillermo takes ideas from strategic to visual: creates each piece with the quality, precision and aesthetics that each brand needs to project.",
         "stat1_num": "15+",
         "stat1_label": "Years in Photography",
@@ -369,6 +377,7 @@
     "meta_description": "Ready to grow with direction? Contact us and tell us about your brand. We are in Santiago de los Caballeros, DR. hola@themonkeys.do | +1 (809) 756-1847",
     "breadcrumb_home": "Home",
     "breadcrumb_current": "Contact",
+    "breadcrumb_label": "Breadcrumb",
     "hero_eyebrow": "Let's Talk",
     "hero_title_line1_prefix": "",
     "hero_title_line1_outline": "Ready",
@@ -384,8 +393,7 @@
     "channel_whatsapp_cta": "Message us",
     "channel_instagram": "Instagram",
     "channel_instagram_handle": "@themonkeys.do",
-    "channel_maps": "Google Maps",
-    "channel_maps_cta": "See location",
+    "whatsapp_prefill": "Hi The Monkeys, I'd like to know more about your services.",
     "form_eyebrow": "Tell us about your brand",
     "form_title_line1": "Request your",
     "form_title_line2": "proposal.",

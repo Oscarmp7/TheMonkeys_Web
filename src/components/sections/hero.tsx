@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useCallback } from "react";
+import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useTranslations } from "next-intl";
@@ -44,58 +44,28 @@ export function Hero() {
         0.6
       );
 
-      // Logo float — infinite, cleaned up by useGSAP scope
-      gsap.to(logoRef.current, {
+      // Logo float — infinite, paused while the hero is covered by the
+      // scroll layer so it doesn't burn main-thread time off-screen.
+      const float = gsap.to(logoRef.current, {
         y: -12,
         duration: 3,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",
       });
+
+      const observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          float.play();
+        } else {
+          float.pause();
+        }
+      });
+      if (containerRef.current) observer.observe(containerRef.current);
+
+      return () => observer.disconnect();
     },
     { scope: containerRef, dependencies: [prefersReduced] }
-  );
-
-  const handleCtaPrimaryEnter = useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (prefersReduced) return;
-      gsap.to(e.currentTarget, {
-        scale: 1.04,
-        boxShadow: "0 0 24px rgba(245,197,24,0.45)",
-        duration: 0.25,
-        ease: "expo.out",
-      });
-    },
-    [prefersReduced]
-  );
-
-  const handleCtaPrimaryLeave = useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (prefersReduced) return;
-      gsap.to(e.currentTarget, {
-        scale: 1,
-        boxShadow: "0 0 0px rgba(245,197,24,0)",
-        duration: 0.25,
-        ease: "expo.out",
-      });
-    },
-    [prefersReduced]
-  );
-
-  const handleEyebrowEnter = useCallback(
-    (e: React.MouseEvent<HTMLParagraphElement>) => {
-      if (prefersReduced) return;
-      gsap.to(e.currentTarget, { letterSpacing: "0.35em", duration: 0.3, ease: "expo.out" });
-    },
-    [prefersReduced]
-  );
-
-  const handleEyebrowLeave = useCallback(
-    (e: React.MouseEvent<HTMLParagraphElement>) => {
-      if (prefersReduced) return;
-      gsap.to(e.currentTarget, { letterSpacing: "0.25em", duration: 0.3, ease: "expo.out" });
-    },
-    [prefersReduced]
   );
 
   return (
@@ -139,9 +109,7 @@ export function Hero() {
             <p
               ref={eyebrowRef}
               data-hero-reveal
-              className="font-mono text-xs sm:text-sm tracking-[0.25em] uppercase text-brand-yellow/80 mb-4 sm:mb-6 cursor-default"
-              onMouseEnter={handleEyebrowEnter}
-              onMouseLeave={handleEyebrowLeave}
+              className="font-mono text-xs sm:text-sm tracking-[0.25em] uppercase text-brand-yellow/80 mb-4 sm:mb-6 cursor-default transition-[letter-spacing] duration-300 ease-premium hover:tracking-[0.35em] motion-reduce:transition-none motion-reduce:hover:tracking-[0.25em]"
             >
               <span className="inline-block w-6 h-px bg-brand-yellow/60 align-middle mr-3" />
               {t("eyebrow")}
@@ -155,14 +123,7 @@ export function Hero() {
               <span data-hero-reveal className="block text-off-white mb-2 sm:mb-3">
                 {t("line1")}
               </span>
-              <span
-                data-hero-reveal
-                className="block"
-                style={{
-                  WebkitTextStroke: "2px #F5C518",
-                  WebkitTextFillColor: "transparent",
-                }}
-              >
+              <span data-hero-reveal className="block text-stroke-yellow">
                 {t("line2")}
               </span>
             </h1>
@@ -178,9 +139,7 @@ export function Hero() {
             <div ref={ctasRef} data-hero-reveal className="flex flex-wrap gap-3 sm:gap-4 mt-6 sm:mt-8 lg:mt-10">
               <a
                 href="#contacto"
-                className="hero-cta-primary inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-3.5 bg-brand-yellow text-brand-black font-display text-sm sm:text-base tracking-wider rounded-full transition-all duration-200 cursor-pointer"
-                onMouseEnter={handleCtaPrimaryEnter}
-                onMouseLeave={handleCtaPrimaryLeave}
+                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-3.5 bg-brand-yellow text-brand-black font-display text-sm sm:text-base tracking-wider rounded-full transition-all duration-200 cursor-pointer hover:scale-[1.04] hover:shadow-glow-yellow motion-reduce:hover:scale-100 motion-reduce:hover:shadow-none"
               >
                 {t("cta_contact")}
               </a>
@@ -188,10 +147,10 @@ export function Hero() {
                 href={SITE.behance}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hero-cta-outline group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-3.5 border-2 border-off-white/40 text-off-white font-display text-sm sm:text-base tracking-wider rounded-full overflow-hidden transition-colors duration-200 cursor-pointer hover:border-off-white hover:text-brand-black"
+                className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-3.5 border-2 border-off-white/40 text-off-white font-display text-sm sm:text-base tracking-wider rounded-full overflow-hidden transition-colors duration-200 cursor-pointer hover:border-off-white hover:text-brand-black"
               >
-                <span className="absolute inset-0 bg-off-white origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" />
-                <span className="relative z-10">{t("cta_services")}</span>
+                <span className="absolute inset-0 bg-off-white origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-premium" />
+                <span className="relative z-10">{t("cta_portfolio")}</span>
               </a>
             </div>
           </div>
@@ -224,8 +183,10 @@ export function Hero() {
       </div>
 
       {/* Hero StatsBar — only on lg+ for parallax overlap effect.
-          On mobile, only the scroll layer's StatsBar shows. */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 hidden lg:block">
+          On mobile, only the scroll layer's StatsBar shows.
+          aria-hidden: decorative duplicate — the scroll layer's copy is the
+          one exposed to assistive tech. */}
+      <div className="absolute bottom-0 left-0 right-0 z-10 hidden lg:block" aria-hidden="true">
         <StatsBar />
       </div>
     </section>

@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import { Link as IntlLink, usePathname, useRouter } from "@/i18n/navigation";
 import { LogoWordmark } from "@/components/ui/logo-wordmark";
-import { NAV_LINK_KEYS } from "@/lib/nav";
+import { NAV_LINK_KEYS, NAV_ROUTES } from "@/lib/nav";
 import { SITE } from "@/lib/site";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { useFocusTrap } from "@/hooks/use-focus-trap";
@@ -15,13 +15,6 @@ import type { Locale } from "@/i18n/routing";
 gsap.registerPlugin(useGSAP);
 
 type NavbarVariant = "home" | "inner";
-
-const NAV_ROUTES = {
-  inicio: "/",
-  servicios: "/servicios",
-  nosotros: "/nosotros",
-  contacto: "/contacto",
-} as const;
 
 export function NavbarHero({
   locale,
@@ -378,7 +371,7 @@ export function NavbarHero({
         <div className="flex items-center gap-3">
           <div className="relative hidden md:flex items-center border border-white/20 rounded-full p-1 gap-1">
             <div
-              className="absolute inset-y-1 rounded-full bg-white/15 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+              className="absolute inset-y-1 rounded-full bg-white/15 transition-all duration-300 ease-premium"
               style={{
                 width: "calc(50% - 6px)",
                 left: locale === "es" ? "4px" : "calc(50% + 2px)",
@@ -408,7 +401,7 @@ export function NavbarHero({
             onClick={toggleMenu}
             className="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 cursor-pointer"
             aria-expanded={isMenuOpen}
-            aria-label={isMenuOpen ? "Cerrar menu" : "Abrir menu"}
+            aria-label={isMenuOpen ? t("menu_close") : t("menu_open")}
           >
             <span className={`w-6 h-[2px] bg-off-white transition-all duration-300 ${isMenuOpen ? "rotate-45 translate-y-2" : ""}`} />
             <span className={`w-6 h-[2px] bg-off-white transition-all duration-300 ${isMenuOpen ? "opacity-0 scale-x-0" : ""}`} />
@@ -420,6 +413,9 @@ export function NavbarHero({
       {isMenuOpen && (
         <div
           ref={menuRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label={t("menu_label")}
           className="fixed inset-0 z-40 bg-brand-black flex flex-col items-center justify-center md:hidden"
         >
           <div className="flex flex-col items-center gap-8">
@@ -465,7 +461,7 @@ export function NavbarHero({
             className="relative flex items-center border border-white/20 rounded-full p-1 gap-1 mt-10"
           >
             <div
-              className="absolute inset-y-1 rounded-full bg-white/15 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+              className="absolute inset-y-1 rounded-full bg-white/15 transition-all duration-300 ease-premium"
               style={{
                 width: "calc(50% - 6px)",
                 left: locale === "es" ? "4px" : "calc(50% + 2px)",

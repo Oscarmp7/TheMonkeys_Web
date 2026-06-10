@@ -8,11 +8,10 @@ describe("SEO routing helpers", () => {
     assert.equal(buildLocalizedPath("home", "en"), "/en");
     assert.equal(buildLocalizedPath("services", "es"), "/servicios");
     assert.equal(buildLocalizedPath("services", "en"), "/en/services");
-    assert.equal(buildLocalizedPath("portfolioProject", "es", { slug: "jimetor" }), "/portafolio/jimetor");
-    assert.equal(
-      buildLocalizedPath("portfolioProject", "en", { slug: "jimetor" }),
-      "/en/portfolio/jimetor"
-    );
+    assert.equal(buildLocalizedPath("about", "es"), "/nosotros");
+    assert.equal(buildLocalizedPath("about", "en"), "/en/about");
+    assert.equal(buildLocalizedPath("contact", "es"), "/contacto");
+    assert.equal(buildLocalizedPath("contact", "en"), "/en/contact");
   });
 
   test("builds canonical and hreflang alternates for localized pages", () => {
@@ -50,19 +49,22 @@ describe("SEO routing helpers", () => {
     assert.equal(metadata.openGraph?.description, "Tell us about your brand.");
     assert.equal(metadata.openGraph?.url, "https://themonkeys.do/en/contact");
     assert.equal(metadata.twitter?.title, "Contact | The Monkeys");
-    assert.deepEqual(metadata.twitter?.images, ["/logos/logo-main.png"]);
+    assert.deepEqual(metadata.twitter?.images, ["/og.png"]);
+    assert.deepEqual(metadata.openGraph?.images, [
+      { url: "/og.png", width: 1200, height: 630, alt: "The Monkeys" },
+    ]);
   });
 
   test("can mark secondary pages as noindex without affecting canonical metadata", () => {
     const metadata = buildPageMetadata({
       locale: "es",
-      route: "portfolio",
-      title: "Portafolio | The Monkeys",
-      description: "Casos y proyectos.",
+      route: "contact",
+      title: "Contacto | The Monkeys",
+      description: "Cuéntanos sobre tu marca.",
       noIndex: true,
     });
 
-    assert.equal(metadata.alternates?.canonical, "https://themonkeys.do/portafolio");
+    assert.equal(metadata.alternates?.canonical, "https://themonkeys.do/contacto");
     assert.deepEqual(metadata.robots, { index: false, follow: true });
   });
 });

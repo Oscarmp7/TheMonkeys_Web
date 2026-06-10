@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
+import { ProcessStepsGrid } from "@/components/sections/process-steps";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -68,7 +69,7 @@ export function Process() {
   return (
     <section
       ref={containerRef}
-      className="bg-[#F1F0EB] py-20 sm:py-28 px-5 sm:px-6 md:px-8 relative overflow-hidden"
+      className="bg-off-white-warm py-20 sm:py-28 px-5 sm:px-6 md:px-8 relative overflow-hidden"
     >
       <div className="max-w-6xl mx-auto w-full relative z-10">
         {/* Header — two columns aligned to bottom */}
@@ -98,59 +99,19 @@ export function Process() {
         </div>
 
         {/* Grid of 4 steps */}
-        <div
-          className="grid grid-cols-2 lg:grid-cols-4 gap-y-10 sm:gap-y-12 gap-x-2 sm:gap-x-0 mt-12 sm:mt-16 lg:mt-20 relative"
-          data-process-grid
-          onMouseLeave={() => setActiveStep(0)}
-        >
-          {/* Connecting horizontal line (visible on lg+ only) */}
-          <div
-            className="hidden lg:block absolute top-10 left-[10%] right-[10%] border-t-2 border-brand-navy/20"
-            data-process-line
-            aria-hidden="true"
-          />
-
-          {STEPS.map((step, i) => {
-            const num = String(i + 1).padStart(2, "0");
-            const isActive = i === activeStep;
-
-            return (
-              <div
-                key={step}
-                className="group flex flex-col items-center relative z-10 cursor-default"
-                data-process-step
-                onMouseEnter={() => setActiveStep(i)}
-              >
-                {/* Numbered circle */}
-                <div
-                  className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 flex items-center justify-center transition-all duration-300 ease-out hover:scale-[1.08] ${
-                    isActive
-                      ? "bg-brand-yellow border-brand-yellow"
-                      : "bg-off-white border-brand-navy/30"
-                  }`}
-                >
-                  <span
-                    className={`font-display text-2xl sm:text-3xl transition-colors duration-300 ease-out ${
-                      isActive ? "text-brand-navy" : "text-brand-navy/50"
-                    }`}
-                  >
-                    {num}
-                  </span>
-                </div>
-
-                {/* Title */}
-                <h3 className="font-display text-base sm:text-lg text-brand-navy text-center mt-3 sm:mt-4 uppercase">
-                  {t(`steps.${step}.title`)}
-                </h3>
-
-                {/* Description */}
-                <p className="font-body text-xs sm:text-sm text-brand-navy/65 text-center mt-2 leading-relaxed max-w-[240px] lg:max-w-[200px] mx-auto">
-                  {t(`steps.${step}.description`)}
-                </p>
-              </div>
-            );
-          })}
-        </div>
+        <ProcessStepsGrid
+          steps={STEPS.map((step) => ({
+            title: t(`steps.${step}.title`),
+            description: t(`steps.${step}.description`),
+          }))}
+          activeStep={activeStep}
+          onStepEnter={setActiveStep}
+          variant="home"
+          gridDataAttr="data-process-grid"
+          stepDataAttr="data-process-step"
+          lineDataAttr="data-process-line"
+          onGridMouseLeave={() => setActiveStep(0)}
+        />
       </div>
     </section>
   );

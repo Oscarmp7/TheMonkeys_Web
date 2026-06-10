@@ -39,7 +39,7 @@ export default async function ContactoPage({
     <>
       <NavbarHero locale={locale as Locale} variant="inner" />
       <main>
-        <ContactoContent homeHref={`/${locale}`} />
+        <ContactoContent />
       </main>
       <Footer locale={locale as Locale} />
     </>

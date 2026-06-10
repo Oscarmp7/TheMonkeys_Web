@@ -62,13 +62,18 @@ export async function POST(req: NextRequest) {
     process.env.UPSTASH_REDIS_REST_URL &&
     process.env.UPSTASH_REDIS_REST_TOKEN
   ) {
-    const ratelimiter = getRatelimiter();
-    const { success } = await ratelimiter.limit(ip);
-    if (!success) {
-      return NextResponse.json(
-        { error: "Too many requests" },
-        { status: 429 }
-      );
+    // Fail-open: a Redis outage must not take the contact form down with it
+    try {
+      const ratelimiter = getRatelimiter();
+      const { success } = await ratelimiter.limit(ip);
+      if (!success) {
+        return NextResponse.json(
+          { error: "Too many requests" },
+          { status: 429 }
+        );
+      }
+    } catch (err) {
+      console.error("[contact] rate limit check failed:", err);
     }
   }
 
@@ -77,6 +82,7 @@ export async function POST(req: NextRequest) {
     name: String(body.name ?? ""),
     email: String(body.email ?? ""),
     company: String(body.company ?? ""),
+    phone: String(body.phone ?? ""),
     service: String(body.service ?? ""),
     message: String(body.message ?? ""),
   };
@@ -88,10 +94,12 @@ export async function POST(req: NextRequest) {
 
   // 6. Sanitize (escapeHtml for HTML body only, plain sanitize for email headers)
   const cleanEmail = sanitize(values.email, MAX_LENGTHS.email);
+  const cleanName = sanitize(values.name, MAX_LENGTHS.name);
   const safe = {
-    name: escapeHtml(sanitize(values.name, MAX_LENGTHS.name)),
+    name: escapeHtml(cleanName),
     email: escapeHtml(cleanEmail),
     company: escapeHtml(sanitize(values.company, MAX_LENGTHS.company)),
+    phone: escapeHtml(sanitize(values.phone, MAX_LENGTHS.phone)),
     service: escapeHtml(sanitize(values.service, MAX_LENGTHS.service)),
     message: escapeHtml(sanitize(values.message, MAX_LENGTHS.message)),
   };
@@ -110,13 +118,15 @@ export async function POST(req: NextRequest) {
     const resend = getResend();
     try {
       await resend.emails.send({
-        from: "contacto@themonkeys.do",
+        from: SITE.contactFrom,
         to: SITE.email,
-        subject: `Nuevo contacto: ${safe.name}`,
+        // Subject is plain text — use the sanitized (not HTML-escaped) name
+        subject: `Nuevo contacto: ${cleanName}`,
         html: `
         <h2>Nuevo mensaje de contacto</h2>
         <p><strong>Nombre:</strong> ${safe.name}</p>
         <p><strong>Email:</strong> ${safe.email}</p>
+        <p><strong>Teléfono:</strong> ${safe.phone || "—"}</p>
         <p><strong>Empresa:</strong> ${safe.company || "—"}</p>
         <p><strong>Servicio:</strong> ${safe.service}</p>
         <p><strong>Mensaje:</strong></p>

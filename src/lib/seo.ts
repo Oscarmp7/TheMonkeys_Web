@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { Locale } from "@/i18n/routing";
+import { routing, type Locale } from "@/i18n/routing";
 import { SITE } from "@/lib/site";
 
 export type SeoRoute =
@@ -7,6 +7,14 @@ export type SeoRoute =
   | "services"
   | "about"
   | "contact";
+
+/** Maps SEO routes to the internal hrefs declared in routing.pathnames. */
+const ROUTE_HREFS: Record<SeoRoute, keyof typeof routing.pathnames> = {
+  home: "/",
+  services: "/servicios",
+  about: "/nosotros",
+  contact: "/contacto",
+};
 
 interface BuildPageMetadataOptions {
   locale: Locale;
@@ -18,25 +26,24 @@ interface BuildPageMetadataOptions {
   noIndex?: boolean;
 }
 
-const DEFAULT_SOCIAL_IMAGE = "/logos/logo-main.png";
+const DEFAULT_SOCIAL_IMAGE = "/og.png";
+const SOCIAL_IMAGE_WIDTH = 1200;
+const SOCIAL_IMAGE_HEIGHT = 630;
 
 function withBase(path: string): string {
   return new URL(path, SITE.domain).toString();
 }
 
+/**
+ * Builds the public path for a route+locale from routing.pathnames —
+ * the single source of truth. Mirrors localePrefix "as-needed":
+ * default locale unprefixed, others under /<locale>.
+ */
 export function buildLocalizedPath(route: SeoRoute, locale: Locale): string {
-  switch (route) {
-    case "home":
-      return locale === "es" ? "/" : "/en";
-    case "services":
-      return locale === "es" ? "/servicios" : "/en/services";
-    case "about":
-      return locale === "es" ? "/nosotros" : "/en/about";
-    case "contact":
-      return locale === "es" ? "/contacto" : "/en/contact";
-    default:
-      return "/";
-  }
+  const pathname = routing.pathnames[ROUTE_HREFS[route]];
+  const localized = typeof pathname === "string" ? pathname : pathname[locale];
+  if (locale === routing.defaultLocale) return localized;
+  return localized === "/" ? `/${locale}` : `/${locale}${localized}`;
 }
 
 export function buildPageMetadata({
@@ -70,7 +77,14 @@ export function buildPageMetadata({
       siteName: SITE.name,
       locale: locale === "es" ? "es_DO" : "en_US",
       type,
-      images: [image],
+      images: [
+        {
+          url: image,
+          width: SOCIAL_IMAGE_WIDTH,
+          height: SOCIAL_IMAGE_HEIGHT,
+          alt: SITE.name,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",

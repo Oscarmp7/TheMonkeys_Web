@@ -27,7 +27,7 @@ export default async function HomePage({
         {/* Scrolling content — rises over the hero */}
         <div className="relative z-10">
           <StatsBar />
-          <Brandbook locale={locale} />
+          <Brandbook />
           <Methodology />
           <ServicesSection />
           <Process />

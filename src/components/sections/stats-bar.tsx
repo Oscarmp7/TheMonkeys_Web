@@ -3,11 +3,13 @@ import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useTranslations } from "next-intl";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
 gsap.registerPlugin(useGSAP);
 
 export function StatsBar() {
   const t = useTranslations("hero");
+  const prefersReduced = usePrefersReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const statsViewportRef = useRef<HTMLDivElement>(null);
   const statsTrackRef = useRef<HTMLDivElement>(null);
@@ -66,11 +68,6 @@ export function StatsBar() {
 
   useGSAP(
     () => {
-      const prefersReduced =
-        typeof window !== "undefined"
-          ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
-          : false;
-
       if (prefersReduced || !statsTrackRef.current || statsSetWidth <= 0) return;
 
       gsap.set(statsTrackRef.current, { x: 0 });
@@ -81,7 +78,7 @@ export function StatsBar() {
         repeat: -1,
       });
     },
-    { scope: statsViewportRef, dependencies: [statsSetWidth, statsCopies] }
+    { scope: statsViewportRef, dependencies: [statsSetWidth, statsCopies, prefersReduced] }
   );
 
   return (

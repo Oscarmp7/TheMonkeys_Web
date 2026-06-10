@@ -46,6 +46,20 @@ describe("API contact — validation layer", () => {
     assert.ok(!valid);
     assert.ok(errors.message);
   });
+
+  test("accepts optional phone within limits", () => {
+    const { valid } = validateContactForm({ ...validBody, phone: "+1 (809) 756-1847" });
+    assert.ok(valid);
+  });
+
+  test("rejects oversize phone", () => {
+    const { valid, errors } = validateContactForm({
+      ...validBody,
+      phone: "9".repeat(MAX_LENGTHS.phone + 1),
+    });
+    assert.ok(!valid);
+    assert.equal(errors.phone, "too_long");
+  });
 });
 
 describe("API contact — sanitize layer", () => {

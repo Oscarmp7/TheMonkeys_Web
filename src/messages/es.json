@@ -5,7 +5,10 @@
     "nosotros": "Nosotros",
     "servicios": "Servicios",
     "portafolio": "Portafolio",
-    "cotizar": "Cotizar"
+    "cotizar": "Cotizar",
+    "menu_open": "Abrir menú",
+    "menu_close": "Cerrar menú",
+    "menu_label": "Menú de navegación"
   },
   "hero": {
     "eyebrow": "Bienvenidos a nuestra",
@@ -13,7 +16,7 @@
     "line2": "CREATIVA",
     "body": "Estrategia, contenido, producción y campañas en un solo equipo. Todo conectado. Todo con resultados.",
     "cta_contact": "CONTÁCTANOS",
-    "cta_services": "PORTAFOLIO",
+    "cta_portfolio": "PORTAFOLIO",
     "stat1": "Creativos 100%",
     "stat2": "Visión Integral 360",
     "stat3": "Aliado Estratégico #1"
@@ -30,24 +33,10 @@
     "body2_after": ". Nacimos en República Dominicana para cambiar cómo se hace el marketing aquí.",
     "badge_line1": "+100%",
     "badge_line2": "ESTRATEGIA REAL",
+    "tags": ["ESTRATEGIA", "CONTENIDO", "PRODUCCIÓN", "CAMPAÑAS", "WEBSITES", "SEO"],
     "cta": "Cotiza Ahora"
   },
-  "services": {
-    "title": "Servicios",
-    "inbound": "Inbound Marketing",
-    "contenidos": "Producción de Contenidos",
-    "seo": "SEO",
-    "web": "Desarrollo Web",
-    "influencers": "Marketing de Influencers",
-    "ads": "Campaña Digital",
-    "foto_video": "Foto & Video"
-  },
-  "portfolio": {
-    "title": "Nuestro trabajo",
-    "cta": "Ver portafolio completo"
-  },
   "contact": {
-    "title": "¿Listo para crecer?",
     "eyebrow": "Trabajemos Juntos",
     "headline_line1": "¿LISTO",
     "headline_line2": "PARA",
@@ -62,8 +51,31 @@
     "error": "Hubo un error. Por favor intenta de nuevo."
   },
   "footer": {
-    "location": "Santiago de los Caballeros, RD",
-    "rights": "Todos los derechos reservados"
+    "kicker": "Marketing con dirección",
+    "description": "Estrategia, contenido, producción y campañas en un solo equipo. Todo conectado, todo con una misma lógica creativa y comercial.",
+    "contact_title": "Contacto",
+    "social_title": "Presencia",
+    "email_label": "Email",
+    "phone_label": "Tel",
+    "location_label": "Base",
+    "rights": "© {year} The Monkeys. Todos los derechos reservados",
+    "signature": "the monkeys / marketing with direction"
+  },
+  "form_errors": {
+    "required": "Este campo es obligatorio",
+    "invalid": "Correo electrónico no válido",
+    "too_long": "El texto es demasiado largo"
+  },
+  "not_found": {
+    "eyebrow": "Error 404",
+    "headline": "Página no encontrada",
+    "body": "La página que buscas no existe o cambió de lugar. Vuelve al inicio y sigue explorando.",
+    "cta": "Volver al inicio"
+  },
+  "error_page": {
+    "headline": "OOPS",
+    "body": "Algo salió mal de nuestro lado. Inténtalo de nuevo.",
+    "cta": "Reintentar"
   },
   "methodology": {
     "eyebrow": "Nuestra Metodología",
@@ -123,11 +135,11 @@
         "title": "Creación de Contenido",
         "description": "Fotografía, video, cobertura de eventos y producción audiovisual profesional. Cada pieza comunica lo que tu marca necesita proyectar, con calidad estética y mensaje estratégico."
       },
-      "production": {
+      "campaigns": {
         "title": "Campañas Digitales",
         "description": "Diseñamos y ejecutamos campañas en Meta Ads, Google Ads, TikTok Ads y LinkedIn Ads orientadas a resultados medibles. Cada peso invertido tiene un propósito claro."
       },
-      "ads": {
+      "inbound": {
         "title": "Inbound Marketing",
         "description": "Atraemos, nutrimos y convertimos clientes potenciales a través de contenido estratégico, embudos de conversión y automatización. Marketing que trabaja para ti las 24 horas."
       },
@@ -193,7 +205,7 @@
     "hero_subtitle_end": "Estrategia, contenido, producción y campañas en un solo equipo — desde Santiago para todo el país.",
     "grid_eyebrow": "Nuestros Servicios",
     "grid_intro": "Una marca no crece por partes. Cada servicio que ofrecemos está diseñado para conectarse con el siguiente. Puedes contratar uno o todos — siempre tendrás el mismo criterio estratégico detrás.",
-    "grid_intro_bold": "conectarse con el siguiente",
+    "whatsapp_prefill": "Hola The Monkeys, quiero cotizar sus servicios.",
     "services": {
       "strategy": {
         "title": "Estrategia y Posicionamiento de Marca",
@@ -284,9 +296,7 @@
     "history_title_line3": "Desde Santiago,",
     "history_title_line4": "para todo el país.",
     "history_body1": "The Monkeys nace de una complementación real entre dos profesionales: uno domina la estrategia, lo digital y la planificación. El otro transforma ideas en piezas visuales de alto impacto. Juntos, construimos una agencia que hace marketing con sentido.",
-    "history_body1_bold": "complementación real entre dos profesionales",
     "history_body2": "No creemos en el marketing por inercia. Cada marca merece una dirección clara, una estrategia que genere impacto medible y una ejecución coherente de principio a fin. Analizamos antes de crear, definimos antes de ejecutar.",
-    "history_body2_bold": "dirección clara",
     "history_body3": "Nacimos en Santiago de los Caballeros con una misión clara: cambiar cómo se hace el marketing en República Dominicana. Integramos estrategia, contenido, producción y campañas en un solo equipo —",
     "history_body3_bold": "sin depender de terceros, sin fricciones, con resultados reales.",
     "history_badge_number": "25+",
@@ -305,7 +315,6 @@
         "role": "Estrategia / Marketing Digital / Planificación",
         "tags": ["Campañas Digitales", "Redes Sociales", "Briefing"],
         "bio1": "Profesional del marketing con más de 10 años de experiencia construyendo marcas y estrategias digitales. Especializado en branding, campañas publicitarias y manuales de comunicación.",
-        "bio1_bold": "10 años de experiencia",
         "bio2": "Giovanny lidera la parte estratégica y digital: organiza los proyectos, trabaja directamente con los clientes y asegura que cada acción tenga una dirección clara y un propósito medible.",
         "stat1_num": "10+",
         "stat1_label": "Años en Marketing",
@@ -321,7 +330,6 @@
         "role": "Fotografía / Videografía / Producción Visual",
         "tags": ["Fotografía", "Video", "Cobertura de Eventos", "Foto Gastronómica", "Premio Nacional"],
         "bio1": "Profesional de la fotografía y el video con más de 15 años de trayectoria. Se formó en Colombia, realizó cursos especializados en fotografía gastronómica y es ganador del Premio Nacional de Fotografía.",
-        "bio1_bold": "15 años de trayectoria",
         "bio2": "Guillermo lleva las ideas de lo estratégico a lo visual: crea cada pieza con la calidad, precisión y estética que cada marca necesita proyectar.",
         "stat1_num": "15+",
         "stat1_label": "Años en Fotografía",
@@ -369,6 +377,7 @@
     "meta_description": "¿Listo para crecer con dirección? Contáctanos en Santiago, RD — hola@themonkeys.do | +1 (809) 756-1847",
     "breadcrumb_home": "Inicio",
     "breadcrumb_current": "Contacto",
+    "breadcrumb_label": "Ruta de navegación",
     "hero_eyebrow": "Hablemos",
     "hero_title_line1_prefix": "¿",
     "hero_title_line1_outline": "Listo",
@@ -384,8 +393,7 @@
     "channel_whatsapp_cta": "Escribirnos",
     "channel_instagram": "Instagram",
     "channel_instagram_handle": "@themonkeys.do",
-    "channel_maps": "Google Maps",
-    "channel_maps_cta": "Ver ubicación",
+    "whatsapp_prefill": "Hola The Monkeys, me gustaría conocer más sobre sus servicios.",
     "form_eyebrow": "Cuéntanos sobre tu marca",
     "form_title_line1": "Solicita tu",
     "form_title_line2": "propuesta.",

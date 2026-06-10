@@ -6,19 +6,13 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
-import type { Locale } from "@/i18n/routing";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-const SERVICE_TAGS = {
-  es: ["ESTRATEGIA", "CONTENIDO", "PRODUCCIÓN", "CAMPAÑAS", "WEBSITES", "SEO"],
-  en: ["STRATEGY", "CONTENT", "PRODUCTION", "CAMPAIGNS", "WEBSITES", "SEO"],
-} as const;
-
-export function Brandbook({ locale }: { locale: Locale }) {
+export function Brandbook() {
   const t = useTranslations("brandbook");
   const containerRef = useRef<HTMLElement>(null);
-  const tags = SERVICE_TAGS[locale] ?? SERVICE_TAGS.es;
+  const tags = t.raw("tags") as string[];
   const prefersReduced = usePrefersReducedMotion();
 
   useGSAP(

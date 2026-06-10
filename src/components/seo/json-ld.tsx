@@ -4,14 +4,16 @@ export function JsonLd() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": SITE.domain,
     name: SITE.name,
     email: SITE.email,
     telephone: SITE.phone,
     url: SITE.domain,
-    hasMap: "https://www.google.com/maps/place/The+Monkeys/@18.6698995,-70.130055,15z",
+    image: `${SITE.domain}/logos/logo-main.png`,
     address: {
       "@type": "PostalAddress",
       addressLocality: "Santiago de los Caballeros",
+      addressRegion: "Santiago",
       addressCountry: "DO",
     },
     sameAs: [SITE.instagram, SITE.linkedin, SITE.facebook, SITE.youtube, SITE.behance],

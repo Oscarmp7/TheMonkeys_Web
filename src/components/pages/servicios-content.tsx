@@ -5,21 +5,13 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
-import NextLink from "next/link";
+import { Link } from "@/i18n/navigation";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
-import { SITE } from "@/lib/site";
+import { buildWhatsAppHref } from "@/lib/site";
+import { SERVICE_KEYS } from "@/lib/services";
+import { ProcessStepsGrid } from "@/components/sections/process-steps";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
-
-const SERVICE_KEYS = [
-  "strategy",
-  "content",
-  "campaigns",
-  "inbound",
-  "seo",
-  "web",
-  "influencers",
-] as const;
 
 const PROCESS_STEPS = ["analysis", "strategy", "execution", "followup"] as const;
 
@@ -30,9 +22,7 @@ export function ServiciosContent() {
   const [activeStep, setActiveStep] = useState(0);
   const [isProcessVisible, setIsProcessVisible] = useState(false);
   const [isProcessHovered, setIsProcessHovered] = useState(false);
-  const whatsappHref = `https://wa.me/${SITE.whatsapp.replace(/^\+/, "")}?text=${encodeURIComponent(
-    "Hola The Monkeys, quiero cotizar sus servicios."
-  )}`;
+  const whatsappHref = buildWhatsAppHref(t("whatsapp_prefill"));
 
   useEffect(() => {
     if (prefersReduced || !isProcessVisible || isProcessHovered) return;
@@ -229,13 +219,7 @@ export function ServiciosContent() {
           >
             <span className="block text-off-white">{t("hero_title_line1")}</span>
             <span className="mt-2 block text-off-white sm:mt-3">{t("hero_title_line2")}</span>
-            <span
-              className="mt-2 block sm:mt-3"
-              style={{
-                WebkitTextStroke: "2px #F5C518",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
+            <span className="mt-2 block sm:mt-3 text-stroke-yellow">
               {t("hero_title_line3_outline")}
               {t("hero_title_line3_yellow")}
             </span>
@@ -284,14 +268,14 @@ export function ServiciosContent() {
                 <div
                   key={key}
                   data-srv-card
-                  className="group relative flex min-h-[23rem] cursor-default flex-col overflow-hidden border-t border-white/12 px-1 pt-5 pb-3 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 sm:min-h-[25rem] sm:pt-6"
+                  className="group relative flex min-h-[23rem] cursor-default flex-col overflow-hidden border-t border-white/12 px-1 pt-5 pb-3 transition-all duration-300 ease-premium hover:-translate-y-1.5 sm:min-h-[25rem] sm:pt-6"
                 >
                   <div
                     className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.04),transparent_42%),linear-gradient(180deg,rgba(255,255,255,0.02),transparent_52%,rgba(245,197,24,0.05))] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                     aria-hidden="true"
                   />
                   <span
-                    className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-brand-yellow/60 via-white/15 to-transparent transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-[1.02] group-hover:from-brand-yellow group-hover:via-brand-yellow/30"
+                    className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-brand-yellow/60 via-white/15 to-transparent transition-[opacity,transform] duration-300 ease-premium group-hover:scale-x-[1.02] group-hover:from-brand-yellow group-hover:via-brand-yellow/30"
                     aria-hidden="true"
                   />
                   <span
@@ -300,7 +284,7 @@ export function ServiciosContent() {
                   />
 
                   <div className="relative z-10 flex h-full flex-col pl-5 sm:pl-6">
-                    <h3 className="mb-4 font-display text-xl uppercase leading-[1.02] text-off-white transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 sm:text-[1.9rem]">
+                    <h3 className="mb-4 font-display text-xl uppercase leading-[1.02] text-off-white transition-transform duration-300 ease-premium group-hover:translate-x-1 sm:text-[1.9rem]">
                       {t(`services.${key}.title`)}
                     </h3>
 
@@ -308,7 +292,7 @@ export function ServiciosContent() {
                       {t(`services.${key}.description`)}
                     </p>
 
-                    <div className="flex flex-wrap gap-x-4 gap-y-2 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0.5">
+                    <div className="flex flex-wrap gap-x-4 gap-y-2 transition-transform duration-300 ease-premium group-hover:translate-y-0.5">
                       {tags.map((tag) => (
                         <span
                           key={tag}
@@ -325,14 +309,14 @@ export function ServiciosContent() {
 
             <div
               data-srv-card
-              className="group relative flex min-h-[23rem] flex-col overflow-hidden border-t border-brand-yellow/70 bg-brand-yellow px-1 pt-5 pb-3 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:shadow-[0_24px_64px_rgba(245,197,24,0.18)] sm:min-h-[25rem] sm:pt-6"
+              className="group relative flex min-h-[23rem] flex-col overflow-hidden border-t border-brand-yellow/70 bg-brand-yellow px-1 pt-5 pb-3 transition-all duration-300 ease-premium hover:-translate-y-1.5 hover:shadow-[0_24px_64px_rgba(245,197,24,0.18)] sm:min-h-[25rem] sm:pt-6"
             >
               <div
                 className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.2),transparent_42%),linear-gradient(180deg,rgba(255,255,255,0.06),transparent_58%,rgba(10,15,34,0.08))] opacity-90 transition-opacity duration-300 group-hover:opacity-100"
                 aria-hidden="true"
               />
               <div
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-0 bg-brand-black transition-[height] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:h-24"
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-0 bg-brand-black transition-[height] duration-300 ease-premium group-hover:h-24"
                 aria-hidden="true"
               />
               <span
@@ -350,12 +334,12 @@ export function ServiciosContent() {
                 <p className="mb-8 max-w-[24ch] flex-1 font-body text-sm leading-relaxed text-brand-black/62 sm:text-[0.98rem]">
                   {t("cta_card_body")}
                 </p>
-                <NextLink
+                <Link
                   href="/contacto"
-                  className="inline-flex w-fit cursor-pointer items-center justify-center border-b border-brand-black/35 pb-1 font-display text-sm uppercase tracking-[0.18em] text-brand-black transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:border-brand-yellow/70 group-hover:text-brand-yellow"
+                  className="inline-flex w-fit cursor-pointer items-center justify-center border-b border-brand-black/35 pb-1 font-display text-sm uppercase tracking-[0.18em] text-brand-black transition-all duration-300 ease-premium group-hover:translate-x-1 group-hover:border-brand-yellow/70 group-hover:text-brand-yellow"
                 >
                   {t("cta_card_button")}
-                </NextLink>
+                </Link>
               </div>
             </div>
           </div>
@@ -378,21 +362,14 @@ export function ServiciosContent() {
           >
             {t("quote_line1")}
             <br />
-            <span
-              style={{
-                WebkitTextStroke: "2px #F5C518",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              {t("quote_line2")}
-            </span>
+            <span className="text-stroke-yellow">{t("quote_line2")}</span>
           </p>
         </div>
       </section>
 
       <section
         data-srv-process
-        className="relative flex flex-col justify-center overflow-hidden bg-[#F1F0EB] px-6 py-16 sm:px-8 sm:py-24"
+        className="relative flex flex-col justify-center overflow-hidden bg-off-white-warm px-6 py-16 sm:px-8 sm:py-24"
       >
         <div className="relative z-10 mx-auto w-full max-w-6xl">
           <div className="grid grid-cols-1 items-end gap-8 md:grid-cols-5 md:gap-12">
@@ -415,69 +392,20 @@ export function ServiciosContent() {
             </div>
           </div>
 
-          <div
-            data-srv-steps
-            className="relative mt-12 grid grid-cols-2 gap-x-2 gap-y-10 sm:mt-16 sm:gap-x-0 sm:gap-y-12 lg:mt-20 lg:grid-cols-4"
-            onMouseEnter={() => setIsProcessHovered(true)}
-            onMouseLeave={() => setIsProcessHovered(false)}
-          >
-            <div
-              data-srv-process-line
-              className="absolute top-10 left-[10%] right-[10%] hidden border-t-2 border-brand-navy/20 lg:block"
-              aria-hidden="true"
-            />
-            <div
-              className="absolute top-10 left-[10%] hidden h-[2px] bg-brand-yellow transition-[width] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] lg:block"
-              style={{
-                width: `${(activeStep / (PROCESS_STEPS.length - 1)) * 80}%`,
-              }}
-              aria-hidden="true"
-            />
-
-            {PROCESS_STEPS.map((step, i) => {
-              const num = String(i + 1).padStart(2, "0");
-              const isActive = i === activeStep;
-
-              return (
-                <div
-                  key={step}
-                  data-srv-step
-                  className="group relative z-10 flex cursor-default flex-col items-center transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                  onMouseEnter={() => setActiveStep(i)}
-                >
-                  <div
-                    className={`flex h-16 w-16 items-center justify-center rounded-full border-2 transition-all duration-300 ease-out hover:scale-[1.08] sm:h-20 sm:w-20 ${
-                      isActive
-                        ? "border-brand-yellow bg-brand-yellow shadow-[0_0_0_10px_rgba(245,197,24,0.08)]"
-                        : "border-brand-navy/30 bg-[#F1F0EB]"
-                    }`}
-                  >
-                    <span
-                      className={`font-display text-2xl transition-colors duration-300 ease-out sm:text-3xl ${
-                        isActive ? "text-brand-black" : "text-brand-navy/50"
-                      }`}
-                    >
-                      {num}
-                    </span>
-                  </div>
-                  <h3
-                    className={`mt-3 text-center font-display text-base uppercase transition-colors duration-300 sm:mt-4 sm:text-lg ${
-                      isActive ? "text-brand-yellow" : "text-brand-navy"
-                    }`}
-                  >
-                    {t(`process_steps.${step}.title`)}
-                  </h3>
-                  <p
-                    className={`mx-auto mt-2 max-w-[240px] text-center font-body text-xs leading-relaxed transition-colors duration-300 sm:text-sm lg:max-w-[200px] ${
-                      isActive ? "text-brand-navy/72" : "text-brand-navy/55"
-                    }`}
-                  >
-                    {t(`process_steps.${step}.description`)}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
+          <ProcessStepsGrid
+            steps={PROCESS_STEPS.map((step) => ({
+              title: t(`process_steps.${step}.title`),
+              description: t(`process_steps.${step}.description`),
+            }))}
+            activeStep={activeStep}
+            onStepEnter={setActiveStep}
+            variant="services"
+            gridDataAttr="data-srv-steps"
+            stepDataAttr="data-srv-step"
+            lineDataAttr="data-srv-process-line"
+            onGridMouseEnter={() => setIsProcessHovered(true)}
+            onGridMouseLeave={() => setIsProcessHovered(false)}
+          />
         </div>
       </section>
 
@@ -516,15 +444,7 @@ export function ServiciosContent() {
             data-srv-cta
             className="font-display text-[clamp(3rem,10vw,10rem)] uppercase leading-[0.85] tracking-tight"
           >
-            <span
-              className="block"
-              style={{
-                WebkitTextStroke: "2px #F5C518",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              {t("cta_title_outline")}
-            </span>
+            <span className="block text-stroke-yellow">{t("cta_title_outline")}</span>
             <span className="mt-3 block sm:mt-4">
               <span className="text-off-white">{t("cta_title_mid")}</span>{" "}
               <span className="text-brand-yellow">{t("cta_title_yellow")}</span>

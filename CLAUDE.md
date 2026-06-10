@@ -33,7 +33,7 @@ Translation strings live in `src/messages/es.json` and `src/messages/en.json`. B
 
 ### Page structure
 
-`src/app/[locale]/page.tsx` composes the home page from section components in order: Hero → Brandbook → Portfolio → LogosBanner → Contact → Footer. Each section is a self-contained component under `src/components/sections/`.
+`src/app/[locale]/page.tsx` composes the home page from section components in order: Hero (sticky panel behind the scroll layer) → StatsBar → Brandbook → Methodology → ServicesSection → Process → Contact → Footer. Each section is a self-contained component under `src/components/sections/`. Inner pages (`/servicios`, `/nosotros`, `/contacto`) render a single content component from `src/components/pages/`.
 
 ### Data / content sources
 
@@ -80,7 +80,7 @@ Defined in `src/app/globals.css` under `@theme {}` (Tailwind v4 syntax):
 
 ### Testing
 
-Tests live in `/tests/` and use Node's built-in test runner with `tsx`. Currently covers the contact API handler and validation utilities.
+Tests live in `/tests/` and use Node's built-in test runner with `tsx`. Currently covers the validation utilities, contact delivery mode logic, and SEO metadata helpers — the API route handler itself is not covered yet.
 
 ### Path alias
 

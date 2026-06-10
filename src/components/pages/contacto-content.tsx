@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { ChangeEvent, FormEvent } from "react";
+import type { ChangeEvent, FormEvent, KeyboardEvent as ReactKeyboardEvent } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -18,23 +18,15 @@ import {
   Plus,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { SITE } from "@/lib/site";
+import { Link } from "@/i18n/navigation";
+import { SITE, buildWhatsAppHref } from "@/lib/site";
 import { SOCIALS_CONFIG } from "@/lib/socials";
+import { CONTACT_SERVICE_KEYS } from "@/lib/services";
 import { validateContactForm, type ContactFormValues } from "@/lib/validation";
+import { trackEvent } from "@/lib/analytics";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
-
-const SERVICE_KEYS = [
-  "strategy",
-  "content",
-  "campaigns",
-  "inbound",
-  "seo",
-  "web",
-  "influencers",
-  "full",
-] as const;
 
 const FAQ_KEYS = ["q1", "q2", "q3", "q4", "q5", "q6"] as const;
 
@@ -131,9 +123,7 @@ function QuickChannelGrid({ t }: { t: ContactPageT }) {
       icon: MessageCircle,
       label: t("channel_whatsapp"),
       cta: t("channel_whatsapp_cta"),
-      href: `https://wa.me/${SITE.whatsapp.replace(/^\+/, "")}?text=${encodeURIComponent(
-        "Hola The Monkeys, me gustaria conocer mas sobre sus servicios."
-      )}`,
+      href: buildWhatsAppHref(t("whatsapp_prefill")),
       external: true,
     },
     {
@@ -192,7 +182,10 @@ function SocialRow() {
 }
 
 function ContactPageForm({ t }: { t: ContactPageT }) {
+  const tError = useTranslations("form_errors");
   const serviceMenuRef = useRef<HTMLDivElement>(null);
+  const serviceButtonRef = useRef<HTMLButtonElement>(null);
+  const serviceListRef = useRef<HTMLUListElement>(null);
   const [values, setValues] = useState<ContactFormValues & { phone: string; website: string }>(
     {
       name: "",
@@ -233,6 +226,48 @@ function ContactPageForm({ t }: { t: ContactPageT }) {
     setValues((current) => ({ ...current, service }));
     setErrors((current) => ({ ...current, service: undefined }));
     setIsServiceMenuOpen(false);
+    serviceButtonRef.current?.focus();
+  }
+
+  // Focus the selected (or first) option when the listbox opens
+  useEffect(() => {
+    if (!isServiceMenuOpen) return;
+    const options = serviceListRef.current?.querySelectorAll<HTMLButtonElement>(
+      'button[role="option"]'
+    );
+    if (!options?.length) return;
+    const selectedIndex = CONTACT_SERVICE_KEYS.findIndex((key) => key === values.service);
+    options[Math.max(0, selectedIndex)]?.focus();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isServiceMenuOpen]);
+
+  function handleServiceMenuKeyDown(e: ReactKeyboardEvent<HTMLDivElement>) {
+    if (!isServiceMenuOpen) {
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        e.preventDefault();
+        setIsServiceMenuOpen(true);
+      }
+      return;
+    }
+
+    if (e.key === "Escape") {
+      e.preventDefault();
+      setIsServiceMenuOpen(false);
+      serviceButtonRef.current?.focus();
+      return;
+    }
+
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      e.preventDefault();
+      const options = Array.from(
+        serviceListRef.current?.querySelectorAll<HTMLButtonElement>('button[role="option"]') ?? []
+      );
+      if (!options.length) return;
+      const currentIndex = options.indexOf(document.activeElement as HTMLButtonElement);
+      const delta = e.key === "ArrowDown" ? 1 : -1;
+      const next = (currentIndex + delta + options.length) % options.length;
+      options[next].focus();
+    }
   }
 
   async function handleSubmit(e: FormEvent) {
@@ -251,6 +286,7 @@ function ContactPageForm({ t }: { t: ContactPageT }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
       });
+      if (res.ok) trackEvent("lead_submit", { form_location: "contact_page" });
       setStatus(res.ok ? "success" : "error");
     } catch {
       setStatus("error");
@@ -263,7 +299,7 @@ function ContactPageForm({ t }: { t: ContactPageT }) {
   const labelClass =
     "mb-2 block font-mono text-[0.55rem] tracking-[0.2em] uppercase text-brand-navy/50";
   const serviceLabel = values.service
-    ? t(`form_service_${values.service as (typeof SERVICE_KEYS)[number]}` as "form_service_strategy")
+    ? t(`form_service_${values.service as (typeof CONTACT_SERVICE_KEYS)[number]}` as "form_service_strategy")
     : t("form_placeholder_service");
 
   if (status === "success") {
@@ -311,7 +347,7 @@ function ContactPageForm({ t }: { t: ContactPageT }) {
             />
             {errors.name && (
               <span role="alert" className="mt-2 text-xs text-red-500">
-                {errors.name}
+                {tError(errors.name)}
               </span>
             )}
           </div>
@@ -349,7 +385,7 @@ function ContactPageForm({ t }: { t: ContactPageT }) {
             />
             {errors.email && (
               <span role="alert" className="mt-2 text-xs text-red-500">
-                {errors.email}
+                {tError(errors.email)}
               </span>
             )}
           </div>
@@ -370,11 +406,16 @@ function ContactPageForm({ t }: { t: ContactPageT }) {
           </div>
         </div>
 
-        <div ref={serviceMenuRef} className="relative flex flex-col">
+        <div
+          ref={serviceMenuRef}
+          className="relative flex flex-col"
+          onKeyDown={handleServiceMenuKeyDown}
+        >
           <label htmlFor="cp-service" className={labelClass}>
             {t("form_label_service")}
           </label>
           <button
+            ref={serviceButtonRef}
             id="cp-service"
             type="button"
             aria-haspopup="listbox"
@@ -408,8 +449,13 @@ function ContactPageForm({ t }: { t: ContactPageT }) {
 
           {isServiceMenuOpen && (
             <div className="absolute left-0 right-0 top-full z-30 mt-3 overflow-hidden rounded-[1.25rem] border border-brand-navy/10 bg-white/98 p-2 shadow-[0_20px_60px_rgba(15,23,42,0.18)] backdrop-blur">
-              <ul role="listbox" aria-labelledby="cp-service" className="max-h-72 overflow-auto">
-                {SERVICE_KEYS.map((key) => {
+              <ul
+                ref={serviceListRef}
+                role="listbox"
+                aria-labelledby="cp-service"
+                className="max-h-72 overflow-auto"
+              >
+                {CONTACT_SERVICE_KEYS.map((key) => {
                   const isSelected = values.service === key;
                   return (
                     <li key={key}>
@@ -446,7 +492,7 @@ function ContactPageForm({ t }: { t: ContactPageT }) {
 
           {errors.service && (
             <span role="alert" className="mt-2 text-xs text-red-500">
-              {errors.service}
+              {tError(errors.service)}
             </span>
           )}
         </div>
@@ -466,7 +512,7 @@ function ContactPageForm({ t }: { t: ContactPageT }) {
           />
           {errors.message && (
             <span role="alert" className="mt-2 text-xs text-red-500">
-              {errors.message}
+              {tError(errors.message)}
             </span>
           )}
         </div>
@@ -480,7 +526,7 @@ function ContactPageForm({ t }: { t: ContactPageT }) {
         <button
           type="submit"
           disabled={status === "loading"}
-          className="group relative mx-auto mt-3 inline-flex min-w-[248px] items-center justify-center gap-3 overflow-hidden rounded-full bg-brand-navy px-6 py-3.5 text-off-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#121a33] hover:shadow-[0_18px_40px_rgba(17,26,51,0.22)] cursor-pointer disabled:cursor-not-allowed disabled:opacity-70"
+          className="group relative mx-auto mt-3 inline-flex min-w-[248px] items-center justify-center gap-3 overflow-hidden rounded-full bg-brand-navy px-6 py-3.5 text-off-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-navy-hover hover:shadow-[0_18px_40px_rgba(17,26,51,0.22)] cursor-pointer disabled:cursor-not-allowed disabled:opacity-70"
         >
           <span
             className="absolute inset-0 translate-x-[-120%] bg-[linear-gradient(115deg,transparent_0%,rgba(245,197,24,0.14)_45%,transparent_85%)] transition-transform duration-500 ease-out group-hover:translate-x-[120%]"
@@ -549,7 +595,7 @@ function FaqSection({ t }: { t: ContactPageT }) {
   );
 
   return (
-    <section className="relative overflow-hidden bg-[#08111f] px-6 py-28 md:px-8 md:py-36">
+    <section className="relative overflow-hidden bg-brand-black-elevated px-6 py-28 md:px-8 md:py-36">
       <div
         className="pointer-events-none absolute inset-0 opacity-100"
         style={{
@@ -623,7 +669,7 @@ function FaqSection({ t }: { t: ContactPageT }) {
         </div>
 
         <div className="mt-14 flex justify-center" data-faq-reveal>
-          <a href="https://wa.me/18097561847" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-3 cursor-pointer">
+          <a href={buildWhatsAppHref()} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-3 cursor-pointer">
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-brand-yellow/40 text-brand-yellow transition-all duration-200 group-hover:bg-brand-yellow group-hover:text-brand-black">
               <ArrowRight size={14} aria-hidden="true" />
             </span>
@@ -637,7 +683,7 @@ function FaqSection({ t }: { t: ContactPageT }) {
   );
 }
 
-export function ContactoContent({ homeHref }: { homeHref: string }) {
+export function ContactoContent() {
   const t = useTranslations("contact_page");
   const containerRef = useRef<HTMLDivElement>(null);
   const prefersReduced = usePrefersReducedMotion();
@@ -713,7 +759,7 @@ export function ContactoContent({ homeHref }: { homeHref: string }) {
 
   return (
     <div ref={containerRef}>
-      <section className="relative overflow-hidden bg-[#060b15] pt-24 pb-20 md:pt-28 md:pb-24">
+      <section className="relative overflow-hidden bg-brand-black-deep pt-24 pb-20 md:pt-28 md:pb-24">
         <div
           className="pointer-events-none absolute inset-0"
           style={{
@@ -726,21 +772,21 @@ export function ContactoContent({ homeHref }: { homeHref: string }) {
           <nav
             className="mb-8 font-mono text-[0.55rem] tracking-[0.2em] uppercase text-off-white/40 md:mb-10"
             data-contact-reveal
-            aria-label="Breadcrumb"
+            aria-label={t("breadcrumb_label")}
           >
-            <a
-              href={homeHref}
+            <Link
+              href="/"
               className="cursor-pointer text-brand-yellow transition-colors duration-200 hover:text-brand-yellow/75"
             >
               {t("breadcrumb_home")}
-            </a>
+            </Link>
             <span className="mx-2 opacity-30">/</span>
             {t("breadcrumb_current")}
           </nav>
 
           <div className="overflow-hidden rounded-[2rem] border border-white/8 bg-white/[0.025] shadow-[0_28px_90px_rgba(0,0,0,0.28)]">
             <div className="grid lg:grid-cols-[minmax(0,0.94fr)_minmax(0,1.06fr)]">
-              <aside className="relative overflow-hidden bg-[#070c16] px-6 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-14">
+              <aside className="relative overflow-hidden bg-brand-black-panel px-6 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-14">
                 <div
                   className="pointer-events-none absolute inset-0 opacity-100"
                   aria-hidden="true"
@@ -768,12 +814,7 @@ export function ContactoContent({ homeHref }: { homeHref: string }) {
                           {heroPrefix}
                         </span>
                       ) : null}
-                      <span
-                        className="text-transparent"
-                        style={{
-                          WebkitTextStroke: "1.8px var(--color-off-white)",
-                        }}
-                      >
+                      <span className="text-stroke-white-thin">
                         {t("hero_title_line1_outline")}
                       </span>
                     </span>
